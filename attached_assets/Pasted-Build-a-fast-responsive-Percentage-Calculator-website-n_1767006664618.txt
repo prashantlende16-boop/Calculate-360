@@ -1,0 +1,162 @@
+Build a fast, responsive Percentage Calculator website named Calculate 360 that works fully in the browser (no backend). It should calculate results in real time as the user types, with clear formulas and explanations.
+
+1) Brand + goal
+
+Brand name: Calculate 360
+
+Tagline: “Fast & Simple Percentage Calculations”
+
+Goal: A clean, modern, mobile-friendly web app that helps users solve common percentage problems instantly, with multiple calculator modes in one page.
+
+2) Tech + deliverables
+
+Use vanilla HTML + CSS + JavaScript (no frameworks).
+
+Deliver as a small static site with these files:
+
+index.html
+
+styles.css
+
+app.js
+
+(optional but preferred) manifest.json + icon placeholders for PWA install
+
+Must run offline once loaded (no external dependencies required).
+
+3) UI/UX requirements
+
+Minimal, professional design (white background, subtle shadows, rounded cards).
+
+Fully responsive (mobile first), accessible (labels, ARIA where needed), keyboard-friendly.
+
+Layout:
+
+Header: Calculate 360 + tagline + short intro line.
+
+Main card with tabs (or segmented buttons) for calculator types.
+
+Each tab shows its own inputs + results + formula + example.
+
+Real-time calculation: results update instantly on input change.
+
+Input validation:
+
+Accept decimals.
+
+Prevent divide-by-zero.
+
+Show friendly inline errors (not alerts).
+
+Handle empty inputs gracefully (show “—” until enough data).
+
+Add controls:
+
+Reset (clears inputs for that tab)
+
+Copy Result (copies the main answer to clipboard)
+
+Rounding selector: 0 / 2 / 4 decimals (default 2)
+
+4) Calculator tabs (must include all)
+
+Create these calculation modes:
+
+X% of Y
+
+Inputs: X (percent), Y (number)
+
+Output: (X/100) * Y
+
+What % is X of Y?
+
+Inputs: X, Y
+
+Output: (X / Y) * 100
+
+Percentage Increase/Decrease
+
+Inputs: Old value, New value
+
+Output:
+
+Change = New - Old
+
+Percent change = (Change / Old) * 100
+
+Clearly label increase vs decrease.
+
+Add/Subtract a Percentage
+
+Inputs: Number (Y), Percent (X), Choice: Add or Subtract
+
+Output:
+
+Add: Y * (1 + X/100)
+
+Subtract: Y * (1 - X/100)
+
+Find the Original Value (Reverse Percentage)
+Use case: “After a 20% discount, price is 800. What was original?”
+
+Inputs: Final value, Percent, Type: “After Increase” or “After Decrease”
+
+Output:
+
+After increase: Original = Final / (1 + X/100)
+
+After decrease: Original = Final / (1 - X/100)
+
+5) Content elements per tab
+
+For each tab include:
+
+One-line description (plain English).
+
+Formula shown in a small “Formula” area.
+
+A worked example area (static sample or auto-updating example).
+
+6) SEO + share
+
+In index.html:
+
+Proper meta title/description/keywords for Calculate 360.
+
+Open Graph tags for sharing.
+
+Use semantic HTML (header/main/section/footer).
+
+Add FAQ section using FAQ schema (JSON-LD) for SEO.
+
+Suggested SEO:
+
+Title: “Calculate 360 – Percentage Calculator (Real-Time)”
+
+Meta description: “Calculate 360 helps you solve percentages instantly: percent of a number, percent change, increase/decrease, reverse percentage, and more.”
+
+7) Monetization-ready (no policy violations)
+
+Add placeholder ad containers (no real AdSense code) labeled:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+
+Ensure layout doesn’t break if ads are empty.
+
+8) Performance and quality
+
+Instant load, minimal JS, no heavy animations.
+
+Clean, commented code.
+
+No console errors.
+
+Works on modern Chrome/Edge mobile & desktop.
+
+9) Final output
+
+Provide the full code for all files. Ensure everything is wired correctly and ready to deploy as a static website.
