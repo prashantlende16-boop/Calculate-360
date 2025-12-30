@@ -1,0 +1,143 @@
+Update my existing website Calculate 360 (currently has Percentage Calculator) by adding a new page: Age Calculator. Keep the same design system, header/footer, and responsive layout.
+
+1) New page details
+
+Create a new page file: age-calculator.html
+
+Reuse existing styles from styles.css (no duplicate CSS unless needed)
+
+Update navigation on all pages (including index.html) to include:
+
+Percentage Calculator
+
+Age Calculator
+
+Add a clear active state in the nav for the current page.
+
+2) Age Calculator features (must include)
+A) Exact Age from Date of Birth
+
+Inputs:
+
+Date of Birth (date picker)
+
+Optional: “As of” date (default = today)
+
+Outputs (update in real time):
+
+Exact age in Years, Months, Days
+
+Total age in:
+
+Days
+
+Weeks
+
+Months
+
+Hours
+
+Minutes
+(Use sensible rounding for totals.)
+
+B) Next Birthday Countdown
+
+Show:
+
+Days remaining until next birthday
+
+The weekday of next birthday (e.g., Monday)
+
+Optional: countdown in hours/minutes (nice-to-have)
+
+C) Age Difference Between Two People
+
+Inputs:
+
+Person A DOB
+
+Person B DOB
+
+Outputs:
+
+Difference in Years, Months, Days
+
+Also show who is older (A/B)
+
+3) Validation + edge cases
+
+Handle leap years correctly (Feb 29 birthdays).
+
+Prevent future DOB (show inline error).
+
+If “As of” date is earlier than DOB, show error.
+
+If fields are empty, show “—” placeholders (no alerts).
+
+Must not crash on invalid input.
+
+4) UX / UI requirements
+
+Same modern, minimal style as Calculate 360 (cards, spacing, mobile friendly).
+
+Layout: tabs or sections inside the page for:
+
+Age from DOB
+
+Next Birthday
+
+Age Difference
+
+Add buttons:
+
+Reset (clears relevant section)
+
+Copy Result (copies main summary text)
+
+Add a “How it works” section explaining the calculation briefly.
+
+Add FAQs relevant to age calculation (e.g., leap year birthdays).
+
+5) SEO
+
+In age-calculator.html:
+
+Title: “Calculate 360 – Age Calculator”
+
+Meta description: “Calculate your exact age in years, months, days, and find days until your next birthday with Calculate 360.”
+
+Open Graph tags for sharing.
+
+Add FAQ schema (JSON-LD) for the Age Calculator FAQs.
+
+6) JavaScript architecture
+
+Add age calculator logic to existing app.js if it’s already shared OR create age.js if cleaner.
+
+If using age.js, include it only on age-calculator.html.
+
+Keep code clean, commented, and avoid external libraries.
+
+7) Monetization-ready placeholders
+
+Add placeholder ad containers on the Age Calculator page (no real AdSense code):
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+
+8) Final output required
+
+Provide the full updated code for:
+
+index.html (updated nav)
+
+age-calculator.html
+
+styles.css (only if updates required)
+
+app.js or age.js (whichever you implement)
+
+Make sure everything works together as a deployable static website.

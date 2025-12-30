@@ -1,9 +1,14 @@
 ## Packages
-framer-motion | For smooth tab transitions and micro-interactions
-clsx | Utility for constructing className strings conditionally
-tailwind-merge | Utility for merging Tailwind classes efficiently
+date-fns | Essential for accurate age and date difference calculations
+framer-motion | For smooth tab transitions and layout animations
+lucide-react | Icons for UI elements
+clsx | Conditional class names
+tailwind-merge | Merging tailwind classes
+react-hook-form | For the feedback form
+@hookform/resolvers | Zod resolver for forms
 
 ## Notes
-Calculator logic is implemented client-side for instant feedback.
-Ad slots are implemented as placeholders.
-Feedback form connects to the backend API.
+- "Calculate 360" now has two main routes: / (Percentage) and /age (Age Calculator)
+- All calculation logic is client-side for instant interaction
+- Ad slots are visual placeholders as requested
+- FAQ sections include JSON-LD schemas for SEO
