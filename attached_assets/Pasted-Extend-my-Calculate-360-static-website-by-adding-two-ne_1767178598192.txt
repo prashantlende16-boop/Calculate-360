@@ -1,0 +1,211 @@
+Extend my Calculate 360 static website by adding two new pages:
+
+Car Loan EMI Calculator
+
+Car Loan Eligibility Calculator
+…and connect them two-way using URL query parameters + localStorage, matching the same UI style, navigation, and patterns used for Home Loan calculators.
+
+1) Files to create / update
+
+Create:
+
+car-loan-calculator.html + car-loan.js (EMI)
+
+car-loan-eligibility.html + car-loan-eligibility.js (Eligibility)
+
+Update:
+
+calculators.html (hub) to add these two calculators as cards
+
+Update global nav on all pages to include:
+
+Car Loan EMI Calculator
+
+Car Loan Eligibility Calculator
+
+Reuse styles.css and shared utilities in app.js if present.
+
+2) Car Loan EMI Calculator (car-loan-calculator.html)
+Inputs
+
+Loan Amount (₹)
+
+Interest Rate (annual %)
+
+Tenure (Years/Months toggle)
+
+Optional: Processing Fee (₹ or %)
+
+Optional: Down Payment (₹) and Car Price (₹) (nice-to-have)
+
+Outputs (real-time)
+
+Monthly EMI
+
+Total Interest
+
+Total Payment
+
+If down payment + car price provided:
+
+Loan-to-Value (LTV %) = Loan Amount / Car Price × 100
+
+Show formula:
+
+EMI = P × r × (1+r)^n / ((1+r)^n − 1)
+
+Amortization Schedule
+
+Month, Opening Balance, EMI, Principal, Interest, Closing Balance
+
+“Show first 12 / Show all”
+
+Download CSV (client-side)
+
+Chart
+
+Principal vs Interest pie/donut (no external libraries; SVG/CSS)
+
+3) Car Loan Eligibility Calculator (car-loan-eligibility.html)
+Inputs (India-focused)
+
+Net Monthly Income (₹)
+
+Existing Monthly EMIs (₹) default 0
+
+Interest Rate (annual %)
+
+Tenure (Years)
+
+FOIR dropdown:
+
+35% (conservative)
+
+45% (standard default)
+
+55% (aggressive)
+Optional:
+
+Co-applicant Monthly Income (₹)
+
+Monthly obligations (₹)
+
+Down Payment (₹) (optional)
+
+Car Price (₹) (optional, for affordability)
+
+Outputs (real-time)
+
+Max Eligible EMI = (Income + Co-income) × FOIR% − Existing EMIs − Obligations
+
+Max Eligible Loan Amount (reverse EMI formula from max EMI)
+
+If car price and/or down payment given:
+
+Affordable Car Budget = Eligible Loan + Down Payment
+
+Suggested down payment for target car price (optional nice-to-have)
+
+Helpful guidance + disclaimers
+
+Visuals
+
+FOIR usage gauge/progress bar (Allowed vs Existing vs Available EMI)
+
+Simple bar split (Income vs EMI capacity vs existing)
+
+4) Two-way connection (must)
+
+Use the same approach as home loan connection:
+
+Eligibility → EMI
+
+Button on eligibility page:
+
+“Open Car EMI Calculator with Eligible Loan”
+Transfers:
+
+amount = eligible loan amount
+
+rate = interest rate
+
+tenureYears/tenureMonths = tenure
+
+optional processing fee if present
+Implementation:
+
+Save object in localStorage key: calc360_car_loan_transfer
+
+Navigate with query params too: car-loan-calculator.html?amount=...&rate=...&tenureYears=...
+
+EMI → Eligibility
+
+Button on EMI page:
+
+“Open Car Eligibility Calculator”
+Transfers:
+
+rate, tenure, loanAmount (and optional fields)
+Implementation:
+
+localStorage key same + query params: car-loan-eligibility.html?...
+
+Prefill behavior
+
+On load, each page should:
+
+Read query params, prefill inputs, auto-calculate
+
+If missing, fallback to localStorage
+
+Optionally clear stored transfer after successful prefill
+
+5) Share link (preferred)
+
+On both car-loan pages add:
+
+“Copy Share Link” to copy current URL with query params representing current inputs.
+
+6) Validation + edge cases
+
+No negative numbers
+
+Rate can be 0% (handle separately)
+
+Tenure must be > 0
+
+Inline errors only; placeholders “—” for incomplete fields
+
+Indian currency formatting (₹ and 1,00,000 style) in UI, raw numbers internally
+
+7) SEO + monetization placeholders
+
+For both pages:
+
+Proper meta title/description + Open Graph tags
+
+Add FAQs + FAQ schema (JSON-LD)
+
+Add ad placeholders:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+
+8) Final output required
+
+Provide complete working code for:
+
+car-loan-calculator.html, car-loan.js
+
+car-loan-eligibility.html, car-loan-eligibility.js
+
+Updates to calculators.html (hub cards)
+
+Updates to navigation across all pages
+
+Any updates to shared JS (app.js) + styles.css
+
+Everything must remain a deployable static website with no external libraries.
