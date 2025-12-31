@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import PercentageCalculator from "@/pages/PercentageCalculator";
 import AgeCalculator from "@/pages/AgeCalculator";
+import HomeLoanCalculator from "@/pages/HomeLoanCalculator";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -12,6 +13,7 @@ function Router() {
     <Switch>
       <Route path="/" component={PercentageCalculator} />
       <Route path="/age" component={AgeCalculator} />
+      <Route path="/home-loan" component={HomeLoanCalculator} />
       <Route component={NotFound} />
     </Switch>
   );

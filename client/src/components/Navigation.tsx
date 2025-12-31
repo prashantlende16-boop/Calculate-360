@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, CalendarClock, Menu, X } from "lucide-react";
+import { Calculator, CalendarClock, Home, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -10,6 +10,7 @@ export function Navigation() {
   const links = [
     { href: "/", label: "Percentage Calculator", icon: Calculator },
     { href: "/age", label: "Age Calculator", icon: CalendarClock },
+    { href: "/home-loan", label: "Home Loan Calculator", icon: Home },
   ];
 
   return (

@@ -1,0 +1,189 @@
+Add a new page to my existing static website Calculate 360 called Home Loan Calculator. Keep the same design system, header/footer, navigation, and mobile-first layout used on the Percentage Calculator, Age Calculator, and Calculators Hub.
+
+1) Files to create / update
+
+Create: home-loan-calculator.html
+
+Create: home-loan.js (preferred) OR add logic into existing shared JS if that’s the current pattern.
+
+Update navigation on all pages to include:
+
+Calculators (hub)
+
+Percentage Calculator
+
+Age Calculator
+
+Home Loan Calculator
+
+Ensure active nav highlight works.
+
+2) Home Loan Calculator features (must include)
+A) EMI Calculator (Primary)
+
+Inputs:
+
+Loan Amount (₹)
+
+Interest Rate (annual %, e.g., 8.5)
+
+Loan Tenure (toggle: Years / Months)
+
+Optional: Processing Fee (₹ or % toggle)
+
+Outputs (real time):
+
+Monthly EMI
+
+Total Interest Payable
+
+Total Payment (Principal + Interest)
+
+If Processing Fee is provided, show:
+
+Processing Fee amount
+
+Effective total cost (Total Payment + Fee)
+
+Formula to display:
+
+EMI = P × r × (1+r)^n / ((1+r)^n − 1)
+Where:
+
+P = principal
+
+r = monthly interest rate (annual/12/100)
+
+n = number of months
+
+B) Amortization Schedule
+
+Generate a table with:
+
+Month #
+
+Opening Balance
+
+EMI
+
+Principal Paid
+
+Interest Paid
+
+Closing Balance
+
+Features:
+
+Pagination or “Show first 12 months / Show all”
+
+Download as CSV (client-side)
+
+Search/filter by month number (optional nice-to-have)
+
+C) Prepayment / Extra EMI Simulator (Nice-to-have but preferred)
+
+Inputs:
+
+Extra Payment Type: (Monthly extra / One-time lump sum)
+
+Amount (₹)
+
+Start Month (e.g., month 13)
+Outputs:
+
+New tenure (months reduced) OR new EMI (let user choose mode)
+
+Interest saved
+
+Updated amortization summary
+
+If too complex, implement at least:
+
+Monthly extra payment simulation with interest saved + months reduced.
+
+3) Validation + edge cases
+
+No negative values.
+
+Interest rate must be > 0 (handle 0% separately: EMI = P/n).
+
+Tenure must be > 0.
+
+Handle large numbers gracefully.
+
+Show inline error messages (no alerts).
+
+Empty fields show “—”.
+
+4) UX / UI requirements
+
+Same clean, minimal style as Calculate 360 (cards, spacing, subtle shadows, rounded corners).
+
+Use ₹ currency formatting (Indian formatting preferred: 1,00,000).
+
+Real-time results as the user types.
+
+Controls:
+
+Reset (clears page inputs)
+
+Copy EMI (copies EMI value)
+
+Rounding selector (0 / 2 decimals)
+
+Sections layout (recommended):
+
+Input card
+
+Results summary card (EMI, total interest, total payment, fees)
+
+Chart + Amortization table card
+
+5) Chart (must include)
+
+Add a simple client-side chart (no external libraries) OR a lightweight SVG chart:
+
+Pie or donut breakdown: Principal vs Interest
+
+Must update live with inputs
+
+6) SEO + content
+
+In home-loan-calculator.html:
+
+Title: “Calculate 360 – Home Loan EMI Calculator”
+
+Meta description: “Calculate EMI, total interest, total payment, and view amortization schedule with Calculate 360 Home Loan Calculator.”
+
+Open Graph tags
+
+Add a short “How it works” section
+
+Add FAQs (e.g., What is EMI? How interest is calculated? Fixed vs floating? Prepayment benefits?)
+
+Include FAQ schema (JSON-LD)
+
+7) Monetization-ready placeholders (no real AdSense code)
+
+Add ad placeholders labeled:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Ensure layout doesn’t break when empty.
+
+8) Final output required
+
+Provide complete updated code for:
+
+home-loan-calculator.html
+
+home-loan.js (or updated shared JS)
+
+Any updates needed in styles.css
+
+Updates to nav links in all existing pages (hub + other calculators)
+
+Everything must work as a deployable static website.
