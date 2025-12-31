@@ -485,7 +485,7 @@ export default function HomeLoanCalculator() {
           </div>
         </div>
 
-        <FAQSection faqs={faqs} />
+        <FAQSection title="Frequently Asked Questions" items={faqs} />
       </main>
 
       <Footer />
