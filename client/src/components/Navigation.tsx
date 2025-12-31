@@ -11,7 +11,7 @@ export function Navigation() {
     { href: "/", label: "Percentage Calculator", icon: Calculator },
     { href: "/age", label: "Age Calculator", icon: CalendarClock },
     { href: "/home-loan", label: "Home Loan EMI", icon: Home },
-    { href: "/home-loan-eligibility", label: "Loan Eligibility", icon: Home },
+    { href: "/home-loan-eligibility", label: "Home Loan Eligibility", icon: Home },
   ];
 
   return (
