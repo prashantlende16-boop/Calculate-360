@@ -1,0 +1,202 @@
+Add a new page to my existing static website Calculate 360 called Home Loan Eligibility Calculator. It must match the same design system (cards, buttons, typography, spacing), navigation, and responsive layout used across my other calculators (Percentage, Age, Home Loan EMI, and the Calculators Hub).
+
+1) Files to create / update
+
+Create: home-loan-eligibility.html
+
+Create: home-loan-eligibility.js (preferred) OR add into shared JS file if the project uses that structure.
+
+Update navigation on all pages to include:
+
+Calculators (hub)
+
+Percentage Calculator
+
+Age Calculator
+
+Home Loan EMI Calculator
+
+Home Loan Eligibility Calculator
+
+Ensure active nav highlight works on this page.
+
+2) Eligibility logic (India-focused, practical)
+
+Create an eligibility estimator using these inputs (₹ currency):
+
+A) Primary Inputs
+
+Net Monthly Income (₹)
+
+Existing Monthly EMIs (₹) (default 0)
+
+Interest Rate (annual %)
+
+Tenure (Years)
+
+FOIR / EMI-to-Income limit (dropdown):
+
+Conservative: 40%
+
+Standard: 50% (default)
+
+Aggressive: 60%
+
+B) Optional Inputs
+
+Co-applicant Monthly Income (₹)
+
+Monthly obligations (₹) (other fixed commitments)
+
+Down payment (₹) (optional; use for property affordability)
+
+Processing fee (₹ or % toggle) (optional)
+
+3) Outputs (real-time)
+
+Compute and show clearly:
+
+A) Maximum Eligible EMI
+
+Max EMI Allowed = (Income + Co-income) × FOIR% − Existing EMIs − Obligations
+
+If result <= 0, show “Not eligible based on inputs” with guidance.
+
+B) Maximum Loan Amount Eligibility
+
+Using EMI formula reverse-calculation (from max EMI, rate, tenure):
+
+r = annual/12/100
+
+n = tenureYears × 12
+
+Eligible Loan (P) = EMI × ((1+r)^n − 1) / (r × (1+r)^n)
+
+Special case:
+
+If rate = 0%: P = EMI × n
+
+C) Property Price Affordability (optional but preferred)
+
+If Down payment is provided:
+
+Estimated Affordable Property Price = Eligible Loan + Down payment
+
+D) Summary cards
+
+Show these cards at the top:
+
+Max Eligible EMI
+
+Max Loan Amount
+
+Affordable Property Price (if down payment entered)
+
+Total Interest (estimate) + Total Payment (estimate) for the eligible loan (optional but nice-to-have)
+
+4) UX features (must)
+
+Real-time results as user types.
+
+Inline validations (no alerts):
+
+Negative values not allowed
+
+Tenure > 0
+
+Rate >= 0
+
+If max EMI becomes negative show guidance text.
+
+Buttons:
+
+Reset
+
+Copy Summary (copies a neat summary text)
+
+Rounding selector: 0 / 2 decimals.
+
+Use Indian number formatting (e.g., 10,00,000).
+
+5) Charts (must include)
+
+Add lightweight, no-library charts using CSS/SVG:
+
+A gauge/progress bar showing FOIR usage:
+
+Allowed EMI vs (Existing EMIs + New Eligible EMI)
+
+A simple bar split: Income vs Total EMI capacity vs Existing EMIs
+
+Charts must update live.
+
+6) Helpful guidance section (must)
+
+Add a section titled “How eligibility is estimated” explaining:
+
+FOIR meaning
+
+How existing EMIs reduce eligibility
+
+How tenure and interest rate affect eligible loan amount
+
+Disclaimer: “Estimates only; banks may vary.”
+
+Add “Tips to improve eligibility”:
+
+Reduce existing EMIs
+
+Increase down payment
+
+Longer tenure vs interest tradeoff
+
+Add co-applicant income
+
+7) SEO + schema
+
+In home-loan-eligibility.html:
+
+Title: “Calculate 360 – Home Loan Eligibility Calculator”
+
+Meta description: “Estimate your home loan eligibility based on income, EMIs, FOIR, interest rate and tenure with Calculate 360.”
+
+Open Graph tags
+
+Add FAQs + FAQ schema (JSON-LD)
+
+FAQ suggestions:
+
+What is FOIR?
+
+How do existing EMIs affect eligibility?
+
+Does longer tenure increase eligibility?
+
+How accurate is this calculator?
+
+Can I include co-applicant income?
+
+8) Monetization placeholders (no real AdSense code)
+
+Add labeled placeholder ad containers:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Layout must not break if empty.
+
+9) Final output required
+
+Provide complete working code for:
+
+home-loan-eligibility.html
+
+home-loan-eligibility.js (or updated shared JS)
+
+Any required updates to styles.css
+
+Updates to navigation links in all existing pages (hub + other calculators)
+
+Everything must work as a deployable static website with no external dependencies.

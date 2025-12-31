@@ -10,7 +10,8 @@ export function Navigation() {
   const links = [
     { href: "/", label: "Percentage Calculator", icon: Calculator },
     { href: "/age", label: "Age Calculator", icon: CalendarClock },
-    { href: "/home-loan", label: "Home Loan Calculator", icon: Home },
+    { href: "/home-loan", label: "Home Loan EMI", icon: Home },
+    { href: "/home-loan-eligibility", label: "Loan Eligibility", icon: Home },
   ];
 
   return (
