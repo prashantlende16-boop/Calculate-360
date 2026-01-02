@@ -1,0 +1,185 @@
+On my existing Calculate 360 website, I already have a Loan Eligibility page (currently includes Home Loan Eligibility). Update that same page by adding a new section/tab for Car Loan Eligibility. Keep UI, styling, validation, charts, and real-time calculations consistent with the existing Home Loan Eligibility section.
+
+1) Page structure update (must)
+
+On the Loan Eligibility page, add a top-level switch (tabs/segmented control) with:
+
+Home Loan Eligibility
+
+Car Loan Eligibility (new)
+
+Rules:
+
+Switching tabs should not reload the page.
+
+Each tab should have its own inputs/results and Reset button.
+
+Keep the same layout style: input card → results summary cards → charts → guidance/FAQ.
+
+2) Car Loan Eligibility Inputs (India-focused)
+
+Create a Car Loan Eligibility form with these inputs (₹):
+
+Required
+
+Net Monthly Income (₹)
+
+Existing Monthly EMIs (₹) default 0
+
+Interest Rate (annual %)
+
+Tenure (Years)
+
+FOIR dropdown:
+
+35% (Conservative)
+
+45% (Standard, default)
+
+55% (Aggressive)
+
+Optional
+
+Co-applicant Monthly Income (₹)
+
+Monthly Obligations (₹)
+
+Down Payment (₹) (optional)
+
+Target Car Price (₹) (optional)
+
+3) Calculations (must)
+A) Max Eligible EMI
+
+Max EMI Allowed =
+(Income + Co-income) × FOIR% − Existing EMIs − Obligations
+
+If <= 0:
+
+Show “Not eligible based on inputs” + tips.
+
+B) Max Eligible Loan Amount
+
+Convert Max Eligible EMI into max loan principal (reverse EMI formula):
+
+r = annualRate/12/100
+
+n = tenureYears × 12
+
+P = EMI × ((1+r)^n − 1) / (r × (1+r)^n)
+Special case:
+
+If rate = 0%: P = EMI × n
+
+C) Affordability (preferred)
+
+If Down Payment entered:
+
+Affordable Car Budget = Eligible Loan + Down Payment
+
+If Target Car Price entered:
+
+Show whether the budget is sufficient
+
+Shortfall/Surplus amount
+
+Suggested minimum down payment needed (Target Price − Eligible Loan, min 0)
+
+4) Outputs UI (must)
+
+Show summary cards for Car Loan section:
+
+Max Eligible EMI
+
+Max Eligible Loan Amount
+
+Affordable Car Budget (if down payment entered)
+
+Shortfall/Surplus vs Target Car Price (if provided)
+
+All results update live.
+
+5) Charts (must)
+
+Add lightweight charts (no external libs) for Car Loan section:
+
+FOIR usage bar/gauge showing:
+
+Allowed EMI capacity vs Existing EMIs vs Remaining capacity
+
+Optional small bar chart:
+
+Income vs Total EMI capacity vs Existing EMIs
+
+Charts must switch correctly when tab changes.
+
+6) Validation + edge cases
+
+No negative values
+
+Tenure > 0
+
+Rate ≥ 0
+
+DOB-style validation not applicable here
+
+Inline errors only (no alerts)
+
+Empty input → show “—”
+
+Indian number formatting in UI (₹ and 1,00,000 style)
+
+7) Buttons & utilities (must)
+
+Inside Car Loan section include:
+
+Reset (only clears car-loan inputs)
+
+Copy Summary (copies a neat summary text with key values)
+
+8) SEO + FAQ updates
+
+Update the Loan Eligibility page FAQ section to include Car Loan FAQs and update FAQ schema (JSON-LD) accordingly.
+Example FAQs:
+
+What FOIR is good for car loans?
+
+How do existing EMIs affect eligibility?
+
+Does longer tenure increase eligibility?
+
+Can co-applicant income be included?
+
+9) Monetization placeholders (keep consistent)
+
+Ensure ad placeholders still exist and layout is not broken:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+
+10) Code requirements
+
+Implement Car Loan logic in the existing eligibility JS file OR create modular functions:
+
+calculateEligibilityHome()
+
+calculateEligibilityCar()
+
+Reuse shared helpers (currency formatting, parsing, validation, copy).
+
+Provide final updated code for the Loan Eligibility page and its JS/CSS if changes are needed.
+
+Final output required
+
+Provide the full updated code for:
+
+The existing Loan Eligibility page HTML
+
+Its JavaScript file
+
+Any necessary updates to shared CSS/JS utilities
+
+Make sure both eligibility tabs work perfectly without page reload.
