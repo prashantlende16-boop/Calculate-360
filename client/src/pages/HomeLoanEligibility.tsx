@@ -216,9 +216,9 @@ Note: This is an estimate. Banks may have different criteria.`;
             )}
 
             {/* Main Form */}
-            <div className="bg-card text-card-foreground rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <Tabs defaultValue="primary" className="w-full">
-                <TabsList className="grid grid-cols-3 mb-6 rounded-lg p-1" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
+                <TabsList className="grid grid-cols-3 mb-6 bg-slate-100 rounded-lg p-1">
                   <TabsTrigger value="primary" className="rounded-md">Primary</TabsTrigger>
                   <TabsTrigger value="optional" className="rounded-md">Optional</TabsTrigger>
                   <TabsTrigger value="foir" className="rounded-md">FOIR Chart</TabsTrigger>
@@ -227,14 +227,14 @@ Note: This is an estimate. Banks may have different criteria.`;
                 {/* Primary Inputs */}
                 <TabsContent value="primary" className="space-y-6">
                   <div className="flex justify-end mb-4">
-                    <div className="flex items-center gap-2 text-sm rounded-lg border border-card-foreground/20 px-3 py-1" style={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}}>
-                      <span className="text-card-foreground/80">Decimals:</span>
+                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                      <span className="text-muted-foreground">Decimals:</span>
                       {[0, 2].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
                           className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${
-                            decimals === d ? "bg-primary text-primary-foreground font-bold" : "text-card-foreground/60 hover:bg-card-foreground/20"
+                            decimals === d ? "bg-primary text-white font-bold" : "text-slate-500 hover:bg-slate-200"
                           }`}
                         >
                           {d}

@@ -80,26 +80,26 @@ export default function PercentageCalculator() {
               </p>
             </header>
 
-            <div className="bg-card text-card-foreground rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
               <Tabs defaultValue="tab1" className="w-full">
-                <TabsList className="w-full grid grid-cols-2 md:grid-cols-5 h-auto p-1 bg-opacity-20 rounded-xl gap-1" style={{backgroundColor: 'rgba(0, 0, 0, 0.1)'}}>
-                  <TabsTrigger value="tab1" className="rounded-lg py-2 data-[state=active]:bg-card/80 data-[state=active]:shadow-sm">X% of Y</TabsTrigger>
-                  <TabsTrigger value="tab2" className="rounded-lg py-2 data-[state=active]:bg-card/80 data-[state=active]:shadow-sm">What %</TabsTrigger>
-                  <TabsTrigger value="tab3" className="rounded-lg py-2 data-[state=active]:bg-card/80 data-[state=active]:shadow-sm">% Change</TabsTrigger>
-                  <TabsTrigger value="tab4" className="rounded-lg py-2 data-[state=active]:bg-card/80 data-[state=active]:shadow-sm">+/- %</TabsTrigger>
-                  <TabsTrigger value="tab5" className="rounded-lg py-2 data-[state=active]:bg-card/80 data-[state=active]:shadow-sm">Reverse</TabsTrigger>
+                <TabsList className="w-full grid grid-cols-2 md:grid-cols-5 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                  <TabsTrigger value="tab1" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">X% of Y</TabsTrigger>
+                  <TabsTrigger value="tab2" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">What %</TabsTrigger>
+                  <TabsTrigger value="tab3" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">% Change</TabsTrigger>
+                  <TabsTrigger value="tab4" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">+/- %</TabsTrigger>
+                  <TabsTrigger value="tab5" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">Reverse</TabsTrigger>
                 </TabsList>
 
                 <div className="p-6 md:p-8">
                   {/* Rounding Controls */}
                   <div className="flex justify-end mb-6">
-                    <div className="flex items-center gap-2 text-sm bg-opacity-10 px-3 py-1 rounded-lg border border-card-foreground/20" style={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}}>
-                      <span className="text-card-foreground/80">Decimals:</span>
+                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                      <span className="text-muted-foreground">Decimals:</span>
                       {[0, 2, 4].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
-                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-primary-foreground font-bold' : 'text-card-foreground/60 hover:bg-card-foreground/20'}`}
+                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
                         >
                           {d}
                         </button>
