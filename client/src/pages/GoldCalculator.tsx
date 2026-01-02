@@ -18,10 +18,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-function formatCurrency(value: number): string {
+const currencies = [
+  { code: "INR", symbol: "₹", label: "Indian Rupee (₹)" },
+  { code: "USD", symbol: "$", label: "US Dollar ($)" },
+  { code: "AED", symbol: "د.إ", label: "UAE Dirham (AED)" },
+  { code: "GBP", symbol: "£", label: "British Pound (£)" },
+  { code: "EUR", symbol: "€", label: "Euro (€)" },
+];
+
+function formatCurrency(value: number, currencyCode: string = "INR"): string {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency: "INR",
+    currency: currencyCode,
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
@@ -29,6 +37,7 @@ function formatCurrency(value: number): string {
 
 export default function GoldCalculator() {
   const { toast } = useToast();
+  const [currency, setCurrency] = useState("INR");
 
   // Section 1: 10g Conversion
   const [rate24k10g, setRate24k10g] = useState("75000");
@@ -38,6 +47,8 @@ export default function GoldCalculator() {
     "18k": rate24k1g_sec1 * 0.75 * 10,
     "14k": rate24k1g_sec1 * 0.583 * 10,
   };
+
+  const selectedCurrency = currencies.find(c => c.code === currency) || currencies[0];
 
   // Section 2: 1g Conversion
   const rate24k1g = rate24k1g_sec1;
@@ -77,6 +88,8 @@ export default function GoldCalculator() {
   const tax = (totalCostBeforeTax * (parseFloat(taxPercent) || 0)) / 100;
   const finalCost = totalCostBeforeTax + tax;
 
+  const displayPrice = (val: number) => formatCurrency(val, currency);
+
   const faqs = [
     {
       question: "What is the purity of 22k gold?",
@@ -103,6 +116,20 @@ export default function GoldCalculator() {
           <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center justify-center gap-3">
             <Coins className="w-8 h-8 text-yellow-500" /> Gold Jewelry Cost Calculator
           </h1>
+          <div className="max-w-[200px] mx-auto mb-4">
+            <Select value={currency} onValueChange={setCurrency}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select Currency" />
+              </SelectTrigger>
+              <SelectContent>
+                {currencies.map((c) => (
+                  <SelectItem key={c.code} value={c.code}>
+                    {c.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Calculate gold rates for different carats and estimate the final price of jewelry including making charges and tax.
           </p>
@@ -117,7 +144,7 @@ export default function GoldCalculator() {
             </CardHeader>
             <CardContent className="p-6">
               <div className="mb-6">
-                <Label className="mb-2 block">24K Gold Rate (per 10g) in ₹</Label>
+                <Label className="mb-2 block">24K Gold Rate (per 10g) in {selectedCurrency.symbol}</Label>
                 <Input 
                   type="number" 
                   value={rate24k10g} 
@@ -128,15 +155,15 @@ export default function GoldCalculator() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">22K (91.6%)</div>
-                  <div className="text-xl font-bold text-slate-900">{formatCurrency(rates10g["22k"])}</div>
+                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates10g["22k"])}</div>
                 </div>
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">18K (75%)</div>
-                  <div className="text-xl font-bold text-slate-900">{formatCurrency(rates10g["18k"])}</div>
+                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates10g["18k"])}</div>
                 </div>
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">14K (58.3%)</div>
-                  <div className="text-xl font-bold text-slate-900">{formatCurrency(rates10g["14k"])}</div>
+                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates10g["14k"])}</div>
                 </div>
               </div>
             </CardContent>
@@ -150,24 +177,24 @@ export default function GoldCalculator() {
             </CardHeader>
             <CardContent className="p-6">
               <div className="mb-6">
-                <Label className="mb-2 block">24K Gold Rate (per 1g) in ₹</Label>
+                <Label className="mb-2 block">24K Gold Rate (per 1g) in {selectedCurrency.symbol}</Label>
                 <div className="text-2xl font-bold p-3 bg-slate-50 border rounded-lg text-primary">
-                  {formatCurrency(rate24k1g)}
+                  {displayPrice(rate24k1g)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">Automatically calculated as (24K Rate per 10g / 10)</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">22K (91.6%)</div>
-                  <div className="text-xl font-bold text-slate-900">{formatCurrency(rates1g["22k"])}</div>
+                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates1g["22k"])}</div>
                 </div>
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">18K (75%)</div>
-                  <div className="text-xl font-bold text-slate-900">{formatCurrency(rates1g["18k"])}</div>
+                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates1g["18k"])}</div>
                 </div>
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">14K (58.3%)</div>
-                  <div className="text-xl font-bold text-slate-900">{formatCurrency(rates1g["14k"])}</div>
+                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates1g["14k"])}</div>
                 </div>
               </div>
             </CardContent>
@@ -194,7 +221,7 @@ export default function GoldCalculator() {
                         <SelectItem value="14k">14K (58.3%)</SelectItem>
                       </SelectContent>
                     </Select>
-                    <p className="text-xs text-muted-foreground mt-1">Rate: {formatCurrency(selected1gRate)} / gram</p>
+                    <p className="text-xs text-muted-foreground mt-1">Rate: {displayPrice(selected1gRate)} / gram</p>
                   </div>
 
                   <div>
@@ -228,7 +255,7 @@ export default function GoldCalculator() {
                   </div>
 
                   <div>
-                    <Label className="mb-2 block">Other Charges (Stone/Hallmarking) ₹</Label>
+                    <Label className="mb-2 block">Other Charges (Stone/Hallmarking) {selectedCurrency.symbol}</Label>
                     <Input 
                       type="number" 
                       placeholder="e.g. 500" 
@@ -238,7 +265,7 @@ export default function GoldCalculator() {
                   </div>
 
                   <div>
-                    <Label className="mb-2 block">Discount ₹</Label>
+                    <Label className="mb-2 block">Discount {selectedCurrency.symbol}</Label>
                     <Input 
                       type="number" 
                       placeholder="e.g. 1000" 
@@ -262,33 +289,33 @@ export default function GoldCalculator() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center pb-4 border-b border-white/10">
                       <span className="text-slate-400">Gold Value</span>
-                      <span className="font-semibold">{formatCurrency(goldValue)}</span>
+                      <span className="font-semibold">{displayPrice(goldValue)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-slate-400">Making Charges</span>
-                      <span>{formatCurrency(makingCharge)}</span>
+                      <span>{displayPrice(makingCharge)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-slate-400">Other Charges</span>
-                      <span>{formatCurrency(otherChargesVal)}</span>
+                      <span>{displayPrice(otherChargesVal)}</span>
                     </div>
                     <div className="flex justify-between items-center text-red-400">
                       <span>Discount</span>
-                      <span>- {formatCurrency(discountVal)}</span>
+                      <span>- {displayPrice(discountVal)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-4 border-t border-white/10">
                       <span className="text-slate-400">Total Cost (Excl. Tax)</span>
-                      <span className="font-semibold">{formatCurrency(totalCostBeforeTax)}</span>
+                      <span className="font-semibold">{displayPrice(totalCostBeforeTax)}</span>
                     </div>
                     <div className="flex justify-between items-center text-blue-400">
                       <span>Tax ({taxPercent}%)</span>
-                      <span>{formatCurrency(tax)}</span>
+                      <span>{displayPrice(tax)}</span>
                     </div>
                   </div>
                   
                   <div className="mt-8 pt-6 border-t border-white/20">
                     <div className="text-sm text-slate-400 uppercase tracking-wider mb-1">Final Price</div>
-                    <div className="text-4xl font-bold text-yellow-500">{formatCurrency(finalCost)}</div>
+                    <div className="text-4xl font-bold text-yellow-500">{displayPrice(finalCost)}</div>
                   </div>
                 </div>
               </div>
