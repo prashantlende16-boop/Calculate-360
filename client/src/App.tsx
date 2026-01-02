@@ -7,6 +7,7 @@ import PercentageCalculator from "@/pages/PercentageCalculator";
 import AgeCalculator from "@/pages/AgeCalculator";
 import HomeLoanCalculator from "@/pages/HomeLoanCalculator";
 import HomeLoanEligibility from "@/pages/HomeLoanEligibility";
+import GoldCalculator from "@/pages/GoldCalculator";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/age" component={AgeCalculator} />
       <Route path="/home-loan" component={HomeLoanCalculator} />
       <Route path="/home-loan-eligibility" component={HomeLoanEligibility} />
+      <Route path="/gold" component={GoldCalculator} />
       <Route component={NotFound} />
     </Switch>
   );
