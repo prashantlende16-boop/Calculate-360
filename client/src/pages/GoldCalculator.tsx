@@ -55,6 +55,7 @@ export default function GoldCalculator() {
   const [makingChargeValue, setMakingChargeValue] = useState("");
   const [otherCharges, setOtherCharges] = useState("");
   const [discount, setDiscount] = useState("");
+  const [taxPercent, setTaxPercent] = useState("3");
 
   const selected1gRate = rates1g[jewelryCarat as keyof typeof rates1g] || 0;
   const weightNum = parseFloat(goldWeight) || 0;
@@ -72,9 +73,9 @@ export default function GoldCalculator() {
   const otherChargesVal = parseFloat(otherCharges) || 0;
   const discountVal = parseFloat(discount) || 0;
 
-  const totalCostBeforeGst = goldValue + makingCharge + otherChargesVal - discountVal;
-  const gst = (totalCostBeforeGst * 3) / 100;
-  const finalCost = totalCostBeforeGst + gst;
+  const totalCostBeforeTax = goldValue + makingCharge + otherChargesVal - discountVal;
+  const tax = (totalCostBeforeTax * (parseFloat(taxPercent) || 0)) / 100;
+  const finalCost = totalCostBeforeTax + tax;
 
   const faqs = [
     {
@@ -86,8 +87,8 @@ export default function GoldCalculator() {
       answer: "Making charges are calculated either as a flat rate per gram of gold weight or as a percentage of the total gold value. This cost covers the labor and design efforts."
     },
     {
-      question: "What is the GST on gold jewelry in India?",
-      answer: "Currently, a standard GST rate of 3% is applicable on the total value of gold jewelry (Gold Value + Making Charges + Other Charges)."
+      question: "What is the tax on gold jewelry?",
+      answer: "The tax on gold jewelry varies by region. In India, a standard GST rate of 3% is typically applicable on the total value of gold jewelry."
     }
   ];
 
@@ -103,7 +104,7 @@ export default function GoldCalculator() {
             <Coins className="w-8 h-8 text-yellow-500" /> Gold Jewelry Cost Calculator
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Calculate gold rates for different carats and estimate the final price of jewelry including making charges and GST.
+            Calculate gold rates for different carats and estimate the final price of jewelry including making charges and tax.
           </p>
         </header>
 
@@ -247,6 +248,16 @@ export default function GoldCalculator() {
                       onChange={(e) => setDiscount(e.target.value)}
                     />
                   </div>
+
+                  <div>
+                    <Label className="mb-2 block">Tax (%)</Label>
+                    <Input 
+                      type="number" 
+                      placeholder="3" 
+                      value={taxPercent} 
+                      onChange={(e) => setTaxPercent(e.target.value)}
+                    />
+                  </div>
                 </div>
 
                 <div className="bg-slate-900 text-white p-6 rounded-2xl flex flex-col justify-between">
@@ -268,12 +279,12 @@ export default function GoldCalculator() {
                       <span>- {formatCurrency(discountVal)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-4 border-t border-white/10">
-                      <span className="text-slate-400">Total Cost (Excl. GST)</span>
-                      <span className="font-semibold">{formatCurrency(totalCostBeforeGst)}</span>
+                      <span className="text-slate-400">Total Cost (Excl. Tax)</span>
+                      <span className="font-semibold">{formatCurrency(totalCostBeforeTax)}</span>
                     </div>
                     <div className="flex justify-between items-center text-blue-400">
-                      <span>GST (3%)</span>
-                      <span>{formatCurrency(gst)}</span>
+                      <span>Tax ({taxPercent}%)</span>
+                      <span>{formatCurrency(tax)}</span>
                     </div>
                   </div>
                   
