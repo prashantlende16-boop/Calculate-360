@@ -12,7 +12,7 @@ export function Navigation() {
     { href: "/age", label: "Age Calculator", icon: CalendarClock },
     { href: "/home-loan", label: "Home Loan EMI", icon: Home },
     { href: "/home-loan-eligibility", label: "Loan Eligibility", icon: Home },
-    { href: "/gold", label: "Gold Calculator", icon: Coins },
+    { href: "/gold", label: "Jewelry Cost", icon: Coins },
   ];
 
   return (

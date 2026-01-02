@@ -106,16 +106,20 @@ export default function GoldCalculator() {
 
   const faqs = [
     {
-      question: "What is the purity of 22k gold?",
-      answer: "22k gold contains 91.6% pure gold, while the remaining 8.4% consists of other metals like copper or zinc to provide strength for jewelry."
+      question: "How is gold value calculated by purity?",
+      answer: "Gold value is calculated by multiplying the pure gold rate (24K) by the purity percentage of the carat (e.g., 91.6% for 22K, 75% for 18K) and then by the weight in grams."
     },
     {
-      question: "How is making charge calculated?",
-      answer: "Making charges are calculated either as a flat rate per gram of gold weight or as a percentage of the total gold value. This cost covers the labor and design efforts."
+      question: "Is tax calculated before or after discount?",
+      answer: "Typically, tax (like GST in India) is calculated on the 'Gross Cost' after deducting any discounts from the sum of gold value, making charges, and other fees."
     },
     {
-      question: "What is the tax on gold jewelry?",
-      answer: "The tax on gold jewelry varies by region. In India, a standard GST rate of 3% is typically applicable on the total value of gold jewelry."
+      question: "What are making charges?",
+      answer: "Making charges are the costs associated with designing and manufacturing a piece of jewelry. They can be a flat fee per gram or a percentage of the gold value."
+    },
+    {
+      question: "Why does the final price differ from the rate per gram?",
+      answer: "The final price includes not just the raw gold value, but also making charges, stones/hallmarking fees, and applicable taxes, minus any discounts offered by the jeweler."
     }
   ];
 
@@ -125,6 +129,15 @@ export default function GoldCalculator() {
 
       <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
+        
+        {/* SEO Tags */}
+        <head>
+          <title>Calculate 360 – Gold Jewelry Cost Calculator</title>
+          <meta name="description" content="Calculate gold jewelry price in ₹ using weight, gold rate per gram, purity, making charges, discount, and Tax/GST." />
+          <meta property="og:title" content="Calculate 360 – Gold Jewelry Cost Calculator" />
+          <meta property="og:description" content="Calculate gold jewelry price in ₹ using weight, gold rate per gram, purity, making charges, discount, and Tax/GST." />
+          <meta property="og:type" content="website" />
+        </head>
 
         <header className="mb-10 text-center">
           <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center justify-center gap-3">
