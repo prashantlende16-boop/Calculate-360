@@ -39,8 +39,22 @@ export default function GoldCalculator() {
   const { toast } = useToast();
   const [currency, setCurrency] = useState("INR");
 
+  const defaultRates: Record<string, string> = {
+    INR: "135060",
+    USD: "1417.80",
+    AED: "5163.30",
+    GBP: "1105",
+    EUR: "1320",
+  };
+
   // Section 1: 10g Conversion
-  const [rate24k10g, setRate24k10g] = useState("75000");
+  const [rate24k10g, setRate24k10g] = useState(defaultRates[currency]);
+
+  // Update rate when currency changes
+  useMemo(() => {
+    setRate24k10g(defaultRates[currency]);
+  }, [currency]);
+
   const rate24k1g_sec1 = (parseFloat(rate24k10g) || 0) / 10;
   const rates10g = {
     "22k": rate24k1g_sec1 * 0.916 * 10,
@@ -129,6 +143,13 @@ export default function GoldCalculator() {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+          <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg max-w-2xl mx-auto mb-6 flex items-start gap-3 text-left">
+            <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-amber-800">
+              <strong>Live Reference Rate:</strong> {displayPrice(parseFloat(defaultRates[currency]))} per 10g. 
+              Gold prices fluctuate throughout the day. Please verify with your local jeweler for actual retail rates.
+            </p>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Calculate gold rates for different carats and estimate the final price of jewelry including making charges and tax.
