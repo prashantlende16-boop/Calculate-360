@@ -40,8 +40,8 @@ export default function GoldCalculator() {
   };
 
   // Section 2: 1g Conversion
-  const [rate24k1g, setRate24k1g] = useState("7500");
-  const r1g = parseFloat(rate24k1g) || 0;
+  const rate24k1g = rate24k1g_sec1;
+  const r1g = rate24k1g;
   const rates1g = {
     "22k": r1g * 0.916,
     "18k": r1g * 0.75,
@@ -151,12 +151,10 @@ export default function GoldCalculator() {
             <CardContent className="p-6">
               <div className="mb-6">
                 <Label className="mb-2 block">24K Gold Rate (per 1g) in ₹</Label>
-                <Input 
-                  type="number" 
-                  value={rate24k1g} 
-                  onChange={(e) => setRate24k1g(e.target.value)}
-                  className="text-lg font-semibold"
-                />
+                <div className="text-2xl font-bold p-3 bg-slate-50 border rounded-lg text-primary">
+                  {formatCurrency(rate24k1g)}
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">Automatically calculated as (24K Rate per 10g / 10)</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
