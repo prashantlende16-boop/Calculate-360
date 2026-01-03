@@ -1,0 +1,162 @@
+Add a new page to my existing static website Calculate 360 called Currency Converter. It must match the same design system, navigation, responsiveness, and UX patterns used across my other calculators.
+
+1) Files to create / update
+
+Create:
+
+currency-converter.html
+
+currency.js (preferred) OR integrate into existing shared JS pattern
+
+Update:
+
+Global navigation on all pages to include Currency Converter
+
+calculators.html hub page: add a new card for Currency Converter
+
+2) Core functionality (must)
+
+Build a client-side currency converter with:
+
+Amount input
+
+From currency dropdown (default INR)
+
+To currency dropdown (default USD)
+
+Output converted amount in real time
+
+Show the exchange rate used (e.g., 1 USD = ₹83.25)
+
+Buttons:
+
+Swap (swap From/To)
+
+Reset
+
+Copy Result (copies converted amount + rate)
+
+Copy Share Link (copies URL with query params like ?amount=100&from=INR&to=USD)
+
+3) Exchange-rate source (no backend)
+
+Use a public CORS-enabled exchange rate API via fetch() (no libraries). Requirements:
+
+Store rates in localStorage with a timestamp.
+
+Show “Last updated: <date/time>”.
+
+Add a Refresh Rates button.
+
+If API fails/offline:
+
+Use last cached rates from localStorage
+
+Show a friendly warning: “Using cached rates”
+
+Provide a fallback “Manual rate” toggle:
+
+If enabled, user can enter rate manually and converter uses it (useful offline).
+
+Implementation note: If an API key is required, build a config section at the top of currency.js (e.g., API_URL / API_KEY) with clear comments.
+
+4) Currency list UX (must)
+
+Dropdowns should support search (type-to-filter).
+
+Include common currencies at top (INR, USD, EUR, GBP, AED, SGD, AUD, CAD, JPY).
+
+Then show full supported list below (from API or a built-in ISO currency list).
+
+Display currency code + name (e.g., “INR – Indian Rupee”).
+
+Optional: show country flag emoji based on currency (nice-to-have).
+
+5) Calculations + formatting (must)
+
+Handle decimals accurately.
+
+Rounding selector: 0 / 2 / 4 decimals (default 2).
+
+Format amounts with appropriate separators.
+
+Validate:
+
+Amount must be >= 0
+
+From != To (allow but show rate = 1 if same)
+
+Empty fields show “—” placeholders (no alerts).
+
+6) Extra features (preferred, but skip if too heavy)
+
+“Favorite pairs” ⭐: allow users to save a few pairs (e.g., INR→USD).
+
+“Quick conversions” table: show 1, 10, 100 units conversions for the selected pair.
+
+Mini chart (no external libs): show last 7/30 days trend only if the chosen API supports historical rates; otherwise omit chart and show current rate only.
+
+7) Layout + UI requirements
+
+Use the same clean Calculate 360 style: cards, spacing, rounded corners, subtle shadows, mobile-first.
+
+Recommended layout:
+
+Input card (amount, from, to, swap)
+
+Result card (converted value, rate, last updated, refresh)
+
+Optional quick conversions / favorites
+
+Add ad placeholders (no real AdSense code):
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Layout must not break if empty.
+
+8) SEO + content
+
+In currency-converter.html:
+
+Title: “Calculate 360 – Currency Converter”
+
+Meta description: “Convert currencies instantly with live exchange rates, offline cached fallback, and shareable links using Calculate 360.”
+
+Open Graph tags
+
+Add a “How it works” section:
+
+Live rate fetch
+
+Cached fallback
+
+Manual rate option
+
+Add FAQs + FAQ schema (JSON-LD), e.g.:
+
+Are rates live or delayed?
+
+What happens offline?
+
+How often should I refresh?
+
+Why does the rate differ from my bank?
+
+9) Final output required
+
+Provide complete working code for:
+
+currency-converter.html
+
+currency.js (or updated shared JS)
+
+Any required updates to styles.css
+
+Updates to calculators.html (hub card)
+
+Updates to navigation across all pages
+
+Everything must remain a deployable static website with no external libraries.

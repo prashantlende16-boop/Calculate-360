@@ -8,6 +8,7 @@ import AgeCalculator from "@/pages/AgeCalculator";
 import HomeLoanCalculator from "@/pages/HomeLoanCalculator";
 import HomeLoanEligibility from "@/pages/HomeLoanEligibility";
 import GoldCalculator from "@/pages/GoldCalculator";
+import CurrencyConverter from "@/pages/CurrencyConverter";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/home-loan" component={HomeLoanCalculator} />
       <Route path="/home-loan-eligibility" component={HomeLoanEligibility} />
       <Route path="/gold" component={GoldCalculator} />
+      <Route path="/currency" component={CurrencyConverter} />
       <Route component={NotFound} />
     </Switch>
   );
