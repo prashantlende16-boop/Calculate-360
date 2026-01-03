@@ -50,28 +50,38 @@ export default function CurrencyConverter() {
   const fetchRates = async (force = false) => {
     setIsLoading(true);
     try {
-      const response = await fetch(API_URL);
+      // Using a reliable public API that doesn't require keys if possible, 
+      // or at least ensuring the fetch is correct.
+      // exchangerate-api.com free tier is generally reliable.
+      const response = await fetch(`https://open.er-api.com/v6/latest/USD`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
       if (data.result === "success") {
-        setRates(data.conversion_rates);
+        setRates(data.rates);
         setLastUpdated(Date.now());
-        localStorage.setItem("currency_rates", JSON.stringify(data.conversion_rates));
+        localStorage.setItem("currency_rates", JSON.stringify(data.rates));
         localStorage.setItem("currency_timestamp", Date.now().toString());
         setIsOffline(false);
       } else {
         throw new Error("API Error");
       }
     } catch (error) {
+      console.error("Fetch error:", error);
       const cachedRates = localStorage.getItem("currency_rates");
       const cachedTimestamp = localStorage.getItem("currency_timestamp");
       if (cachedRates) {
         setRates(JSON.parse(cachedRates));
         setLastUpdated(parseInt(cachedTimestamp || "0"));
         setIsOffline(true);
+      } else {
+        // Provide fallback rates if no cache exists
+        setRates({ "USD": 1, "INR": 83.5, "EUR": 0.92, "GBP": 0.79 });
+        setLastUpdated(Date.now());
+        setIsOffline(true);
       }
       toast({
-        title: "Using cached rates",
-        description: "Unable to fetch live rates. Displaying last known data.",
+        title: "Connection Issue",
+        description: "Unable to fetch live rates. Using last known or default data.",
         variant: "destructive",
       });
     } finally {
@@ -125,7 +135,7 @@ export default function CurrencyConverter() {
   };
 
   const copyShareLink = () => {
-    const url = `${window.location.origin}${window.location.pathname}?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`;
+    const url = `${window.location.origin}${window.location.pathname}?amount=${encodeURIComponent(amount)}&from=${encodeURIComponent(fromCurrency)}&to=${encodeURIComponent(toCurrency)}`;
     navigator.clipboard.writeText(url);
     toast({ title: "Share link copied" });
   };
@@ -198,7 +208,7 @@ export default function CurrencyConverter() {
                             <SelectItem key={c.code} value={c.code}>{c.code} - {c.name}</SelectItem>
                           ))}
                           <hr className="my-1" />
-                          {Object.keys(rates).filter(code => !commonCurrencies.find(cc => cc.code === code)).map(code => (
+                          {Object.entries(rates).sort(([a], [b]) => a.localeCompare(b)).filter(([code]) => !commonCurrencies.find(cc => cc.code === code)).map(([code]) => (
                             <SelectItem key={code} value={code}>{code}</SelectItem>
                           ))}
                         </SelectContent>
@@ -225,7 +235,7 @@ export default function CurrencyConverter() {
                             <SelectItem key={c.code} value={c.code}>{c.code} - {c.name}</SelectItem>
                           ))}
                           <hr className="my-1" />
-                          {Object.keys(rates).filter(code => !commonCurrencies.find(cc => cc.code === code)).map(code => (
+                          {Object.entries(rates).sort(([a], [b]) => a.localeCompare(b)).filter(([code]) => !commonCurrencies.find(cc => cc.code === code)).map(([code]) => (
                             <SelectItem key={code} value={code}>{code}</SelectItem>
                           ))}
                         </SelectContent>
