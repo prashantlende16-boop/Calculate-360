@@ -9,6 +9,7 @@ import HomeLoanCalculator from "@/pages/HomeLoanCalculator";
 import HomeLoanEligibility from "@/pages/HomeLoanEligibility";
 import GoldCalculator from "@/pages/GoldCalculator";
 import CurrencyConverter from "@/pages/CurrencyConverter";
+import BMICalculator from "@/pages/BMICalculator";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/home-loan-eligibility" component={HomeLoanEligibility} />
       <Route path="/gold" component={GoldCalculator} />
       <Route path="/currency" component={CurrencyConverter} />
+      <Route path="/bmi" component={BMICalculator} />
       <Route component={NotFound} />
     </Switch>
   );

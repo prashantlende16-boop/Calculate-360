@@ -1,0 +1,233 @@
+Add a new page to my existing static website Calculate 360 called BMI Calculator. The page must calculate BMI in real time and show a “Suggested Daily Calorie Intake” section directly below the BMI result. Keep the same design system and navigation used across my other calculators (minimal white theme, cards, rounded corners, subtle shadows, mobile-first).
+
+1) Files to create / update
+
+Create:
+
+bmi-calculator.html
+
+bmi.js (preferred) or integrate into shared JS structure
+
+Update:
+
+calculators.html hub: add BMI Calculator card
+
+Global navigation across all pages: add “BMI Calculator”
+
+Ensure active nav highlight works
+
+2) BMI Calculator (must)
+Inputs
+
+Unit toggle:
+
+Metric (default): Height (cm), Weight (kg)
+
+Imperial: Height (ft + in), Weight (lb)
+
+Additional inputs for calorie estimation:
+
+Age (years) (optional but recommended)
+
+Gender (dropdown: Male/Female/Prefer not to say) (optional but recommended)
+
+Activity Level (dropdown, default “Sedentary”):
+
+Sedentary (1.2)
+
+Light (1.375)
+
+Moderate (1.55)
+
+Very (1.725)
+
+Extra (1.9)
+
+Goal (radio, default “Maintain”):
+
+Maintain
+
+Lose weight
+
+Gain weight
+
+Outputs (real-time)
+
+BMI value (round to 1 decimal; allow selector 1/2 decimals)
+
+BMI Category (WHO adult categories):
+
+Underweight: < 18.5
+
+Normal: 18.5–24.9
+
+Overweight: 25.0–29.9
+
+Obesity: ≥ 30.0
+
+Show formula:
+
+Metric: BMI = weight(kg) / (height(m))²
+
+Imperial: BMI = 703 × weight(lb) / (height(in))²
+
+Visual indicator (must)
+
+Add a BMI range bar/gauge (no external libs) with segments:
+
+Underweight / Normal / Overweight / Obesity
+
+Place a marker showing current BMI.
+
+3) Suggested Daily Calorie Intake (must, placed directly below BMI result)
+
+Add a results card titled “Suggested Daily Calorie Intake” right below the BMI result card.
+
+Preferred calculation (when Age + Gender are provided)
+
+Convert all units to metric for calculations (kg, cm).
+
+Compute BMR using Mifflin–St Jeor:
+
+Male: BMR = 10w + 6.25h − 5*age + 5
+
+Female: BMR = 10w + 6.25h − 5*age − 161
+If gender is “Prefer not to say”, compute both and show a range.
+
+Compute TDEE:
+
+TDEE = BMR × ActivityMultiplier
+
+Apply Goal adjustment to suggest calories:
+
+Maintain: Target = TDEE
+
+Lose: Target range = TDEE − 300 to 500 kcal/day
+
+Gain: Target range = TDEE + 250 to 400 kcal/day
+
+BMI-based messaging overlay (must)
+
+Tailor the wording based on BMI category:
+
+Underweight: gently recommend surplus unless user selected Maintain
+
+Normal: emphasize maintenance range
+
+Overweight/Obesity: gently recommend modest deficit unless user selected Maintain
+Do not make medical claims.
+
+Fallback (when Age or Gender is missing)
+
+If age or gender is not provided:
+
+Do NOT compute BMR/TDEE.
+
+Show a simplified calorie suggestion based on BMI + goal:
+
+Underweight: “Consider a small surplus (+250 to +400 kcal/day).”
+
+Normal: “Maintain your current intake; focus on balance.”
+
+Overweight/Obesity: “Consider a modest deficit (−300 to −500 kcal/day).”
+Clearly label it as a general estimate.
+
+Output formatting (must)
+
+Show:
+
+Estimated Maintenance Calories (TDEE) if available
+
+Suggested Target Calories (single value or range)
+
+“Last calculated from: height, weight, age, gender, activity” (if available)
+
+Calories displayed as whole numbers (no decimals)
+
+Include disclaimer:
+
+“Estimates only. Individual needs vary. Consult a professional for medical advice.”
+If age < 14 show:
+
+“For children/teens, BMI and calories need age-specific guidance.”
+
+4) Healthy weight range (must)
+
+Below BMI (or near calorie card), show:
+
+Healthy weight range for given height (BMI 18.5–24.9)
+
+Metric: in kg
+
+Imperial: in lb
+
+5) Validation + UX (must)
+
+Height and weight must be > 0
+
+Inline errors only (no alerts)
+
+Empty fields show “—”
+
+Smooth unit switching (either convert values or clear inputs consistently)
+
+Buttons:
+
+Reset
+
+Copy BMI Result
+
+Copy Calories Summary (BMI + category + suggested calories)
+
+Copy Share Link (query params: ?unit=metric&h=170&w=65&age=30&gender=male&activity=moderate&goal=maintain)
+
+6) Monetization placeholders
+
+Add labeled placeholder ad containers:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Layout must not break if empty.
+
+7) SEO + schema
+
+In bmi-calculator.html:
+
+Title: “Calculate 360 – BMI Calculator”
+
+Meta description: “Calculate BMI instantly and get a daily calorie intake suggestion based on your inputs with Calculate 360.”
+
+Open Graph tags
+
+Add FAQs + FAQ schema (JSON-LD)
+
+FAQ ideas:
+
+What is BMI?
+
+What is a healthy BMI range?
+
+Are calorie suggestions accurate?
+
+Is BMI valid for athletes?
+
+Can children use BMI calculators?
+
+8) Final output required
+
+Provide complete working code for:
+
+bmi-calculator.html
+
+bmi.js (or updated shared JS)
+
+Any required updates to styles.css
+
+Updates to calculators.html (hub card)
+
+Updates to navigation across all pages
+
+Everything must work as a deployable static website with no external libraries.
