@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode } from "lucide-react";
+import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +16,7 @@ export function Navigation() {
     { href: "/currency", label: "Currency", icon: ArrowLeftRight },
     { href: "/bmi", label: "BMI Calculator", icon: Activity },
     { href: "/qr", label: "QR Generator", icon: QrCode },
+    { href: "/body-fat", label: "Body Fat %", icon: PersonStanding },
   ];
 
   return (
