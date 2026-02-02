@@ -1,0 +1,195 @@
+Add a new page to my existing static website Calculate 360 called QR Code Generator. It must match the same design system, navigation, and responsive layout used across my other calculators (minimal white theme, cards, rounded corners, subtle shadows). Everything must work fully in the browser (no backend).
+
+1) Files to create / update
+
+Create:
+
+qr-code-generator.html
+
+qr.js (preferred) OR integrate into shared JS pattern
+
+Update:
+
+Global navigation across all pages: add QR Code Generator
+
+calculators.html hub page: add a new card for QR Code Generator
+
+2) QR types & inputs (must)
+
+Provide a tab/segmented switch inside the page for these QR types:
+
+A) Text / URL (default)
+
+Inputs:
+
+Text/URL textarea
+
+Checkbox: “Treat as URL” (optional; if enabled, validate URL format softly)
+Output:
+
+QR code for the content
+
+B) Wi-Fi QR
+
+Inputs:
+
+SSID
+
+Password
+
+Security dropdown: WPA/WPA2 (default), WEP, None
+
+Checkbox: Hidden network
+Encode format:
+
+WIFI:T:<security>;S:<ssid>;P:<password>;H:<true/false>;;
+
+C) Contact (vCard)
+
+Inputs:
+
+Full Name
+
+Phone
+
+Email
+
+Company (optional)
+
+Title (optional)
+
+Website (optional)
+Generate a basic vCard string (v3.0) and create QR from it.
+
+D) UPI Payment (India-focused) (optional but preferred)
+
+Inputs:
+
+UPI ID
+
+Payee Name (optional)
+
+Amount (optional)
+
+Note/Remark (optional)
+Generate a UPI URI QR (standard format) and encode it.
+
+3) QR generation constraints (important)
+
+Must be 100% client-side.
+
+No external libraries/CDNs.
+
+Implement a lightweight QR generator in pure JS (small embedded implementation is okay) or include a tiny MIT-licensed QR algorithm code inside qr.js with comments (do not fetch from internet).
+
+QR must render as:
+
+Canvas (preferred) AND provide option to render as SVG (nice-to-have).
+
+4) Customization options (must)
+
+Provide controls:
+
+Size: 128 / 256 / 512 / 1024 px (default 256)
+
+Error correction level: L / M / Q / H (default M)
+
+Margin/quiet zone: 0–10 (default 4)
+
+Foreground color picker (default black)
+
+Background color picker (default white)
+
+“Transparent background” toggle (if enabled, background alpha 0)
+
+5) Output actions (must)
+
+Buttons:
+
+Download PNG
+
+Download SVG (if SVG supported; otherwise hide)
+
+Copy as Image (optional but preferred if supported)
+
+Copy Content (copies encoded string)
+
+Reset
+
+Also show:
+
+“Preview” section with the QR
+
+“Encoded Data” collapsible section (shows the exact string being encoded)
+
+6) Validation + UX rules (must)
+
+Real-time QR update as inputs change (debounce for performance).
+
+Inline errors only (no alerts).
+
+If input is empty: show placeholder QR or “Enter data to generate QR”.
+
+If content too long for selected error correction/size:
+
+Show friendly message and suggest increasing size or lowering error correction.
+
+Mobile friendly: large tap targets, responsive layout.
+
+7) Share link (preferred)
+
+Add “Copy Share Link” button that creates a URL with query params:
+
+?type=text&data=...&size=256&ecl=M&margin=4&fg=%23000000&bg=%23ffffff
+If data is too long:
+
+Store data temporarily in localStorage and create a short link param like ?load=qr_last.
+
+8) Monetization placeholders (no real AdSense code)
+
+Add labeled placeholder ad containers:
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Ensure layout doesn’t break when empty.
+
+9) SEO + content
+
+In qr-code-generator.html:
+
+Title: “Calculate 360 – QR Code Generator”
+
+Meta description: “Generate QR codes for text, URLs, Wi-Fi, contacts, and more. Customize size, colors, and error correction with Calculate 360.”
+
+Open Graph tags
+
+Add “How it works” section (brief)
+
+Add FAQs + FAQ schema (JSON-LD):
+
+What is error correction?
+
+Can I generate Wi-Fi QR codes?
+
+Are QR codes created offline?
+
+Why does my QR not scan? (size/contrast/margin)
+
+10) Final output required
+
+Provide complete working code for:
+
+qr-code-generator.html
+
+qr.js (or updated shared JS)
+
+Any required updates to styles.css
+
+Updates to calculators.html (hub card)
+
+Updates to navigation across all pages
+
+Everything must work as a deployable static website with no external libraries.
