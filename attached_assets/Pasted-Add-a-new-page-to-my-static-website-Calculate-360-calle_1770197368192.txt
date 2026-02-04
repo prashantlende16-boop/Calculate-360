@@ -1,0 +1,201 @@
+Add a new page to my static website Calculate 360 called Unit Converter (Powerful). It must match my site design system (minimal white theme, cards, rounded corners, subtle shadows), be fully responsive, and work 100% in the browser (no backend, no external libraries/CDNs).
+
+1) Files to create / update
+
+Create:
+
+unit-converter.html
+
+unit-converter.js (preferred) + reuse shared helpers in app.js if present
+
+Update:
+
+Global navigation across all pages: add Unit Converter
+
+calculators.html hub page: add a card for Unit Converter
+
+2) Core UX (must)
+
+The Unit Converter page should have:
+
+A category selector (tabs or dropdown) with multiple unit families
+
+A single “converter panel” UI that works for every category:
+
+Input value (number)
+
+From unit dropdown (searchable)
+
+To unit dropdown (searchable)
+
+Converted result (live)
+
+Swap button
+
+Copy Result button
+
+Reset button
+
+Precision selector: 0 / 2 / 4 / 6 decimals (default 4)
+
+“Scientific notation” toggle (nice-to-have)
+
+Real-time conversion as user types (debounced).
+
+Show formula or conversion factor for the selected pair when applicable.
+
+3) Categories (must include at least these)
+
+Implement conversions using built-in conversion tables (offline):
+
+Length (mm, cm, m, km, inch, ft, yd, mile, nautical mile)
+
+Area (sq mm, sq cm, sq m, hectare, sq km, sq inch, sq ft, sq yd, acre, sq mile)
+
+Volume (mL, L, cubic cm, cubic m, tsp, tbsp, fl oz, cup, pint, quart, gallon)
+
+Mass/Weight (mg, g, kg, tonne, oz, lb, stone)
+
+Temperature (°C, °F, K) — special formulas
+
+Speed (m/s, km/h, mph, knot)
+
+Time (ms, sec, min, hour, day, week, month approx, year approx) — clearly label approximations
+
+Pressure (Pa, kPa, bar, atm, psi, mmHg)
+
+Energy (J, kJ, cal, kcal, Wh, kWh, BTU)
+
+Power (W, kW, hp)
+
+Data (bit, byte, KB, MB, GB, TB + KiB, MiB, GiB, TiB)
+
+Angle (degree, radian)
+
+Currency is NOT part of this page (it already has a separate currency converter).
+
+4) Conversion engine requirements (must)
+
+Use a consistent base-unit strategy per category:
+
+Convert from “fromUnit → baseUnit → toUnit”
+
+Store conversion definitions in a clean JSON-like object inside unit-converter.js:
+
+unit id, label, symbol, factor to base (or for temperature: functions)
+
+Temperature conversions must use correct formulas (not factors):
+
+C↔F↔K
+
+Support negative values for temperature only; block negatives where it doesn’t make sense (optional but recommended).
+
+Handle very small/large numbers gracefully.
+
+No external libraries.
+
+5) Powerful features (must)
+A) Quick multi-output table
+
+Below the main converter, show a “Quick conversions” table for the selected category:
+
+Show the input value converted into the top 8 most common units for that category.
+
+Example: Length shows m, cm, mm, km, inch, ft, yd, mile.
+
+This table updates live.
+
+B) Favorites
+
+Allow users to star/save:
+
+A unit pair (category + from + to)
+
+Show favorites list for one-click load
+Persist in localStorage.
+
+C) Searchable units
+
+Unit dropdowns must support:
+
+Typing to filter
+
+Keyboard navigation
+
+D) Share link
+
+Add “Copy Share Link” button:
+
+Encode category/from/to/value/precision into query params like:
+
+?cat=length&v=12.5&from=m&to=ft&p=4
+On page load, parse and prefill.
+
+6) Validation + UX rules (must)
+
+Inline errors only (no alerts).
+
+If input is empty: show “—”.
+
+Prevent divide-by-zero issues (should not occur with factors; guard anyway).
+
+Provide a “Swap” button that swaps units without losing value.
+
+Provide a short unit description tooltip (optional nice-to-have).
+
+7) Layout + accessibility (must)
+
+Mobile-first layout with large tap targets.
+
+Proper labels, ARIA for inputs.
+
+Use semantic HTML sections (header/main/section/footer).
+
+8) Monetization placeholders
+
+Add placeholder ad containers (no real AdSense code):
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Layout must not break if empty.
+
+9) SEO + content
+
+In unit-converter.html:
+
+Title: “Calculate 360 – Unit Converter”
+
+Meta description: “Convert length, weight, temperature, data, speed, and more instantly with a powerful offline unit converter by Calculate 360.”
+
+Open Graph tags
+
+Add a short “How it works” section (base unit method + temperature formulas)
+
+Add FAQs + FAQ schema (JSON-LD):
+
+Does it work offline?
+
+How accurate are conversions?
+
+What’s the difference between MB and MiB?
+
+Why months/years are approximate?
+
+10) Final output required
+
+Provide complete working code for:
+
+unit-converter.html
+
+unit-converter.js
+
+Any updates to styles.css
+
+Updates to calculators.html (hub card)
+
+Updates to navigation across all pages
+
+Everything must be deployable as a static site with no external libraries and no backend.
