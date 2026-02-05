@@ -33,7 +33,7 @@ export default function Home() {
             {/* Hero Section */}
             <section className="text-center mb-10">
               <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 tracking-tight">
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Master Your Numbers</span>
+                <span className="bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent">Master Your Numbers</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                 Calculate percentages, find differences, and solve reverse percentage problems instantly.
@@ -42,7 +42,7 @@ export default function Home() {
 
             {/* The Calculator */}
             <section className="relative z-10">
-              <div className="absolute inset-x-0 -top-20 -bottom-20 bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 -z-10 rounded-[3rem] blur-3xl opacity-60" />
+              <div className="absolute inset-x-0 -top-20 -bottom-20 bg-gradient-to-br from-accent/10 via-primary/5 to-secondary/10 -z-10 rounded-[3rem] blur-3xl opacity-60" />
               <Calculator />
             </section>
 
