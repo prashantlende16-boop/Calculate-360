@@ -12,6 +12,7 @@ import CurrencyConverter from "@/pages/CurrencyConverter";
 import BMICalculator from "@/pages/BMICalculator";
 import QRCodeGenerator from "@/pages/QRCodeGenerator";
 import BodyFatEstimator from "@/pages/BodyFatEstimator";
+import UnitConverter from "@/pages/UnitConverter";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/bmi" component={BMICalculator} />
       <Route path="/qr" component={QRCodeGenerator} />
       <Route path="/body-fat" component={BodyFatEstimator} />
+      <Route path="/units" component={UnitConverter} />
       <Route component={NotFound} />
     </Switch>
   );
