@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface AdSlotProps {
@@ -5,34 +6,51 @@ interface AdSlotProps {
   className?: string;
 }
 
+const adSlotIds = {
+  top: "4770037257",
+  sidebar: "7247192630",
+  bottom: "6912984863",
+};
+
 export function AdSlot({ position, className }: AdSlotProps) {
-  const labels = {
-    top: "Advertisement (Top Banner)",
-    sidebar: "Advertisement (Sidebar)",
-    bottom: "Advertisement (Bottom Banner)",
-  };
+  const adRef = useRef<HTMLDivElement>(null);
+  const isAdLoaded = useRef(false);
 
   const heights = {
-    top: "h-[90px] sm:h-[120px]",
-    sidebar: "h-[250px] sm:h-[600px]",
-    bottom: "h-[250px]",
+    top: "min-h-[90px] sm:min-h-[120px]",
+    sidebar: "min-h-[250px] sm:min-h-[600px]",
+    bottom: "min-h-[250px]",
   };
+
+  useEffect(() => {
+    if (adRef.current && !isAdLoaded.current) {
+      try {
+        const adsbygoogle = (window as any).adsbygoogle || [];
+        adsbygoogle.push({});
+        isAdLoaded.current = true;
+      } catch (e) {
+        console.error("AdSense error:", e);
+      }
+    }
+  }, []);
 
   return (
     <div
+      ref={adRef}
       className={cn(
-        "w-full bg-slate-100 rounded-xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center p-4 text-center overflow-hidden relative group",
+        "w-full overflow-hidden",
         heights[position],
         className
       )}
     >
-      <div className="absolute inset-0 bg-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pattern-grid-lg text-slate-200" />
-      <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest relative z-10">
-        {labels[position]}
-      </span>
-      <p className="text-xs text-slate-300 mt-2 relative z-10">
-        Ad Space Placeholder
-      </p>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-8009221027375282"
+        data-ad-slot={adSlotIds[position]}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   );
 }
