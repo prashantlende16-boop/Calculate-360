@@ -47,10 +47,10 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover-elevate",
+                  "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover:bg-muted/50",
                   isActive
                     ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Icon className="w-4 h-4" />
@@ -81,10 +81,10 @@ export function Navigation() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 flex items-center gap-3 hover-elevate",
+                  "px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 flex items-center gap-3 hover:bg-muted/50",
                   isActive
                     ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Icon className="w-5 h-5" />
