@@ -8,73 +8,73 @@
   --font-sans: 'DM Sans', sans-serif;
   --font-display: 'Outfit', sans-serif;
 
-  /* Default Theme - Light Mode */
-  --background: 0 0% 100%;
-  --foreground: 222 47% 11%;
+  /* Custom Palette: Teal, Berry, Navy */
+  --background: 170 30% 96%;
+  --foreground: 200 35% 15%;
 
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card-foreground: 200 35% 15%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover-foreground: 200 35% 15%;
 
-  --primary: 221 83% 53%;
+  --primary: 170 35% 50%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
+  --secondary: 330 50% 45%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 170 20% 92%;
+  --muted-foreground: 200 25% 40%;
 
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
+  --accent: 195 50% 33%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84% 60%;
+  --destructive: 330 50% 45%;
   --destructive-foreground: 0 0% 100%;
 
-  --success: 142 71% 45%;
-  --warning: 38 92% 50%;
+  --success: 170 35% 50%;
+  --warning: 330 50% 45%;
 
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 221 83% 53%;
+  --border: 170 20% 88%;
+  --input: 170 20% 88%;
+  --ring: 170 35% 50%;
 
   --radius: 0.75rem;
 }
 
 .dark {
-  /* Default Theme - Dark Mode */
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
+  /* Custom Palette Dark Mode */
+  --background: 200 35% 10%;
+  --foreground: 170 25% 92%;
 
-  --card: 222 47% 11%;
-  --card-foreground: 210 40% 98%;
+  --card: 200 35% 15%;
+  --card-foreground: 170 25% 92%;
 
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 200 35% 15%;
+  --popover-foreground: 170 25% 92%;
 
-  --primary: 217 91% 60%;
+  --primary: 170 40% 55%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 330 45% 50%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 200 30% 20%;
+  --muted-foreground: 170 20% 65%;
 
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 195 45% 40%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 62% 30%;
+  --destructive: 330 45% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --success: 142 71% 45%;
-  --warning: 38 92% 50%;
+  --success: 170 40% 55%;
+  --warning: 330 45% 50%;
 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 224 76% 48%;
+  --border: 200 30% 22%;
+  --input: 200 30% 22%;
+  --ring: 170 40% 55%;
 }
 
 @layer base {
