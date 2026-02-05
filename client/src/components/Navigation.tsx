@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navigation() {
   const [location] = useLocation();
@@ -58,15 +59,19 @@ export function Navigation() {
               </Link>
             );
           })}
+          <ThemeToggle />
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="p-2 text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
