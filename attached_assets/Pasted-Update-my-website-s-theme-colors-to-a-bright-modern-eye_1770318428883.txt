@@ -1,0 +1,110 @@
+Update my website’s theme colors to a bright, modern, eye-friendly color system that feels clean and soothing, with high readability and accessible contrast.
+
+Goal
+
+Replace the current theme colors across the entire site with a cohesive palette.
+
+The result should look bright but not harsh, suitable for long reading sessions.
+
+Must preserve existing layout/components; only change colors, tokens, and related styling.
+
+Color Palette (Use These Tokens)
+Light Mode (Primary)
+
+Background: #F7FAFC (soft cool white)
+
+Surface/Card: #FFFFFF
+
+Surface Alt: #EFF6FF (very light blue tint)
+
+Primary (Brand): #2563EB (calm bright blue)
+
+Primary Hover: #1D4ED8
+
+Secondary (Accent): #14B8A6 (soothing teal)
+
+Secondary Hover: #0D9488
+
+Text Primary: #0F172A (deep slate)
+
+Text Secondary: #475569
+
+Border: #E2E8F0
+
+Muted/Disabled: #94A3B8
+
+Success: #22C55E
+
+Warning: #F59E0B
+
+Error: #EF4444
+
+Link: #2563EB
+
+Dark Mode (Optional but Preferred)
+
+Background: #0B1220
+
+Surface/Card: #111A2E
+
+Surface Alt: #0F1B33
+
+Primary: #60A5FA
+
+Secondary: #2DD4BF
+
+Text Primary: #E5E7EB
+
+Text Secondary: #A7B0C0
+
+Border: #23304A
+
+Keep success/warning/error readable in dark mode.
+
+Implementation Requirements
+
+Use CSS variables / design tokens (or the project’s theming system: Tailwind config, MUI theme, Chakra theme, styled-components theme, etc.).
+
+Replace all hard-coded colors with tokens.
+
+Update these areas consistently:
+
+Header/navbar, footer
+
+Buttons (primary/secondary/ghost), hover/focus/disabled states
+
+Links, badges, chips, tabs
+
+Forms (inputs, placeholders, focus ring)
+
+Cards, tables, modals, dropdowns
+
+Alerts/toasts (success/warn/error)
+
+Accessibility
+
+Ensure text contrast meets WCAG AA (especially text on buttons and cards).
+
+Add clear focus states (use an accessible focus ring like outline/box-shadow with Primary).
+
+Polish
+
+Use subtle shadows and borders (no heavy black shadows).
+
+Avoid overly saturated neon colors; keep brightness “soft.”
+
+Deliverables
+
+Provide a diff/patch or list of modified files.
+
+Show the token definitions + where they’re applied.
+
+Confirm light mode coverage and (if implemented) dark mode toggle behavior.
+
+Notes (Very Important)
+
+Do not change the structure/layout or component logic.
+
+Do not introduce new libraries unless necessary.
+
+Keep the UI consistent and professional.

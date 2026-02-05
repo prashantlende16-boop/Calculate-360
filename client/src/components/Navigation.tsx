@@ -21,7 +21,7 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-gradient-to-r from-accent/5 via-background to-secondary/5 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md">
       <div className="container mx-auto px-4 min-h-16 flex flex-wrap items-center justify-between py-2">
         <Link href="/" className="flex items-center gap-2 group mr-4">
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform duration-200">
