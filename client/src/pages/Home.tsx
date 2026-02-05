@@ -32,8 +32,8 @@ export default function Home() {
           <div className="space-y-12">
             {/* Hero Section */}
             <section className="text-center mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold font-display text-slate-900 mb-4 tracking-tight">
-                Master Your Numbers
+              <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Master Your Numbers</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                 Calculate percentages, find differences, and solve reverse percentage problems instantly.
@@ -42,13 +42,13 @@ export default function Home() {
 
             {/* The Calculator */}
             <section className="relative z-10">
-              <div className="absolute inset-x-0 -top-20 -bottom-20 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 rounded-[3rem] blur-3xl opacity-50" />
+              <div className="absolute inset-x-0 -top-20 -bottom-20 bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 -z-10 rounded-[3rem] blur-3xl opacity-60" />
               <Calculator />
             </section>
 
             {/* SEO Content / FAQ */}
             <section className="max-w-3xl mx-auto pt-8">
-              <h3 className="text-2xl font-bold font-display text-slate-900 mb-6">Frequently Asked Questions</h3>
+              <h3 className="text-2xl font-bold font-display text-foreground mb-6">Frequently Asked Questions</h3>
               
               <Card className="border-none shadow-lg bg-white/50 backdrop-blur">
                 <CardContent className="pt-6">

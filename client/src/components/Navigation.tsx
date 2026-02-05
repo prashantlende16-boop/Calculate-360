@@ -21,7 +21,7 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-gradient-to-r from-primary/5 via-background to-secondary/5 backdrop-blur-md">
       <div className="container mx-auto px-4 min-h-16 flex flex-wrap items-center justify-between py-2">
         <Link href="/" className="flex items-center gap-2 group mr-4">
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform duration-200">
@@ -47,10 +47,10 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap",
+                  "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap hover-elevate",
                   isActive
                     ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    : "text-muted-foreground"
                 )}
               >
                 <Icon className="w-4 h-4" />
@@ -81,10 +81,10 @@ export function Navigation() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 flex items-center gap-3",
+                  "px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 flex items-center gap-3 hover-elevate",
                   isActive
                     ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    : "text-muted-foreground"
                 )}
               >
                 <Icon className="w-5 h-5" />
