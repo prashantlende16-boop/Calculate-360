@@ -12,16 +12,16 @@
   --background: 250 25% 95%;
   --foreground: 245 25% 20%;
 
-  --card: 245 30% 22%;
+  --card: 240 10% 32%;
   --card-foreground: 0 0% 100%;
 
-  --popover: 245 30% 22%;
+  --popover: 240 10% 32%;
   --popover-foreground: 0 0% 100%;
 
   --primary: 160 84% 39%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 245 30% 28%;
+  --secondary: 240 10% 38%;
   --secondary-foreground: 0 0% 100%;
 
   --muted: 250 20% 90%;
