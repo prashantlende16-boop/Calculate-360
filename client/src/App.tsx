@@ -13,6 +13,7 @@ import BMICalculator from "@/pages/BMICalculator";
 import QRCodeGenerator from "@/pages/QRCodeGenerator";
 import BodyFatEstimator from "@/pages/BodyFatEstimator";
 import UnitConverter from "@/pages/UnitConverter";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/qr" component={QRCodeGenerator} />
       <Route path="/body-fat" component={BodyFatEstimator} />
       <Route path="/units" component={UnitConverter} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route component={NotFound} />
     </Switch>
   );
