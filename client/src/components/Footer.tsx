@@ -9,7 +9,7 @@ import type { InsertFeedback } from "@shared/schema";
 
 export function Footer() {
   const createFeedback = useCreateFeedback();
-  
+
   const form = useForm<InsertFeedback>({
     resolver: zodResolver(insertFeedbackSchema),
     defaultValues: {
@@ -35,8 +35,9 @@ export function Footer() {
               <h3 className="font-display font-bold text-lg">Calculate 360</h3>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-              Simple, fast, and free online calculators for your daily needs. 
-              Built with precision and care to help you solve problems instantly.
+              Simple, fast, and free online calculators for your daily needs.
+              Built with precision and care to help you solve problems
+              instantly.
             </p>
             <div className="mt-6 text-xs text-muted-foreground">
               © {new Date().getFullYear()} Calculate 360. All rights reserved.
@@ -55,8 +56,8 @@ export function Footer() {
                 className="bg-white border-slate-200"
                 autoComplete="off"
               />
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={createFeedback.isPending}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
               >
