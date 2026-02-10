@@ -52,18 +52,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-bold mb-4 text-slate-900">Calculators</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Percentage of Number</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Percentage Change</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Reverse Percentage</a></li>
+                <li><a href="/" className="hover:text-primary transition-colors">Percentage Calculator</a></li>
+                <li><a href="/age" className="hover:text-primary transition-colors">Age Calculator</a></li>
+                <li><a href="/home-loan" className="hover:text-primary transition-colors">Home Loan EMI</a></li>
+                <li><a href="/home-loan-eligibility" className="hover:text-primary transition-colors">Loan Eligibility</a></li>
+                <li><a href="/gold" className="hover:text-primary transition-colors">Jewelry Cost</a></li>
               </ul>
             </div>
 
-             <div>
-              <h4 className="font-bold mb-4 text-slate-900">Legal</h4>
+            <div>
+              <h4 className="font-bold mb-4 text-slate-900">More Tools</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
+                <li><a href="/currency" className="hover:text-primary transition-colors">Currency Converter</a></li>
+                <li><a href="/bmi" className="hover:text-primary transition-colors">BMI Calculator</a></li>
+                <li><a href="/qr" className="hover:text-primary transition-colors">QR Generator</a></li>
+                <li><a href="/body-fat" className="hover:text-primary transition-colors">Body Fat %</a></li>
+                <li><a href="/units" className="hover:text-primary transition-colors">Unit Converter</a></li>
               </ul>
             </div>
           </div>

@@ -1,8 +1,11 @@
-import { Layout } from "@/components/Layout";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function PrivacyPolicy() {
   return (
-    <Layout>
+    <div className="min-h-screen bg-background flex flex-col">
+      <Navigation />
+      <main className="flex-1">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <h1 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground" data-testid="text-privacy-title">Privacy Policy</h1>
         <p className="text-sm text-muted-foreground mb-8">Last updated: February 9, 2026</p>
@@ -125,6 +128,8 @@ export default function PrivacyPolicy() {
           </section>
         </div>
       </div>
-    </Layout>
+      </main>
+      <Footer />
+    </div>
   );
 }
