@@ -1,0 +1,331 @@
+Upgrade my existing static website Calculate 360 by adding the following 14 new calculator/tools pages. Keep the same design system across all pages (minimal white theme, cards, rounded corners, subtle shadows, mobile-first, accessible). Everything must work fully in the browser (no backend, no external libraries/CDNs). Use vanilla HTML + CSS + JS.
+
+A) Global requirements (apply to every page)
+
+Navigation + Hub
+
+Update global navigation on all pages to include a “Tools/Calculators” hub link and new pages.
+
+Update calculators.html hub to include cards for all new tools, grouped by category:
+
+Finance, Health, Productivity, Utilities, Travel, Events
+
+Add a hub search box to filter cards by name/keyword.
+
+File structure
+
+One HTML file per tool (named cleanly).
+
+One JS per tool (preferred) OR shared utilities in app.js + per-page JS.
+
+Reuse styles.css site-wide. Avoid duplicated CSS.
+
+Common UI controls
+
+Each tool page must include:
+
+Reset button
+
+Copy Result button (copy a clean summary)
+
+Copy Share Link button (query params storing inputs)
+
+Inline validations (no alerts), placeholders “—” when incomplete.
+
+Indian locale formatting where relevant (₹, 1,00,000). For timezone tools, use IANA zones.
+
+Monetization placeholders
+
+Add labeled placeholders (no real AdSense code):
+
+“Ad slot (Top)”, “Ad slot (Sidebar on desktop)”, “Ad slot (Bottom)”
+
+SEO
+
+Unique <title> and meta description per page.
+
+Open Graph tags.
+
+Add FAQs + FAQ schema (JSON-LD) per page (3–5 FAQs).
+
+No external dependencies
+
+No chart libraries. If a chart is needed, use simple SVG/CSS bars.
+
+B) Pages to create (14)
+1) Savings Goal Planner
+
+File: savings-goal-planner.html + savings-goal.js
+Goal: Help users plan monthly savings to reach a target.
+Inputs:
+
+Target amount (₹)
+
+Current savings (₹)
+
+Monthly contribution (₹) OR Target date (choose mode)
+
+Expected annual return % (optional; default 0)
+
+Contribution frequency: monthly (default), weekly (optional)
+Outputs (live):
+
+Time to reach goal (months/years) OR required monthly contribution
+
+Total contributions, estimated interest earned (if return % > 0)
+
+Schedule summary (first 12 months table)
+Nice-to-have: slider for monthly contribution.
+Formula: simple compound interest monthly (if provided), otherwise linear.
+
+2) BMR / TDEE Calculator
+
+File: bmr-tdee.html + bmr-tdee.js
+Inputs:
+
+Gender, age, height (cm), weight (kg)
+
+Activity level multipliers (1.2–1.9)
+
+Goal: maintain/lose/gain
+Outputs:
+
+BMR (Mifflin–St Jeor)
+
+TDEE
+
+Suggested calorie target range based on goal (lose: -300 to -500, gain: +250 to +400)
+
+Optional macro guideline (general, not medical)
+Disclaimer required.
+
+3) Ideal Weight Range Calculator
+
+File: ideal-weight.html + ideal-weight.js
+Inputs:
+
+Height (cm/ft-in toggle)
+
+Gender optional
+Outputs:
+
+Healthy weight range from BMI 18.5–24.9
+
+Optional “ideal” estimates (clearly labeled as reference): Devine / Hamwi / Robinson (if implemented)
+
+Show in kg and lb
+Disclaimer required.
+
+4) Water Intake Calculator
+
+File: water-intake.html + water-intake.js
+Inputs:
+
+Weight (kg)
+
+Activity level (low/medium/high)
+
+Climate (normal/hot)
+
+Optional: goal (maintain/lose)
+Outputs:
+
+Daily water target in liters + glasses
+
+Add adjustments (+250–750 ml) based on activity/climate
+Note: non-medical guidance disclaimer.
+
+5) Sleep Cycle Planner
+
+File: sleep-cycle.html + sleep-cycle.js
+Goal: Suggest bed/wake times based on 90-min cycles + 15-min fall-asleep buffer.
+Modes:
+
+“I want to wake up at” (user selects time)
+
+“I want to sleep now”
+Outputs:
+
+Recommended times for 4–6 cycles
+
+Highlight best 5 or 6 cycles
+UX: time picker + “copy schedule”.
+
+6) Meeting Time Zone Planner
+
+File: timezone-meeting.html + timezone-meeting.js
+Inputs:
+
+Your timezone (dropdown searchable)
+
+Participant timezones (add/remove list)
+
+Meeting date + duration
+
+Preferred time window (e.g., 9am–6pm local) per participant (optional)
+Outputs:
+
+Best overlapping slots (ranked)
+
+Table showing each participant local time for selected slot
+No external timezone libraries: use built-in Intl.DateTimeFormat and IANA TZ.
+
+7) Word/Character Counter + Readability Score
+
+File: word-counter.html + word-counter.js
+Inputs:
+
+Textarea
+Outputs (live):
+
+Characters (with/without spaces)
+
+Words, sentences, paragraphs
+
+Reading time estimate
+
+Readability: Flesch Reading Ease (English) + grade level (optional)
+
+Highlight long sentences (optional)
+Note: If text not English, show readability “N/A”.
+
+8) Base64 Encode/Decode + URL Encoder/Decoder
+
+File: encoder-tools.html + encoder-tools.js
+Tabs:
+
+Base64 Encode
+
+Base64 Decode
+
+URL Encode
+
+URL Decode
+Requirements:
+
+Handle Unicode safely (TextEncoder/TextDecoder)
+
+Copy output, download output as .txt (optional)
+
+9) Color Tools
+
+File: color-tools.html + color-tools.js
+Include multiple mini-tools with tabs:
+
+HEX ↔ RGB ↔ HSL converter
+
+Color picker + palette generator (tints/shades)
+
+Contrast checker (WCAG AA/AAA estimate)
+
+Copy CSS variables snippet
+No external libs.
+
+10) Random Data Generator (safe)
+
+File: random-data.html + random-data.js
+Generate fake data only (no real personal data):
+
+Random names (clearly fictional), usernames
+
+Random emails with example domains (example.com)
+
+Random passwords (with strength meter)
+
+UUIDs
+
+Random numbers/date ranges
+Safety: Add note “For testing only.”
+
+11) CPM/CPC/CPA Quick Calculator
+
+File: ads-metrics.html + ads-metrics.js
+Inputs:
+
+Impressions, clicks, spend (₹), conversions
+Outputs:
+
+CPM, CPC, CPA
+
+CTR, CVR
+
+Inline handling for divide-by-zero
+Copy summary for reporting.
+
+12) Trip Expense Splitter (lite web version)
+
+File: trip-splitter-lite.html + trip-splitter-lite.js
+Inputs:
+
+Participants (add names)
+
+Expenses list: payer, amount, split type (equal/custom)
+Outputs:
+
+Who owes whom (minimized settlements)
+
+Summary per person (paid, share, net)
+Export: download JSON/CSV (optional)
+No login/storage beyond localStorage.
+
+13) Fuel Cost & Mileage Calculator
+
+File: fuel-cost.html + fuel-cost.js
+Modes:
+
+Trip cost: distance + mileage + fuel price
+
+Mileage: distance + fuel used
+
+Fuel needed: distance + mileage
+Outputs:
+
+Total fuel needed, total cost, cost per km
+Units: km/l and miles/gal toggle (optional).
+
+14) Wedding / Event Budget Planner
+
+File: event-budget.html + event-budget.js
+Inputs:
+
+Total budget (₹)
+
+Guest count
+
+Category allocations (venue, food, decor, photo, etc.) editable %
+
+Actual spend per category (optional)
+Outputs:
+
+Planned ₹ per category
+
+Variance vs actual
+
+Remaining budget
+
+Simple bar visualization (SVG)
+Export: CSV (optional)
+
+C) Shared engineering requirements
+
+Implement a shared helper module in app.js (if not existing):
+
+formatINR(), parseNumber(), copyToClipboard(), getQueryParams(), setShareLink(), saveStateToLocalStorage()
+
+Each tool must read from query params on load to prefill inputs, then auto-calculate.
+
+Persist last-used inputs per tool in localStorage (toggle “Remember my inputs” on each page).
+
+D) Final output required
+
+Provide complete working code for:
+
+All 14 new HTML pages + their JS files
+
+Updates to calculators.html (hub cards + categories + search)
+
+Updates to global navigation across all pages
+
+Any updates required to styles.css and app.js
+
+Everything must be deployable as a static website with no external libraries.
