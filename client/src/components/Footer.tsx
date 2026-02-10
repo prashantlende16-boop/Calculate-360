@@ -73,6 +73,12 @@ export function Footer() {
             </p>
           </div>
         </div>
+
+        <div className="border-t border-border mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <a href="/privacy-policy" className="hover:text-primary transition-colors" data-testid="link-privacy-policy">Privacy Policy</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
