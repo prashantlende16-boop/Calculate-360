@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight, Droplets, Moon, FileText, Code, Palette, Shuffle, Globe, ChevronDown } from "lucide-react";
+import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight, Droplets, Moon, FileText, Code, Palette, Shuffle, Globe, ChevronDown, Building2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +14,7 @@ const categories = [
       { href: "/currency", label: "Currency", icon: ArrowLeftRight },
       { href: "/savings-goal", label: "Savings Goal", icon: Target },
       { href: "/ads-metrics", label: "Ads Metrics", icon: BarChart3 },
+      { href: "/construction-cost", label: "Construction Cost", icon: Building2 },
     ],
   },
   {

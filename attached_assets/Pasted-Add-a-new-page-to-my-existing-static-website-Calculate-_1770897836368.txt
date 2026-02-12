@@ -1,0 +1,160 @@
+Add a new page to my existing static website Calculate 360 called House Construction Cost Calculator. This page must estimate the quantity of construction materials required to build a house based on built-up area in square feet using fixed multipliers. Keep the same site UI design (minimal white theme, cards, rounded corners, subtle shadows, mobile-first). Everything must work fully in the browser (no backend, no external libraries).
+
+1) Files to create / update
+
+Create:
+
+house-construction-cost.html
+
+house-construction.js (preferred) OR integrate into existing shared JS pattern
+
+Update:
+
+Global navigation across all pages: add House Construction Cost Calculator
+
+calculators.html hub page: add a card for this calculator
+
+2) Core input (must)
+
+Input:
+
+Built-up Area (sqft) — number input (decimals allowed)
+
+Optional (nice-to-have):
+
+Add “Cost Estimation” toggle with price inputs per unit (see section 6)
+
+3) Material quantity calculation rules (must)
+
+Use these exact multipliers per sqft (hardcode as defaults):
+
+Cement (bags) = sqft × 0.4
+
+Steel (ton) = sqft × 0.004 ✅ IMPORTANT: Your example says “sqft*4 = 4 ton”, but that only works if steel factor is 0.004 ton per sqft. Use 0.004 so 1000 sqft → 4 ton.
+
+Sand (ton) = sqft × 0.0816
+
+Aggregate (ton) = sqft × 0.0608
+
+Bricks (count) = sqft × 8
+
+Tiles (count) = sqft × 1.3
+
+Paint (litres) = sqft × 0.018
+
+Output formatting
+
+Cement bags: round up to nearest whole bag
+
+Bricks, Tiles: round up to nearest whole number
+
+Steel/Sand/Aggregate/Paint: show up to 2 decimals (with precision selector 0/2)
+
+Show results in a clear table and summary cards.
+
+4) UI layout (must)
+
+Page sections:
+
+Header: “House Construction Cost Calculator” + short description
+
+Input card: area input + precision selector + Reset button
+
+Results card/table:
+
+Material | Multiplier | Quantity | Unit
+
+“How it’s calculated” section:
+
+Show formula: Quantity = Area × Multiplier
+
+Show a worked example for 1000 sqft using the same numbers.
+
+Buttons:
+
+Reset
+
+Copy Results (copies multi-line breakdown)
+
+Copy Share Link (query params: ?sqft=1000)
+
+5) Validation (must)
+
+Area must be > 0
+
+Inline error messages only (no alerts)
+
+If empty, show “—” placeholders
+
+6) Optional Cost Estimation (recommended)
+
+Add a toggle “Estimate Material Cost”
+If enabled, show editable price inputs:
+
+Cement price per bag (₹)
+
+Steel price per ton (₹)
+
+Sand price per ton (₹)
+
+Aggregate price per ton (₹)
+
+Brick price per brick (₹)
+
+Tile price per tile (₹)
+
+Paint price per litre (₹)
+
+Outputs:
+
+Cost per material (Qty × Price)
+
+Total estimated material cost (₹)
+Use Indian number formatting.
+
+7) Monetization placeholders
+
+Add placeholder ad containers (no real AdSense code):
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Layout must not break if empty.
+
+8) SEO + schema
+
+In house-construction-cost.html:
+
+Title: “Calculate 360 – House Construction Material Calculator”
+
+Meta description: “Estimate cement, steel, sand, aggregate, bricks, tiles and paint needed for your house based on built-up area in sqft.”
+
+Open Graph tags
+
+Add FAQs + FAQ schema (JSON-LD), e.g.:
+
+Are these quantities exact?
+
+Do rates vary by design/foundation?
+
+Can I change multipliers? (optional: allow advanced edit)
+
+What is built-up area?
+
+9) Final output required
+
+Provide complete working code for:
+
+house-construction-cost.html
+
+house-construction.js
+
+Any required updates to styles.css
+
+Updates to calculators.html (hub card)
+
+Updates to navigation across all pages
+
+Everything must work as a deployable static website with no external libraries.

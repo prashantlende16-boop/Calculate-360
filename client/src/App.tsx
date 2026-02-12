@@ -27,6 +27,7 @@ import EncoderTools from "@/pages/EncoderTools";
 import ColorTools from "@/pages/ColorTools";
 import RandomDataGenerator from "@/pages/RandomDataGenerator";
 import TimezoneMeeting from "@/pages/TimezoneMeeting";
+import ConstructionCostCalculator from "@/pages/ConstructionCostCalculator";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import NotFound from "@/pages/not-found";
 
@@ -57,6 +58,7 @@ function Router() {
       <Route path="/color-tools" component={ColorTools} />
       <Route path="/random-data" component={RandomDataGenerator} />
       <Route path="/timezone-meeting" component={TimezoneMeeting} />
+      <Route path="/construction-cost" component={ConstructionCostCalculator} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route component={NotFound} />
     </Switch>
