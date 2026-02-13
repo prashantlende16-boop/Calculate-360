@@ -1,269 +1,438 @@
-import { useMemo, useState } from "react";
+import { useState, useMemo } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { PageHead } from "@/components/PageHead";
-import { ShareCopyButtons } from "@/components/ShareCopyButtons";
-import { RememberInputs } from "@/components/RememberInputs";
-import { useCalculatorState } from "@/hooks/useCalculatorState";
-import { formatINR, formatNumber } from "@/lib/calculatorUtils";
+import { CalculatorResult } from "@/components/CalculatorResult";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BarChart3, ChevronDown } from "lucide-react";
+import { BarChart3, Info, Search } from "lucide-react";
+import { formatINR, formatNumber } from "@/lib/calculatorUtils";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
-const allFields = [
-  "impressions", "viewableImpressions", "reach",
-  "clicks", "uniqueClicks",
-  "spend", "revenue",
-  "conversions", "leads", "orders",
-  "viewThroughConversions", "channelConversions", "totalConversions",
-  "starts", "views25", "views50", "views75", "completedViews", "views",
-  "engagements", "sessions", "lpViews",
-  "atc", "checkouts", "purchases",
-  "testValue", "controlValue",
-];
+interface MetricDef {
+  id: string;
+  name: string;
+  fullForm: string;
+  category: string;
+  formula: string;
+  formulaDisplay: string;
+  fields: { key: string; label: string; placeholder: string; prefix?: boolean }[];
+  calculate: (v: Record<string, number>) => number | null;
+  formatResult: (val: number) => string;
+}
 
-const inputGroups = [
+const allMetrics: MetricDef[] = [
   {
-    label: "Core Campaign",
+    id: "frequency", name: "Frequency", fullForm: "", category: "Reach & Awareness",
+    formula: "Impressions \u00f7 Reach", formulaDisplay: "Frequency = Impressions \u00f7 Reach",
     fields: [
       { key: "impressions", label: "Impressions", placeholder: "100000" },
-      { key: "viewableImpressions", label: "Viewable Impressions", placeholder: "80000" },
       { key: "reach", label: "Reach", placeholder: "60000" },
-      { key: "clicks", label: "Clicks", placeholder: "2500" },
-      { key: "uniqueClicks", label: "Unique Clicks", placeholder: "2200" },
-      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
-      { key: "revenue", label: "Revenue", placeholder: "200000", prefix: true },
     ],
+    calculate: (v) => v.reach > 0 ? v.impressions / v.reach : null,
+    formatResult: (val) => formatNumber(val),
   },
   {
-    label: "Conversions & Orders",
+    id: "viewability-rate", name: "Viewability Rate", fullForm: "", category: "Reach & Awareness",
+    formula: "Viewable Impressions \u00f7 Impressions", formulaDisplay: "Viewability Rate = (Viewable Impressions \u00f7 Impressions) \u00d7 100",
+    fields: [
+      { key: "viewableImpressions", label: "Viewable Impressions", placeholder: "80000" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.viewableImpressions / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "ctr", name: "CTR", fullForm: "Click Through Rate", category: "Click Performance",
+    formula: "Clicks \u00f7 Impressions", formulaDisplay: "CTR = (Clicks \u00f7 Impressions) \u00d7 100",
+    fields: [
+      { key: "clicks", label: "Clicks", placeholder: "2500" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.clicks / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "unique-ctr", name: "Unique CTR", fullForm: "", category: "Click Performance",
+    formula: "Unique Clicks \u00f7 Reach", formulaDisplay: "Unique CTR = (Unique Clicks \u00f7 Reach) \u00d7 100",
+    fields: [
+      { key: "uniqueClicks", label: "Unique Clicks", placeholder: "2200" },
+      { key: "reach", label: "Reach", placeholder: "60000" },
+    ],
+    calculate: (v) => v.reach > 0 ? (v.uniqueClicks / v.reach) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "cpc", name: "CPC", fullForm: "Cost Per Click", category: "Cost Metrics",
+    formula: "Spend \u00f7 Clicks", formulaDisplay: "CPC = Spend \u00f7 Clicks",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "clicks", label: "Clicks", placeholder: "2500" },
+    ],
+    calculate: (v) => v.clicks > 0 ? v.spend / v.clicks : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cpm", name: "CPM", fullForm: "Cost Per Mille", category: "Cost Metrics",
+    formula: "(Spend \u00f7 Impressions) \u00d7 1000", formulaDisplay: "CPM = (Spend \u00f7 Impressions) \u00d7 1000",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.spend / v.impressions) * 1000 : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "vcpm", name: "vCPM", fullForm: "Viewable CPM", category: "Cost Metrics",
+    formula: "(Spend \u00f7 Viewable Impressions) \u00d7 1000", formulaDisplay: "vCPM = (Spend \u00f7 Viewable Impressions) \u00d7 1000",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "viewableImpressions", label: "Viewable Impressions", placeholder: "80000" },
+    ],
+    calculate: (v) => v.viewableImpressions > 0 ? (v.spend / v.viewableImpressions) * 1000 : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cpa", name: "CPA", fullForm: "Cost Per Acquisition", category: "Cost Metrics",
+    formula: "Spend \u00f7 Conversions", formulaDisplay: "CPA = Spend \u00f7 Conversions",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "conversions", label: "Conversions", placeholder: "100" },
+    ],
+    calculate: (v) => v.conversions > 0 ? v.spend / v.conversions : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cpl", name: "CPL", fullForm: "Cost Per Lead", category: "Cost Metrics",
+    formula: "Spend \u00f7 Leads", formulaDisplay: "CPL = Spend \u00f7 Leads",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "leads", label: "Leads", placeholder: "150" },
+    ],
+    calculate: (v) => v.leads > 0 ? v.spend / v.leads : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cpv", name: "CPV", fullForm: "Cost Per View", category: "Cost Metrics",
+    formula: "Spend \u00f7 Views", formulaDisplay: "CPV = Spend \u00f7 Views",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "views", label: "Views", placeholder: "5000" },
+    ],
+    calculate: (v) => v.views > 0 ? v.spend / v.views : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cpe", name: "CPE", fullForm: "Cost Per Engagement", category: "Cost Metrics",
+    formula: "Spend \u00f7 Engagements", formulaDisplay: "CPE = Spend \u00f7 Engagements",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "engagements", label: "Engagements", placeholder: "3000" },
+    ],
+    calculate: (v) => v.engagements > 0 ? v.spend / v.engagements : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cost-per-reach", name: "Cost per Reach", fullForm: "", category: "Cost Metrics",
+    formula: "Spend \u00f7 Reach", formulaDisplay: "Cost per Reach = Spend \u00f7 Reach",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "reach", label: "Reach", placeholder: "60000" },
+    ],
+    calculate: (v) => v.reach > 0 ? v.spend / v.reach : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "ecpa", name: "eCPA", fullForm: "Effective CPA (Blended)", category: "Cost Metrics",
+    formula: "Total Spend \u00f7 Total Conversions", formulaDisplay: "eCPA = Total Spend \u00f7 Total Conversions",
+    fields: [
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+      { key: "conversions", label: "Total Conversions", placeholder: "100" },
+    ],
+    calculate: (v) => v.conversions > 0 ? v.spend / v.conversions : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "cvr", name: "CVR", fullForm: "Conversion Rate", category: "Conversion Metrics",
+    formula: "Conversions \u00f7 Clicks", formulaDisplay: "CVR = (Conversions \u00f7 Clicks) \u00d7 100",
     fields: [
       { key: "conversions", label: "Conversions", placeholder: "100" },
-      { key: "leads", label: "Leads", placeholder: "150" },
-      { key: "orders", label: "Orders", placeholder: "80" },
-      { key: "viewThroughConversions", label: "View-through Conversions", placeholder: "25" },
-      { key: "channelConversions", label: "Conversions from Channel", placeholder: "60" },
-      { key: "totalConversions", label: "Total Conversions (all channels)", placeholder: "200" },
+      { key: "clicks", label: "Clicks", placeholder: "2500" },
     ],
+    calculate: (v) => v.clicks > 0 ? (v.conversions / v.clicks) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
   },
   {
-    label: "Video Metrics",
+    id: "post-click-cvr", name: "Post-Click CVR", fullForm: "", category: "Conversion Metrics",
+    formula: "Conversions \u00f7 Clicks", formulaDisplay: "Post-Click CVR = (Conversions \u00f7 Clicks) \u00d7 100",
     fields: [
-      { key: "starts", label: "Video Starts", placeholder: "5000" },
-      { key: "views25", label: "25% Views", placeholder: "4000" },
-      { key: "views50", label: "50% Views", placeholder: "3000" },
-      { key: "views75", label: "75% Views", placeholder: "2000" },
-      { key: "completedViews", label: "Completed Views", placeholder: "1500" },
-      { key: "views", label: "Total Views", placeholder: "5000" },
+      { key: "conversions", label: "Conversions", placeholder: "100" },
+      { key: "clicks", label: "Clicks", placeholder: "2500" },
     ],
+    calculate: (v) => v.clicks > 0 ? (v.conversions / v.clicks) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
   },
   {
-    label: "Engagement & Funnel",
+    id: "post-view-cvr", name: "Post-View CVR", fullForm: "", category: "Conversion Metrics",
+    formula: "View-through Conversions \u00f7 Impressions", formulaDisplay: "Post-View CVR = (View-through Conversions \u00f7 Impressions) \u00d7 100",
+    fields: [
+      { key: "viewThroughConversions", label: "View-through Conversions", placeholder: "25" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.viewThroughConversions / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "cvpm", name: "CvPm", fullForm: "Conversions per 1000 Impressions", category: "Conversion Metrics",
+    formula: "(Conversions \u00f7 Impressions) \u00d7 1000", formulaDisplay: "CvPm = (Conversions \u00f7 Impressions) \u00d7 1000",
+    fields: [
+      { key: "conversions", label: "Conversions", placeholder: "100" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.conversions / v.impressions) * 1000 : null,
+    formatResult: (val) => formatNumber(val),
+  },
+  {
+    id: "conv-rate-impression", name: "Conv. Rate (Impression)", fullForm: "Conversion Rate (Impression Based)", category: "Conversion Metrics",
+    formula: "Conversions \u00f7 Impressions", formulaDisplay: "Conv. Rate = (Conversions \u00f7 Impressions) \u00d7 100",
+    fields: [
+      { key: "conversions", label: "Conversions", placeholder: "100" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.conversions / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "effective-frequency", name: "Effective Frequency", fullForm: "", category: "Conversion Metrics",
+    formula: "Conversions \u00f7 Reach", formulaDisplay: "Effective Frequency = Conversions \u00f7 Reach",
+    fields: [
+      { key: "conversions", label: "Conversions", placeholder: "100" },
+      { key: "reach", label: "Reach", placeholder: "60000" },
+    ],
+    calculate: (v) => v.reach > 0 ? v.conversions / v.reach : null,
+    formatResult: (val) => formatNumber(val, 4),
+  },
+  {
+    id: "roas", name: "ROAS", fullForm: "Return on Ad Spend", category: "Revenue & ROI",
+    formula: "Revenue \u00f7 Spend", formulaDisplay: "ROAS = Revenue \u00f7 Spend",
+    fields: [
+      { key: "revenue", label: "Revenue", placeholder: "200000", prefix: true },
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+    ],
+    calculate: (v) => v.spend > 0 ? v.revenue / v.spend : null,
+    formatResult: (val) => `${formatNumber(val)}x`,
+  },
+  {
+    id: "roi", name: "ROI", fullForm: "Return on Investment", category: "Revenue & ROI",
+    formula: "(Revenue \u2212 Spend) \u00f7 Spend", formulaDisplay: "ROI = ((Revenue \u2212 Spend) \u00f7 Spend) \u00d7 100",
+    fields: [
+      { key: "revenue", label: "Revenue", placeholder: "200000", prefix: true },
+      { key: "spend", label: "Total Spend", placeholder: "50000", prefix: true },
+    ],
+    calculate: (v) => v.spend > 0 ? ((v.revenue - v.spend) / v.spend) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "aov", name: "AOV", fullForm: "Avg Order Value", category: "Revenue & ROI",
+    formula: "Revenue \u00f7 Orders", formulaDisplay: "AOV = Revenue \u00f7 Orders",
+    fields: [
+      { key: "revenue", label: "Revenue", placeholder: "200000", prefix: true },
+      { key: "orders", label: "Orders", placeholder: "80" },
+    ],
+    calculate: (v) => v.orders > 0 ? v.revenue / v.orders : null,
+    formatResult: (val) => formatINR(val),
+  },
+  {
+    id: "25-view-rate", name: "25% View Rate", fullForm: "", category: "Video Performance",
+    formula: "25% Views \u00f7 Starts", formulaDisplay: "25% View Rate = (25% Views \u00f7 Starts) \u00d7 100",
+    fields: [
+      { key: "views25", label: "25% Views", placeholder: "4000" },
+      { key: "starts", label: "Video Starts", placeholder: "5000" },
+    ],
+    calculate: (v) => v.starts > 0 ? (v.views25 / v.starts) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "50-view-rate", name: "50% View Rate", fullForm: "", category: "Video Performance",
+    formula: "50% Views \u00f7 Starts", formulaDisplay: "50% View Rate = (50% Views \u00f7 Starts) \u00d7 100",
+    fields: [
+      { key: "views50", label: "50% Views", placeholder: "3000" },
+      { key: "starts", label: "Video Starts", placeholder: "5000" },
+    ],
+    calculate: (v) => v.starts > 0 ? (v.views50 / v.starts) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "75-view-rate", name: "75% View Rate", fullForm: "", category: "Video Performance",
+    formula: "75% Views \u00f7 Starts", formulaDisplay: "75% View Rate = (75% Views \u00f7 Starts) \u00d7 100",
+    fields: [
+      { key: "views75", label: "75% Views", placeholder: "2000" },
+      { key: "starts", label: "Video Starts", placeholder: "5000" },
+    ],
+    calculate: (v) => v.starts > 0 ? (v.views75 / v.starts) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "completion-rate", name: "100% Completion Rate", fullForm: "", category: "Video Performance",
+    formula: "Completed Views \u00f7 Starts", formulaDisplay: "Completion Rate = (Completed Views \u00f7 Starts) \u00d7 100",
+    fields: [
+      { key: "completedViews", label: "Completed Views", placeholder: "1500" },
+      { key: "starts", label: "Video Starts", placeholder: "5000" },
+    ],
+    calculate: (v) => v.starts > 0 ? (v.completedViews / v.starts) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "vtr", name: "VTR", fullForm: "View Through Rate", category: "Video Performance",
+    formula: "Completed Views \u00f7 Impressions", formulaDisplay: "VTR = (Completed Views \u00f7 Impressions) \u00d7 100",
+    fields: [
+      { key: "completedViews", label: "Completed Views", placeholder: "1500" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.completedViews / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "engagement-rate", name: "Engagement Rate", fullForm: "", category: "Engagement & Funnel",
+    formula: "Engagements \u00f7 Impressions", formulaDisplay: "Engagement Rate = (Engagements \u00f7 Impressions) \u00d7 100",
     fields: [
       { key: "engagements", label: "Engagements", placeholder: "3000" },
-      { key: "sessions", label: "Sessions", placeholder: "8000" },
-      { key: "lpViews", label: "Landing Page Views", placeholder: "2000" },
-      { key: "atc", label: "Add to Cart (ATC)", placeholder: "500" },
-      { key: "checkouts", label: "Checkouts", placeholder: "300" },
-      { key: "purchases", label: "Purchases", placeholder: "200" },
+      { key: "impressions", label: "Impressions", placeholder: "100000" },
     ],
+    calculate: (v) => v.impressions > 0 ? (v.engagements / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
   },
   {
-    label: "Lift Testing",
+    id: "lp-view-rate", name: "Landing Page View Rate", fullForm: "", category: "Engagement & Funnel",
+    formula: "LP Views \u00f7 Clicks", formulaDisplay: "LP View Rate = (LP Views \u00f7 Clicks) \u00d7 100",
+    fields: [
+      { key: "lpViews", label: "Landing Page Views", placeholder: "2000" },
+      { key: "clicks", label: "Clicks", placeholder: "2500" },
+    ],
+    calculate: (v) => v.clicks > 0 ? (v.lpViews / v.clicks) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "atc-rate", name: "Add to Cart Rate", fullForm: "", category: "Engagement & Funnel",
+    formula: "ATC \u00f7 Sessions", formulaDisplay: "ATC Rate = (Add to Cart \u00f7 Sessions) \u00d7 100",
+    fields: [
+      { key: "atc", label: "Add to Cart (ATC)", placeholder: "500" },
+      { key: "sessions", label: "Sessions", placeholder: "8000" },
+    ],
+    calculate: (v) => v.sessions > 0 ? (v.atc / v.sessions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "checkout-rate", name: "Checkout Rate", fullForm: "", category: "Engagement & Funnel",
+    formula: "Checkouts \u00f7 ATC", formulaDisplay: "Checkout Rate = (Checkouts \u00f7 ATC) \u00d7 100",
+    fields: [
+      { key: "checkouts", label: "Checkouts", placeholder: "300" },
+      { key: "atc", label: "Add to Cart (ATC)", placeholder: "500" },
+    ],
+    calculate: (v) => v.atc > 0 ? (v.checkouts / v.atc) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "purchase-rate", name: "Purchase Rate", fullForm: "", category: "Engagement & Funnel",
+    formula: "Purchases \u00f7 Sessions", formulaDisplay: "Purchase Rate = (Purchases \u00f7 Sessions) \u00d7 100",
+    fields: [
+      { key: "purchases", label: "Purchases", placeholder: "200" },
+      { key: "sessions", label: "Sessions", placeholder: "8000" },
+    ],
+    calculate: (v) => v.sessions > 0 ? (v.purchases / v.sessions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "share-of-attribution", name: "Share of Attribution", fullForm: "", category: "Attribution & Lift",
+    formula: "Channel Conversions \u00f7 Total Conversions", formulaDisplay: "Share of Attribution = (Channel Conversions \u00f7 Total Conversions) \u00d7 100",
+    fields: [
+      { key: "channelConversions", label: "Conversions from Channel", placeholder: "60" },
+      { key: "totalConversions", label: "Total Conversions", placeholder: "200" },
+    ],
+    calculate: (v) => v.totalConversions > 0 ? (v.channelConversions / v.totalConversions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "incremental-lift", name: "Incremental Lift", fullForm: "", category: "Attribution & Lift",
+    formula: "(Test \u2212 Control) \u00f7 Control", formulaDisplay: "Incremental Lift = ((Test \u2212 Control) \u00f7 Control) \u00d7 100",
     fields: [
       { key: "testValue", label: "Test Group Value", placeholder: "150" },
       { key: "controlValue", label: "Control Group Value", placeholder: "100" },
     ],
+    calculate: (v) => v.controlValue > 0 ? ((v.testValue - v.controlValue) / v.controlValue) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
+  },
+  {
+    id: "blended-ctr", name: "Blended CTR", fullForm: "", category: "Attribution & Lift",
+    formula: "Total Clicks \u00f7 Total Impressions", formulaDisplay: "Blended CTR = (Total Clicks \u00f7 Total Impressions) \u00d7 100",
+    fields: [
+      { key: "clicks", label: "Total Clicks", placeholder: "5000" },
+      { key: "impressions", label: "Total Impressions", placeholder: "200000" },
+    ],
+    calculate: (v) => v.impressions > 0 ? (v.clicks / v.impressions) * 100 : null,
+    formatResult: (val) => `${formatNumber(val)}%`,
   },
 ];
 
-interface MetricDef {
-  name: string;
-  fullForm: string;
-  formula: string;
-  calculate: (v: Record<string, number>) => number | null;
-  format: "currency" | "percent" | "number" | "ratio";
-}
+const categories = Array.from(new Set(allMetrics.map((m) => m.category)));
 
-const metricDefinitions: { category: string; metrics: MetricDef[] }[] = [
-  {
-    category: "Reach & Awareness",
-    metrics: [
-      { name: "Frequency", fullForm: "", formula: "Impressions / Reach", calculate: (v) => v.reach > 0 ? v.impressions / v.reach : null, format: "number" },
-      { name: "Viewability Rate", fullForm: "", formula: "Viewable Impressions / Impressions", calculate: (v) => v.impressions > 0 ? (v.viewableImpressions / v.impressions) * 100 : null, format: "percent" },
-      { name: "Cost per Reach", fullForm: "", formula: "Spend / Reach", calculate: (v) => v.reach > 0 ? v.spend / v.reach : null, format: "currency" },
-    ],
-  },
-  {
-    category: "Click Performance",
-    metrics: [
-      { name: "CTR", fullForm: "Click Through Rate", formula: "Clicks / Impressions", calculate: (v) => v.impressions > 0 ? (v.clicks / v.impressions) * 100 : null, format: "percent" },
-      { name: "Unique CTR", fullForm: "", formula: "Unique Clicks / Reach", calculate: (v) => v.reach > 0 ? (v.uniqueClicks / v.reach) * 100 : null, format: "percent" },
-      { name: "Blended CTR", fullForm: "", formula: "Total Clicks / Total Impressions", calculate: (v) => v.impressions > 0 ? (v.clicks / v.impressions) * 100 : null, format: "percent" },
-    ],
-  },
-  {
-    category: "Cost Metrics",
-    metrics: [
-      { name: "CPC", fullForm: "Cost Per Click", formula: "Spend / Clicks", calculate: (v) => v.clicks > 0 ? v.spend / v.clicks : null, format: "currency" },
-      { name: "CPM", fullForm: "Cost Per Mille", formula: "(Spend / Impressions) x 1000", calculate: (v) => v.impressions > 0 ? (v.spend / v.impressions) * 1000 : null, format: "currency" },
-      { name: "vCPM", fullForm: "Viewable CPM", formula: "(Spend / Viewable Impressions) x 1000", calculate: (v) => v.viewableImpressions > 0 ? (v.spend / v.viewableImpressions) * 1000 : null, format: "currency" },
-      { name: "CPA", fullForm: "Cost Per Acquisition", formula: "Spend / Conversions", calculate: (v) => v.conversions > 0 ? v.spend / v.conversions : null, format: "currency" },
-      { name: "CPL", fullForm: "Cost Per Lead", formula: "Spend / Leads", calculate: (v) => v.leads > 0 ? v.spend / v.leads : null, format: "currency" },
-      { name: "CPV", fullForm: "Cost Per View", formula: "Spend / Views", calculate: (v) => v.views > 0 ? v.spend / v.views : null, format: "currency" },
-      { name: "CPE", fullForm: "Cost Per Engagement", formula: "Spend / Engagements", calculate: (v) => v.engagements > 0 ? v.spend / v.engagements : null, format: "currency" },
-      { name: "eCPA", fullForm: "Effective CPA (Blended)", formula: "Total Spend / Total Conversions", calculate: (v) => v.conversions > 0 ? v.spend / v.conversions : null, format: "currency" },
-    ],
-  },
-  {
-    category: "Conversion Metrics",
-    metrics: [
-      { name: "CVR", fullForm: "Conversion Rate", formula: "Conversions / Clicks", calculate: (v) => v.clicks > 0 ? (v.conversions / v.clicks) * 100 : null, format: "percent" },
-      { name: "Post-Click CVR", fullForm: "", formula: "Conversions / Clicks", calculate: (v) => v.clicks > 0 ? (v.conversions / v.clicks) * 100 : null, format: "percent" },
-      { name: "Post-View CVR", fullForm: "", formula: "View-through Conversions / Impressions", calculate: (v) => v.impressions > 0 ? (v.viewThroughConversions / v.impressions) * 100 : null, format: "percent" },
-      { name: "CvPm", fullForm: "Conversions per 1000 Impressions", formula: "(Conversions / Impressions) x 1000", calculate: (v) => v.impressions > 0 ? (v.conversions / v.impressions) * 1000 : null, format: "number" },
-      { name: "Conv. Rate (Impression)", fullForm: "Conversion Rate (Impression Based)", formula: "Conversions / Impressions", calculate: (v) => v.impressions > 0 ? (v.conversions / v.impressions) * 100 : null, format: "percent" },
-      { name: "Effective Frequency", fullForm: "", formula: "Conversions / Reach", calculate: (v) => v.reach > 0 ? v.conversions / v.reach : null, format: "number" },
-    ],
-  },
-  {
-    category: "Revenue & ROI",
-    metrics: [
-      { name: "ROAS", fullForm: "Return on Ad Spend", formula: "Revenue / Spend", calculate: (v) => v.spend > 0 ? v.revenue / v.spend : null, format: "ratio" },
-      { name: "ROI", fullForm: "Return on Investment", formula: "(Revenue - Spend) / Spend", calculate: (v) => v.spend > 0 ? ((v.revenue - v.spend) / v.spend) * 100 : null, format: "percent" },
-      { name: "AOV", fullForm: "Avg Order Value", formula: "Revenue / Orders", calculate: (v) => v.orders > 0 ? v.revenue / v.orders : null, format: "currency" },
-    ],
-  },
-  {
-    category: "Video Performance",
-    metrics: [
-      { name: "25% View Rate", fullForm: "", formula: "25% Views / Starts", calculate: (v) => v.starts > 0 ? (v.views25 / v.starts) * 100 : null, format: "percent" },
-      { name: "50% View Rate", fullForm: "", formula: "50% Views / Starts", calculate: (v) => v.starts > 0 ? (v.views50 / v.starts) * 100 : null, format: "percent" },
-      { name: "75% View Rate", fullForm: "", formula: "75% Views / Starts", calculate: (v) => v.starts > 0 ? (v.views75 / v.starts) * 100 : null, format: "percent" },
-      { name: "100% Completion Rate", fullForm: "", formula: "Completed Views / Starts", calculate: (v) => v.starts > 0 ? (v.completedViews / v.starts) * 100 : null, format: "percent" },
-      { name: "VTR", fullForm: "View Through Rate", formula: "Completed Views / Impressions", calculate: (v) => v.impressions > 0 ? (v.completedViews / v.impressions) * 100 : null, format: "percent" },
-    ],
-  },
-  {
-    category: "Engagement & Funnel",
-    metrics: [
-      { name: "Engagement Rate", fullForm: "", formula: "Engagements / Impressions", calculate: (v) => v.impressions > 0 ? (v.engagements / v.impressions) * 100 : null, format: "percent" },
-      { name: "Landing Page View Rate", fullForm: "", formula: "LP Views / Clicks", calculate: (v) => v.clicks > 0 ? (v.lpViews / v.clicks) * 100 : null, format: "percent" },
-      { name: "Add to Cart Rate", fullForm: "", formula: "ATC / Sessions", calculate: (v) => v.sessions > 0 ? (v.atc / v.sessions) * 100 : null, format: "percent" },
-      { name: "Checkout Rate", fullForm: "", formula: "Checkouts / ATC", calculate: (v) => v.atc > 0 ? (v.checkouts / v.atc) * 100 : null, format: "percent" },
-      { name: "Purchase Rate", fullForm: "", formula: "Purchases / Sessions", calculate: (v) => v.sessions > 0 ? (v.purchases / v.sessions) * 100 : null, format: "percent" },
-    ],
-  },
-  {
-    category: "Attribution & Lift",
-    metrics: [
-      { name: "Share of Attribution", fullForm: "", formula: "Channel Conversions / Total Conversions", calculate: (v) => v.totalConversions > 0 ? (v.channelConversions / v.totalConversions) * 100 : null, format: "percent" },
-      { name: "Incremental Lift", fullForm: "", formula: "(Test - Control) / Control", calculate: (v) => v.controlValue > 0 ? ((v.testValue - v.controlValue) / v.controlValue) * 100 : null, format: "percent" },
-    ],
-  },
-];
-
-const referenceTable = [
-  { metric: "Frequency", fullForm: "", formula: "Impressions \u00f7 Reach" },
-  { metric: "Viewability Rate", fullForm: "", formula: "Viewable Impressions \u00f7 Impressions" },
-  { metric: "CTR", fullForm: "Click Through Rate", formula: "Clicks \u00f7 Impressions" },
-  { metric: "Unique CTR", fullForm: "", formula: "Unique Clicks \u00f7 Reach" },
-  { metric: "CPC", fullForm: "Cost Per Click", formula: "Spend \u00f7 Clicks" },
-  { metric: "CPM", fullForm: "Cost Per Mille", formula: "(Spend \u00f7 Impressions) \u00d7 1000" },
-  { metric: "vCPM", fullForm: "Viewable CPM", formula: "(Spend \u00f7 Viewable Impressions) \u00d7 1000" },
-  { metric: "CPA", fullForm: "Cost Per Acquisition", formula: "Spend \u00f7 Conversions" },
-  { metric: "CPL", fullForm: "Cost Per Lead", formula: "Spend \u00f7 Leads" },
-  { metric: "CVR", fullForm: "Conversion Rate", formula: "Conversions \u00f7 Clicks" },
-  { metric: "Post-Click CVR", fullForm: "", formula: "Conversions \u00f7 Clicks" },
-  { metric: "Post-View CVR", fullForm: "", formula: "View-through Conversions \u00f7 Impressions" },
-  { metric: "CvPm", fullForm: "Conversions per 1000 Impressions", formula: "(Conversions \u00f7 Impressions) \u00d7 1000" },
-  { metric: "Conv. Rate (Impression)", fullForm: "Conversion Rate (Impression Based)", formula: "Conversions \u00f7 Impressions" },
-  { metric: "ROAS", fullForm: "Return on Ad Spend", formula: "Revenue \u00f7 Spend" },
-  { metric: "ROI", fullForm: "Return on Investment", formula: "(Revenue \u2212 Spend) \u00f7 Spend" },
-  { metric: "AOV", fullForm: "Avg Order Value", formula: "Revenue \u00f7 Orders" },
-  { metric: "25% View Rate", fullForm: "", formula: "25% Views \u00f7 Starts" },
-  { metric: "50% View Rate", fullForm: "", formula: "50% Views \u00f7 Starts" },
-  { metric: "75% View Rate", fullForm: "", formula: "75% Views \u00f7 Starts" },
-  { metric: "100% Completion Rate", fullForm: "", formula: "Completed Views \u00f7 Starts" },
-  { metric: "VTR", fullForm: "View Through Rate", formula: "Completed Views \u00f7 Impressions" },
-  { metric: "CPV", fullForm: "Cost Per View", formula: "Spend \u00f7 Views" },
-  { metric: "Engagement Rate", fullForm: "", formula: "Engagements \u00f7 Impressions" },
-  { metric: "CPE", fullForm: "Cost Per Engagement", formula: "Spend \u00f7 Engagements" },
-  { metric: "Share of Attribution", fullForm: "", formula: "Channel Conversions \u00f7 Total Conversions" },
-  { metric: "Landing Page View Rate", fullForm: "", formula: "LP Views \u00f7 Clicks" },
-  { metric: "Add to Cart Rate", fullForm: "", formula: "ATC \u00f7 Sessions" },
-  { metric: "Checkout Rate", fullForm: "", formula: "Checkouts \u00f7 ATC" },
-  { metric: "Purchase Rate", fullForm: "", formula: "Purchases \u00f7 Sessions" },
-  { metric: "Effective Frequency", fullForm: "", formula: "Conversions \u00f7 Reach" },
-  { metric: "Cost per Reach", fullForm: "", formula: "Spend \u00f7 Reach" },
-  { metric: "Incremental Lift", fullForm: "", formula: "(Test \u2212 Control) \u00f7 Control" },
-  { metric: "eCPA", fullForm: "Effective CPA (Blended)", formula: "Total Spend \u00f7 Total Conversions" },
-  { metric: "Blended CTR", fullForm: "", formula: "Total Clicks \u00f7 Total Impressions" },
-];
-
-function formatMetricValue(val: number | null, format: string): string {
-  if (val === null || isNaN(val)) return "\u2014";
-  switch (format) {
-    case "currency": return formatINR(val);
-    case "percent": return `${formatNumber(val)}%`;
-    case "ratio": return `${formatNumber(val)}x`;
-    default: return formatNumber(val);
-  }
-}
-
-function CollapsibleSection({ label, defaultOpen, children }: { label: string; defaultOpen?: boolean; children: React.ReactNode }) {
-  const [open, setOpen] = useState(defaultOpen ?? false);
-  return (
-    <div className="border border-border/50 rounded-xl overflow-visible">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-foreground hover:bg-slate-50/50 transition-colors"
-        data-testid={`button-section-${label.replace(/\s+/g, "-").toLowerCase()}`}
-      >
-        {label}
-        <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", open && "rotate-180")} />
-      </button>
-      {open && <div className="px-4 pb-4">{children}</div>}
-    </div>
-  );
-}
+const referenceTable = allMetrics.map((m) => ({
+  metric: m.name,
+  fullForm: m.fullForm,
+  formula: m.formula,
+}));
 
 export default function AdsMetricsCalculator() {
-  const { values, setValue, resetAll, remember, setRemember } = useCalculatorState(
-    "ads-metrics",
-    allFields
-  );
+  const [selectedId, setSelectedId] = useState(allMetrics[0].id);
+  const [inputValues, setInputValues] = useState<Record<string, string>>({});
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const numVals = useMemo(() => {
-    const result: Record<string, number> = {};
-    for (const f of allFields) {
-      result[f] = parseFloat(values[f]) || 0;
+  const selectMetric = (id: string) => {
+    setSelectedId(id);
+    setInputValues({});
+  };
+
+  const selected = allMetrics.find((m) => m.id === selectedId) || allMetrics[0];
+
+  const setField = (key: string, val: string) => {
+    setInputValues((prev) => ({ ...prev, [key]: val }));
+  };
+
+  const resetFields = () => {
+    const cleared: Record<string, string> = {};
+    for (const f of selected.fields) {
+      cleared[f.key] = "";
     }
-    return result;
-  }, [values]);
+    setInputValues((prev) => ({ ...prev, ...cleared }));
+  };
 
-  const computedCategories = useMemo(() => {
-    return metricDefinitions.map((cat) => ({
-      ...cat,
-      metrics: cat.metrics.map((m) => ({
-        ...m,
-        value: m.calculate(numVals),
-      })),
-    }));
-  }, [numVals]);
+  const result = useMemo(() => {
+    const numVals: Record<string, number> = {};
+    for (const f of selected.fields) {
+      numVals[f.key] = parseFloat(inputValues[f.key] || "") || 0;
+    }
+    const allFilled = selected.fields.every((f) => (parseFloat(inputValues[f.key] || "") || 0) > 0);
+    if (!allFilled) return null;
+    return selected.calculate(numVals);
+  }, [selected, inputValues]);
 
-  const hasAnyInput = allFields.some((f) => values[f] !== "" && values[f] !== undefined && parseFloat(values[f]) > 0);
-  const hasResult = hasAnyInput;
+  const formattedResult = result !== null ? selected.formatResult(result) : null;
 
-  const computedMetrics = computedCategories.flatMap((c) => c.metrics);
-  const calculatedMetrics = computedMetrics.filter((m) => m.value !== null);
+  const filteredMetrics = searchQuery.trim()
+    ? allMetrics.filter(
+        (m) =>
+          m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.fullForm.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.category.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : allMetrics;
 
-  const resultText = calculatedMetrics.length > 0
-    ? calculatedMetrics.map((m) => `${m.name}: ${formatMetricValue(m.value, m.format)}`).join("\n")
-    : "";
+  const filteredCategories = categories.filter((cat) =>
+    filteredMetrics.some((m) => m.category === cat)
+  );
 
   const faqs = [
     {
@@ -272,19 +441,19 @@ export default function AdsMetricsCalculator() {
     },
     {
       question: "What is a good CTR (Click-Through Rate)?",
-      answer: "A good CTR varies by platform and industry. For Google Search ads, 2-5% is considered good. For display ads, 0.5-1% is typical. Social media ads average 0.5-1.5%. Higher CTR indicates more relevant and engaging ads.",
+      answer: "A good CTR varies by platform and industry. For Google Search ads, 2-5% is considered good. For display ads, 0.5-1% is typical. Social media ads average 0.5-1.5%.",
     },
     {
       question: "What is the difference between CPC and CPA?",
-      answer: "CPC (Cost Per Click) measures how much you pay for each click on your ad. CPA (Cost Per Acquisition) measures how much you pay for each conversion (sale, signup, etc.). CPA is typically higher than CPC since not every click converts.",
+      answer: "CPC (Cost Per Click) measures how much you pay for each click on your ad. CPA (Cost Per Acquisition) measures how much you pay for each conversion. CPA is typically higher than CPC since not every click converts.",
     },
     {
       question: "What is ROAS and how does it differ from ROI?",
-      answer: "ROAS (Return on Ad Spend) = Revenue / Spend, showing gross return per rupee spent (e.g., 4x means you earn 4 for every 1 spent). ROI = (Revenue - Spend) / Spend, showing net profit percentage. ROAS of 4x equals ROI of 300%.",
+      answer: "ROAS (Return on Ad Spend) = Revenue / Spend, showing gross return per rupee spent (e.g., 4x means you earn \u20B94 for every \u20B91 spent). ROI = (Revenue - Spend) / Spend, showing net profit percentage. ROAS of 4x equals ROI of 300%.",
     },
     {
       question: "What is vCPM (Viewable CPM)?",
-      answer: "vCPM is the cost per 1,000 viewable impressions. An impression is 'viewable' when at least 50% of the ad is visible on screen for at least 1 second (display) or 2 seconds (video). vCPM is typically higher than CPM since not all impressions are viewable.",
+      answer: "vCPM is the cost per 1,000 viewable impressions. An impression is 'viewable' when at least 50% of the ad is visible on screen for at least 1 second (display) or 2 seconds (video). vCPM is typically higher than CPM.",
     },
     {
       question: "How can I reduce my CPA?",
@@ -296,118 +465,122 @@ export default function AdsMetricsCalculator() {
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <Navigation />
       <PageHead
-        title="Ad Metrics Calculator - CPM, CPC, CPA, ROAS & 40+ Metrics - Calculate 360"
-        description="Calculate 40+ advertising metrics: CPM, CPC, CPA, CTR, CVR, ROAS, ROI, VTR, engagement rate, funnel metrics and more from your campaign data."
+        title="Ad Metrics Calculator - CPM, CPC, CPA, ROAS & 35+ Metrics - Calculate 360"
+        description="Calculate 35+ advertising metrics: CPM, CPC, CPA, CTR, CVR, ROAS, ROI, VTR, engagement rate, funnel metrics and more from your campaign data."
         path="/ads-metrics"
       />
 
-      <main className="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+      <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
 
-        <header className="mb-8 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 text-primary mb-3">
-            <BarChart3 className="w-7 h-7" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2" data-testid="text-page-title">
-            Ad Metrics Calculator
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Enter your campaign data below. Only fill in the fields you have &mdash; the calculator will compute every metric possible from your inputs.
-          </p>
-        </header>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <header className="mb-8">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2" data-testid="text-page-title">
+                Ad Metrics Calculator
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                Select a metric, enter the required values, and get your result instantly.
+              </p>
+            </header>
 
-        <div className="flex flex-col lg:flex-row gap-6">
-          <div className="flex-1 space-y-6">
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6">
-              <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
-                <h2 className="font-display font-semibold text-lg text-foreground">Campaign Inputs</h2>
-                <RememberInputs checked={remember} onChange={setRemember} />
-              </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-56 lg:w-64 border-b md:border-b-0 md:border-r border-border p-3 max-h-[420px] overflow-y-auto shrink-0">
+                  <div className="relative mb-3">
+                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                    <input
+                      type="text"
+                      placeholder="Search metrics..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-8 pr-3 py-1.5 text-sm rounded-lg border border-border bg-slate-50 focus:outline-none focus:ring-1 focus:ring-primary"
+                      data-testid="input-search-metrics"
+                    />
+                  </div>
+                  {filteredCategories.map((cat) => (
+                    <div key={cat} className="mb-3">
+                      <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider px-2 mb-1">{cat}</div>
+                      {filteredMetrics
+                        .filter((m) => m.category === cat)
+                        .map((m) => (
+                          <button
+                            key={m.id}
+                            onClick={() => selectMetric(m.id)}
+                            className={cn(
+                              "w-full text-left px-2 py-1.5 rounded-md text-sm transition-colors",
+                              selectedId === m.id
+                                ? "bg-primary/10 text-primary font-medium"
+                                : "text-muted-foreground hover:text-foreground hover:bg-slate-50"
+                            )}
+                            data-testid={`button-metric-${m.id}`}
+                          >
+                            {m.name}
+                            {m.fullForm && <span className="text-xs text-muted-foreground ml-1 hidden lg:inline">({m.fullForm})</span>}
+                          </button>
+                        ))}
+                    </div>
+                  ))}
+                </div>
 
-              <div className="space-y-2">
-                {inputGroups.map((group, gi) => (
-                  <CollapsibleSection key={group.label} label={group.label} defaultOpen={gi === 0}>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                      {group.fields.map((field) => (
-                        <div key={field.key}>
-                          <Label htmlFor={`input-${field.key}`} className="text-xs text-muted-foreground">{field.label}</Label>
-                          <div className="relative mt-0.5">
+                <div className="flex-1 p-6 md:p-8">
+                  <motion.div
+                    key={selected.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="mb-6">
+                      <h2 className="text-2xl font-display font-bold text-foreground" data-testid="text-selected-metric">
+                        {selected.name}
+                      </h2>
+                      {selected.fullForm && (
+                        <p className="text-sm text-muted-foreground mt-0.5">{selected.fullForm}</p>
+                      )}
+                    </div>
+
+                    <div className="bg-primary/5 rounded-lg p-3 border border-primary/10 text-sm text-primary/80 flex items-start gap-2 mb-6">
+                      <Info className="w-4 h-4 shrink-0 mt-0.5" />
+                      <p>Formula: {selected.formulaDisplay}</p>
+                    </div>
+
+                    <div className={cn(
+                      "gap-4",
+                      selected.fields.length === 2 ? "flex flex-col md:flex-row items-end" : "grid grid-cols-1 sm:grid-cols-2"
+                    )}>
+                      {selected.fields.map((field, i) => (
+                        <div key={field.key} className="w-full">
+                          <Label className="mb-2 block">{field.label}</Label>
+                          <div className="relative">
                             {field.prefix && (
-                              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">&#8377;</span>
+                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">&#8377;</span>
                             )}
                             <Input
-                              id={`input-${field.key}`}
                               type="number"
                               min="0"
                               step="any"
                               placeholder={field.placeholder}
-                              value={values[field.key]}
-                              onChange={(e) => setValue(field.key, e.target.value)}
-                              className={cn("text-sm", field.prefix && "pl-6")}
+                              value={inputValues[field.key] || ""}
+                              onChange={(e) => setField(field.key, e.target.value)}
+                              className={cn("input-field", field.prefix && "pl-7")}
                               data-testid={`input-${field.key}`}
                             />
                           </div>
                         </div>
                       ))}
                     </div>
-                  </CollapsibleSection>
-                ))}
+
+                    <CalculatorResult
+                      label={selected.name}
+                      value={formattedResult}
+                      onReset={resetFields}
+                    />
+                  </motion.div>
+                </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6">
-              <h2 className="font-display font-semibold text-lg text-foreground mb-4">
-                Calculated Metrics
-                {calculatedMetrics.length > 0 && (
-                  <span className="text-sm font-normal text-muted-foreground ml-2">({calculatedMetrics.length} metrics)</span>
-                )}
-              </h2>
-
-              {!hasAnyInput && (
-                <p className="text-sm text-muted-foreground text-center py-8">
-                  Enter campaign data above to see your metrics here.
-                </p>
-              )}
-
-              {hasAnyInput && (
-                <div className="space-y-6">
-                  {computedCategories.map((cat) => {
-                    const hasValues = cat.metrics.some((m) => m.value !== null);
-                    if (!hasValues) return null;
-                    return (
-                      <div key={cat.category}>
-                        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{cat.category}</h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                          {cat.metrics.map((m) => {
-                            if (m.value === null) return null;
-                            return (
-                              <div key={m.name} className="bg-slate-50 rounded-lg p-3 text-center border border-border/40">
-                                <div className="text-xs text-muted-foreground mb-0.5 truncate" title={m.fullForm || m.name}>
-                                  {m.fullForm || m.name}
-                                </div>
-                                <div className="text-lg font-bold text-primary" data-testid={`text-metric-${m.name.replace(/[\s/%().]/g, "-").toLowerCase()}`}>
-                                  {formatMetricValue(m.value, m.format)}
-                                </div>
-                                <div className="text-[10px] font-semibold text-muted-foreground mt-0.5">{m.name}</div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              <ShareCopyButtons
-                resultText={resultText}
-                shareParams={values}
-                onReset={resetAll}
-                hasResult={hasResult}
-              />
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 mt-8">
               <h2 className="font-display font-semibold text-lg text-foreground mb-4">
                 All Ad Metrics &amp; Formulas Reference
               </h2>
@@ -436,9 +609,43 @@ export default function AdsMetricsCalculator() {
             <FAQSection title="Frequently Asked Questions" items={faqs} />
           </div>
 
-          <aside className="hidden lg:block w-[200px] shrink-0">
-            <div className="sticky top-20">
-              <AdSlot position="sidebar" />
+          <aside className="space-y-8">
+            <AdSlot position="sidebar" />
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+              <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-primary" />
+                Quick Reference
+              </h3>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  CPM = (Spend / Impressions) x 1000
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  CPC = Spend / Clicks
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  CPA = Spend / Conversions
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  CTR = (Clicks / Impressions) x 100
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  CVR = (Conversions / Clicks) x 100
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  ROAS = Revenue / Spend
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary font-bold">&#8226;</span>
+                  ROI = (Revenue - Spend) / Spend
+                </li>
+              </ul>
             </div>
           </aside>
         </div>
