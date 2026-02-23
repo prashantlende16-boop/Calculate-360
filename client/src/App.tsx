@@ -28,6 +28,17 @@ import ColorTools from "@/pages/ColorTools";
 import RandomDataGenerator from "@/pages/RandomDataGenerator";
 import TimezoneMeeting from "@/pages/TimezoneMeeting";
 import ConstructionCostCalculator from "@/pages/ConstructionCostCalculator";
+import MeanMedianModeCalculator from "@/pages/MeanMedianModeCalculator";
+import VarianceCalculator from "@/pages/VarianceCalculator";
+import StandardDeviationCalculator from "@/pages/StandardDeviationCalculator";
+import CoefficientOfVariationCalculator from "@/pages/CoefficientOfVariationCalculator";
+import SkewnessCalculator from "@/pages/SkewnessCalculator";
+import KurtosisCalculator from "@/pages/KurtosisCalculator";
+import ConfidenceIntervalCalculator from "@/pages/ConfidenceIntervalCalculator";
+import PValueCalculator from "@/pages/PValueCalculator";
+import HypothesisTestCalculator from "@/pages/HypothesisTestCalculator";
+import DifferenceInMeansCalculator from "@/pages/DifferenceInMeansCalculator";
+import LinearRegressionCalculator from "@/pages/LinearRegressionCalculator";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import NotFound from "@/pages/not-found";
 
@@ -59,6 +70,17 @@ function Router() {
       <Route path="/random-data" component={RandomDataGenerator} />
       <Route path="/timezone-meeting" component={TimezoneMeeting} />
       <Route path="/construction-cost" component={ConstructionCostCalculator} />
+      <Route path="/mean-median-mode" component={MeanMedianModeCalculator} />
+      <Route path="/variance" component={VarianceCalculator} />
+      <Route path="/standard-deviation" component={StandardDeviationCalculator} />
+      <Route path="/coefficient-of-variation" component={CoefficientOfVariationCalculator} />
+      <Route path="/skewness" component={SkewnessCalculator} />
+      <Route path="/kurtosis" component={KurtosisCalculator} />
+      <Route path="/confidence-interval" component={ConfidenceIntervalCalculator} />
+      <Route path="/p-value" component={PValueCalculator} />
+      <Route path="/hypothesis-test" component={HypothesisTestCalculator} />
+      <Route path="/difference-in-means" component={DifferenceInMeansCalculator} />
+      <Route path="/linear-regression" component={LinearRegressionCalculator} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route component={NotFound} />
     </Switch>

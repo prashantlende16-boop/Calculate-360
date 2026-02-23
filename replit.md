@@ -2,7 +2,14 @@
 
 ## Overview
 
-Calculate 360 is a comprehensive web-based calculator suite offering multiple utility calculators including percentage calculations, age calculations, loan EMI/eligibility estimators, currency conversion, BMI calculations, QR code generation, body fat estimation, and unit conversion. The application is built as a single-page React application with a minimal, professional design focused on instant, real-time calculations without page reloads.
+Calculate 360 is a comprehensive web-based calculator suite offering multiple utility calculators including percentage calculations, age calculations, loan EMI/eligibility estimators, currency conversion, BMI calculations, QR code generation, body fat estimation, unit conversion, and a full statistics suite (11 calculators). The application is built as a single-page React application with a minimal, professional design focused on instant, real-time calculations without page reloads.
+
+### Calculator Categories
+- **Finance** (8): Percentage, Home Loan EMI, Loan Eligibility, Jewelry Cost, Currency, Savings Goal, Ads Metrics, Construction Cost
+- **Health** (6): BMI, Body Fat %, BMR/TDEE, Ideal Weight, Water Intake, Sleep Cycle
+- **Utilities** (7): Age, QR Generator, Unit Converter, Word Counter, Encoder, Color Tools, Random Data
+- **Travel & Events** (4): Fuel Cost, Trip Splitter, Event Budget, Time Zones
+- **Statistics** (11): Mean/Median/Mode, Std Deviation, Variance, Coeff. of Variation, Skewness, Kurtosis, Confidence Interval, P-Value, Hypothesis Test, Diff in Means, Linear Regression
 
 ## User Preferences
 

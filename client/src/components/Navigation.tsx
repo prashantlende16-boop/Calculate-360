@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight, Droplets, Moon, FileText, Code, Palette, Shuffle, Globe, ChevronDown, Building2 } from "lucide-react";
+import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight, Droplets, Moon, FileText, Code, Palette, Shuffle, Globe, ChevronDown, Building2, TrendingUp, Sigma, TestTube, ArrowDownUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -47,6 +47,22 @@ const categories = [
       { href: "/trip-splitter", label: "Trip Splitter", icon: Split },
       { href: "/event-budget", label: "Event Budget", icon: PartyPopper },
       { href: "/timezone-meeting", label: "Time Zones", icon: Globe },
+    ],
+  },
+  {
+    label: "Statistics",
+    links: [
+      { href: "/mean-median-mode", label: "Mean/Median/Mode", icon: BarChart3 },
+      { href: "/standard-deviation", label: "Std Deviation", icon: Sigma },
+      { href: "/variance", label: "Variance", icon: TrendingUp },
+      { href: "/coefficient-of-variation", label: "Coeff. of Variation", icon: Calculator },
+      { href: "/skewness", label: "Skewness", icon: TrendingUp },
+      { href: "/kurtosis", label: "Kurtosis", icon: BarChart3 },
+      { href: "/confidence-interval", label: "Confidence Interval", icon: ArrowDownUp },
+      { href: "/p-value", label: "P-Value", icon: Calculator },
+      { href: "/hypothesis-test", label: "Hypothesis Test", icon: TestTube },
+      { href: "/difference-in-means", label: "Diff in Means", icon: ArrowLeftRight },
+      { href: "/linear-regression", label: "Linear Regression", icon: TrendingUp },
     ],
   },
 ];

@@ -26,7 +26,7 @@ export function Footer() {
   return (
     <footer className="bg-slate-50 border-t border-border mt-auto">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
@@ -79,6 +79,23 @@ export function Footer() {
               <li><a href="/trip-splitter" className="hover:text-primary transition-colors">Trip Splitter</a></li>
               <li><a href="/event-budget" className="hover:text-primary transition-colors">Event Budget</a></li>
               <li><a href="/timezone-meeting" className="hover:text-primary transition-colors">Time Zones</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-sm text-foreground mb-3">Statistics</h4>
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
+              <li><a href="/mean-median-mode" className="hover:text-primary transition-colors">Mean/Median/Mode</a></li>
+              <li><a href="/standard-deviation" className="hover:text-primary transition-colors">Std Deviation</a></li>
+              <li><a href="/variance" className="hover:text-primary transition-colors">Variance</a></li>
+              <li><a href="/coefficient-of-variation" className="hover:text-primary transition-colors">Coeff. of Variation</a></li>
+              <li><a href="/skewness" className="hover:text-primary transition-colors">Skewness</a></li>
+              <li><a href="/kurtosis" className="hover:text-primary transition-colors">Kurtosis</a></li>
+              <li><a href="/confidence-interval" className="hover:text-primary transition-colors">Confidence Interval</a></li>
+              <li><a href="/p-value" className="hover:text-primary transition-colors">P-Value</a></li>
+              <li><a href="/hypothesis-test" className="hover:text-primary transition-colors">Hypothesis Test</a></li>
+              <li><a href="/difference-in-means" className="hover:text-primary transition-colors">Diff in Means</a></li>
+              <li><a href="/linear-regression" className="hover:text-primary transition-colors">Linear Regression</a></li>
             </ul>
           </div>
         </div>
