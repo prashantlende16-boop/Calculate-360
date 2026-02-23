@@ -1,0 +1,285 @@
+Add 11 new statistics calculator pages to my existing static website Calculate 360. Keep the same design system (minimal white theme, cards, rounded corners, subtle shadows, mobile-first, accessible). Everything must work fully in the browser (no backend, no external libraries/CDNs). Use vanilla HTML + CSS + JavaScript.
+
+A) Global requirements (apply to every stats page)
+
+Files
+
+One HTML + one JS per tool:
+
+confidence-interval.html + confidence-interval.js
+
+mean-median-mode.html + mean-median-mode.js
+
+skewness.html + skewness.js
+
+kurtosis.html + kurtosis.js
+
+variance.html + variance.js
+
+standard-deviation.html + standard-deviation.js
+
+coefficient-of-variation.html + coefficient-of-variation.js
+
+linear-regression.html + linear-regression.js
+
+p-value.html + p-value.js
+
+hypothesis-test.html + hypothesis-test.js
+
+difference-in-means.html + difference-in-means.js
+
+Navigation + Hub
+
+Update global navigation to include a “Statistics” section or dropdown.
+
+Update calculators.html hub to include a Statistics category with cards for all 11 calculators + a search filter.
+
+Common input format
+
+Primary input method: a textarea where users can paste numbers:
+
+Accept separators: commas, spaces, new lines, tabs
+
+Accept scientific notation (e.g., 1.2e-3)
+
+Ignore empty tokens
+
+Inline error for invalid tokens (show which token index failed)
+
+Optional: file upload CSV is NOT required.
+
+Outputs & UX
+
+Live calculation on input change (debounced).
+
+Reset button, Copy Result button, Copy Share Link button (query params).
+
+Show “—” for missing inputs, inline errors only.
+
+Provide “How it’s calculated” section with formulas + small example.
+
+Precision
+
+Precision selector for numeric outputs: 2 / 4 / 6 decimals (default 4).
+
+Don’t over-round intermediate results.
+
+No external libraries
+
+Implement needed math functions in JS:
+
+erf, normal CDF & inverse CDF (approx)
+
+Student’s t CDF/inverse (approx) OR use numeric methods (bisection) + beta function approximation
+
+Chi-square CDF (approx) if needed
+Keep it reliable and well-commented.
+
+SEO + monetization placeholders
+
+Per-page meta title/description + Open Graph tags.
+
+Add FAQ + FAQ schema (JSON-LD) per page.
+
+Add placeholder ad containers (no real AdSense code):
+
+“Ad slot (Top)”, “Ad slot (Sidebar on desktop)”, “Ad slot (Bottom)”
+
+B) Calculator requirements (per page)
+1) Confidence Interval Calculator
+
+File: confidence-interval.html
+Modes (tabbed):
+
+Mean (Z interval, sigma known) [advanced optional]
+
+Mean (t interval, sigma unknown) default
+
+Proportion (p̂) confidence interval
+Inputs:
+
+For mean: data list OR summary inputs (n, mean, sd) toggle
+
+Confidence level (90/95/99 custom)
+Outputs:
+
+CI lower/upper, margin of error
+
+n, mean, sd shown
+Formulas:
+
+t: mean ± t* (s/√n)
+
+proportion: p̂ ± z* √(p̂(1−p̂)/n)
+
+2) Mean, Median, Mode Calculator
+
+Inputs: data list
+Outputs:
+
+Count n, sum
+
+Mean, median
+
+Mode(s) (support multiple modes)
+
+Min, max, range
+
+Sorted preview (first/last 10)
+Optional: percentile calculator (25/50/75)
+
+3) Skewness Calculator
+
+Inputs: data list
+Outputs:
+
+Sample skewness (use a standard formula; state which)
+Preferred: Fisher-Pearson adjusted sample skewness:
+
+g1 = (n/((n−1)(n−2))) * Σ((xi−x̄)/s)^3
+Show interpretation guidance (left/right skew)
+
+4) Kurtosis Calculator
+
+Inputs: data list
+Outputs:
+
+Excess kurtosis (kurtosis − 3)
+Preferred: unbiased/adjusted sample excess kurtosis (state formula)
+Include interpretation (leptokurtic/platykurtic)
+
+5) Variance Calculator
+
+Inputs: data list
+Toggle:
+
+Sample variance (default, n−1)
+
+Population variance (n)
+Outputs: variance, mean, n
+
+6) Standard Deviation Calculator
+
+Same as variance but output SD (sqrt variance) and variance too.
+Toggle sample/population.
+
+7) Coefficient of Variation Calculator
+
+Inputs: data list
+Outputs:
+
+Mean, SD (sample)
+
+CV = SD / Mean × 100%
+Validation: if mean ≈ 0, show warning “CV not meaningful”
+
+8) Linear Regression Calculator
+
+Inputs:
+
+Two-column data (X and Y) in textarea:
+
+Accept formats: “x,y” per line OR “x y” per line
+
+Optional: choose to include intercept (default yes)
+Outputs:
+
+Regression equation: y = a + b x
+
+Slope b, intercept a
+
+R², correlation r
+
+Standard error of estimate (optional)
+
+Simple SVG scatter plot + regression line (no libs)
+Validation: require at least 2 pairs.
+
+9) P-Value Calculator
+
+Tabs:
+
+Z-test p-value (one/two-tailed)
+
+t-test p-value (df input)
+
+Chi-square p-value (df input) (optional)
+Inputs:
+
+Test statistic (z or t)
+
+Tail type: left/right/two
+
+df for t (and chi-square)
+Outputs:
+
+p-value
+
+interpretation text “If p < α then …” (no medical claims)
+Precision controls.
+
+10) Hypothesis Test Calculator
+
+Provide a guided interface (step-by-step) with common tests:
+Tabs:
+
+One-sample t-test (mean)
+
+Two-sample t-test (independent)
+
+Proportion test (optional)
+Inputs:
+
+Data list OR summary mode (n, mean, sd)
+
+Null hypothesis value (μ0)
+
+Alternative (≠, >, <)
+
+Alpha (0.10/0.05/0.01 custom)
+Outputs:
+
+Test statistic, df, p-value
+
+Decision: reject/fail to reject H0
+
+Confidence interval (optional nice-to-have)
+Include clear assumptions (normality, independence).
+
+11) Difference in Means Calculator
+
+This is a focused “two groups comparison” calculator.
+Inputs:
+
+Group A data list (textarea)
+
+Group B data list (textarea)
+Toggle:
+
+Assume equal variances? (default no, use Welch)
+
+Confidence level (for CI)
+Outputs:
+
+MeanA, MeanB, difference (A−B)
+
+Standard error
+
+t statistic, df (Welch), p-value (two-tailed default)
+
+CI for difference in means
+Include effect size (Cohen’s d) optional.
+
+C) Final deliverables
+
+Provide complete working code for:
+
+All 11 HTML files + JS files
+
+Any shared app.js utilities (parsing, formatting, share links)
+
+Updates to styles.css if needed
+
+Updates to calculators.html hub + navigation across all pages
+
+Everything must run as a deployable static website with no external libraries.
