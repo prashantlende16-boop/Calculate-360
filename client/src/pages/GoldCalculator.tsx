@@ -124,7 +124,7 @@ export default function GoldCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
@@ -140,7 +140,7 @@ export default function GoldCalculator() {
         </head>
 
         <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center justify-center gap-3">
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2 flex items-center justify-center gap-3">
             <Coins className="w-8 h-8 text-yellow-500" /> Gold Jewelry Cost Calculator
           </h1>
           <div className="max-w-[200px] mx-auto mb-4">
@@ -172,7 +172,7 @@ export default function GoldCalculator() {
         <div className="grid gap-8 max-w-4xl mx-auto">
           {/* Section 1: 10g Rates */}
           <Card className="border-border shadow-sm overflow-hidden">
-            <CardHeader className="bg-slate-50 border-b flex flex-row items-center gap-3">
+            <CardHeader className="bg-muted border-b flex flex-row items-center gap-3">
               <Calculator className="w-5 h-5 text-primary" />
               <CardTitle className="text-xl">10 Gram Gold Rate Conversion</CardTitle>
             </CardHeader>
@@ -187,17 +187,17 @@ export default function GoldCalculator() {
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-muted p-4 rounded-xl border border-border text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">22K (91.6%)</div>
-                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates10g["22k"])}</div>
+                  <div className="text-xl font-bold text-foreground">{displayPrice(rates10g["22k"])}</div>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-muted p-4 rounded-xl border border-border text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">18K (75%)</div>
-                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates10g["18k"])}</div>
+                  <div className="text-xl font-bold text-foreground">{displayPrice(rates10g["18k"])}</div>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-muted p-4 rounded-xl border border-border text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">14K (58.3%)</div>
-                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates10g["14k"])}</div>
+                  <div className="text-xl font-bold text-foreground">{displayPrice(rates10g["14k"])}</div>
                 </div>
               </div>
             </CardContent>
@@ -205,30 +205,30 @@ export default function GoldCalculator() {
 
           {/* Section 2: 1g Rates */}
           <Card className="border-border shadow-sm overflow-hidden">
-            <CardHeader className="bg-slate-50 border-b flex flex-row items-center gap-3">
+            <CardHeader className="bg-muted border-b flex flex-row items-center gap-3">
               <Calculator className="w-5 h-5 text-primary" />
               <CardTitle className="text-xl">1 Gram Gold Rate Conversion</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="mb-6">
                 <Label className="mb-2 block">24K Gold Rate (per 1g) in {selectedCurrency.symbol}</Label>
-                <div className="text-2xl font-bold p-3 bg-slate-50 border rounded-lg text-primary">
+                <div className="text-2xl font-bold p-3 bg-muted border rounded-lg text-primary">
                   {displayPrice(rate24k1g)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">Automatically calculated as (24K Rate per 10g / 10)</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-muted p-4 rounded-xl border border-border text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">22K (91.6%)</div>
-                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates1g["22k"])}</div>
+                  <div className="text-xl font-bold text-foreground">{displayPrice(rates1g["22k"])}</div>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-muted p-4 rounded-xl border border-border text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">18K (75%)</div>
-                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates1g["18k"])}</div>
+                  <div className="text-xl font-bold text-foreground">{displayPrice(rates1g["18k"])}</div>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-muted p-4 rounded-xl border border-border text-center">
                   <div className="text-xs text-muted-foreground uppercase mb-1">14K (58.3%)</div>
-                  <div className="text-xl font-bold text-slate-900">{displayPrice(rates1g["14k"])}</div>
+                  <div className="text-xl font-bold text-foreground">{displayPrice(rates1g["14k"])}</div>
                 </div>
               </div>
             </CardContent>
@@ -236,7 +236,7 @@ export default function GoldCalculator() {
 
           {/* Section 3: Jewelry Cost Calculation */}
           <Card className="border-border shadow-sm overflow-hidden">
-            <CardHeader className="bg-slate-50 border-b flex flex-row items-center gap-3">
+            <CardHeader className="bg-muted border-b flex flex-row items-center gap-3">
               <Tag className="w-5 h-5 text-primary" />
               <CardTitle className="text-xl">Jewelry Cost Calculation</CardTitle>
             </CardHeader>
@@ -270,7 +270,7 @@ export default function GoldCalculator() {
 
                   <div>
                     <Label className="mb-2 block">Making Charges</Label>
-                    <div className="flex bg-slate-100 p-1 rounded-lg mb-2">
+                    <div className="flex bg-muted p-1 rounded-lg mb-2">
                       <button 
                         onClick={() => setMakingChargeType("flat")}
                         className={`flex-1 py-1 px-2 rounded-md text-sm transition-all ${makingChargeType === "flat" ? "bg-white shadow-sm font-semibold" : "text-muted-foreground"}`}
@@ -319,18 +319,18 @@ export default function GoldCalculator() {
                   </div>
                 </div>
 
-                <div className="bg-slate-900 text-white p-6 rounded-2xl flex flex-col justify-between">
+                <div className="bg-card dark:bg-background text-white p-6 rounded-2xl flex flex-col justify-between">
                   <div className="space-y-4">
                     <div className="flex justify-between items-center pb-4 border-b border-white/10">
-                      <span className="text-slate-400">Gold Value</span>
+                      <span className="text-muted-foreground">Gold Value</span>
                       <span className="font-semibold">{displayPrice(goldValue)}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-400">Making Charges</span>
+                      <span className="text-muted-foreground">Making Charges</span>
                       <span>{displayPrice(makingCharge)}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-400">Other Charges</span>
+                      <span className="text-muted-foreground">Other Charges</span>
                       <span>{displayPrice(otherChargesVal)}</span>
                     </div>
                     <div className="flex justify-between items-center text-red-400">
@@ -338,7 +338,7 @@ export default function GoldCalculator() {
                       <span>- {displayPrice(discountVal)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-4 border-t border-white/10">
-                      <span className="text-slate-400">Total Cost (Excl. Tax)</span>
+                      <span className="text-muted-foreground">Total Cost (Excl. Tax)</span>
                       <span className="font-semibold">{displayPrice(totalCostBeforeTax)}</span>
                     </div>
                     <div className="flex justify-between items-center text-blue-400">
@@ -348,7 +348,7 @@ export default function GoldCalculator() {
                   </div>
                   
                   <div className="mt-8 pt-6 border-t border-white/20">
-                    <div className="text-sm text-slate-400 uppercase tracking-wider mb-1">Final Price</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Final Price</div>
                     <div className="text-4xl font-bold text-yellow-500">{displayPrice(finalCost)}</div>
                   </div>
                 </div>

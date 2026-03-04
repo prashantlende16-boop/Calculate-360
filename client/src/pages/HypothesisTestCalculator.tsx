@@ -114,7 +114,7 @@ export default function HypothesisTestCalculator() {
             key={val}
             onClick={() => setCurrent(val)}
             data-testid={`button-alt-${val}`}
-            className={`px-3 py-1 rounded text-sm transition-colors ${current === val ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+            className={`px-3 py-1 rounded text-sm transition-colors ${current === val ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
           >
             {label}
           </button>
@@ -132,14 +132,14 @@ export default function HypothesisTestCalculator() {
             key={a}
             onClick={() => setCurrent(a)}
             data-testid={`button-alpha-${a}`}
-            className={`px-3 py-1 rounded text-sm transition-colors ${current === a ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+            className={`px-3 py-1 rounded text-sm transition-colors ${current === a ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
           >
             {a}
           </button>
         ))}
         <button
           onClick={() => setCurrent(0)}
-          className={`px-3 py-1 rounded text-sm transition-colors ${current === 0 ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+          className={`px-3 py-1 rounded text-sm transition-colors ${current === 0 ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
         >
           Custom
         </button>
@@ -185,7 +185,7 @@ export default function HypothesisTestCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="Hypothesis Test Calculator - Calculate 360"
         description="Perform one-sample and two-sample t-tests with detailed results including test statistic, p-value, and decision. Free online statistics tool."
@@ -199,7 +199,7 @@ export default function HypothesisTestCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Hypothesis Test Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -207,23 +207,23 @@ export default function HypothesisTestCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <Tabs defaultValue="one" className="w-full">
-                <TabsList className="w-full grid grid-cols-2 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-2 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="one" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-one-sample">One-Sample t-test</TabsTrigger>
                   <TabsTrigger value="two" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-two-sample">Two-Sample t-test</TabsTrigger>
                 </TabsList>
 
                 <div className="p-6 md:p-8">
                   <div className="flex justify-end mb-6">
-                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                    <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                       <span className="text-muted-foreground">Decimals:</span>
                       {[2, 4, 6].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
                           data-testid={`button-decimals-${d}`}
-                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                         >
                           {d}
                         </button>
@@ -237,14 +237,14 @@ export default function HypothesisTestCalculator() {
                         <button
                           onClick={() => setOneUseSummary(false)}
                           data-testid="button-raw-data"
-                          className={`px-3 py-1 rounded text-sm transition-colors ${!oneUseSummary ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+                          className={`px-3 py-1 rounded text-sm transition-colors ${!oneUseSummary ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
                         >
                           Enter Raw Data
                         </button>
                         <button
                           onClick={() => setOneUseSummary(true)}
                           data-testid="button-summary"
-                          className={`px-3 py-1 rounded text-sm transition-colors ${oneUseSummary ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+                          className={`px-3 py-1 rounded text-sm transition-colors ${oneUseSummary ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
                         >
                           Enter Summary
                         </button>
@@ -303,15 +303,15 @@ export default function HypothesisTestCalculator() {
                             exit={{ opacity: 0, y: -10 }}
                           >
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                              <div className="bg-muted rounded-lg p-4 text-center">
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">t Statistic</p>
                                 <p className="text-2xl font-bold text-primary" data-testid="result-t">{formatStat(oneResult.t, decimals)}</p>
                               </div>
-                              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                              <div className="bg-muted rounded-lg p-4 text-center">
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">df</p>
                                 <p className="text-2xl font-bold text-primary" data-testid="result-df">{formatStat(oneResult.df, decimals)}</p>
                               </div>
-                              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                              <div className="bg-muted rounded-lg p-4 text-center">
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">p-value</p>
                                 <p className="text-2xl font-bold text-primary" data-testid="result-pvalue">{formatStat(oneResult.pValue, decimals)}</p>
                               </div>
@@ -321,7 +321,7 @@ export default function HypothesisTestCalculator() {
                               <Button variant="outline" size="sm" onClick={() => { setOneDataInput(""); setOneN(""); setOneMean(""); setOneSD(""); setOneMu0(""); }} className="gap-2 text-muted-foreground" data-testid="button-reset">
                                 <RefreshCcw className="w-4 h-4" /> Reset
                               </Button>
-                              <Button size="sm" onClick={() => handleCopy(`t = ${formatStat(oneResult.t, decimals)}, df = ${formatStat(oneResult.df, decimals)}, p = ${formatStat(oneResult.pValue, decimals)}`)} className="gap-2 bg-slate-900 text-white" data-testid="button-copy">
+                              <Button size="sm" onClick={() => handleCopy(`t = ${formatStat(oneResult.t, decimals)}, df = ${formatStat(oneResult.df, decimals)}, p = ${formatStat(oneResult.pValue, decimals)}`)} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy">
                                 <Copy className="w-4 h-4" /> Copy Result
                               </Button>
                             </div>
@@ -354,10 +354,10 @@ export default function HypothesisTestCalculator() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                        <span className={`text-sm font-medium ${!twoEqualVar ? 'text-primary' : 'text-slate-400'}`}>Welch (unequal var)</span>
+                      <div className="flex items-center gap-4 bg-muted p-2 rounded-lg border border-border">
+                        <span className={`text-sm font-medium ${!twoEqualVar ? 'text-primary' : 'text-muted-foreground'}`}>Welch (unequal var)</span>
                         <Switch checked={twoEqualVar} onCheckedChange={setTwoEqualVar} data-testid="toggle-equal-var" />
-                        <span className={`text-sm font-medium ${twoEqualVar ? 'text-primary' : 'text-slate-400'}`}>Pooled (equal var)</span>
+                        <span className={`text-sm font-medium ${twoEqualVar ? 'text-primary' : 'text-muted-foreground'}`}>Pooled (equal var)</span>
                       </div>
 
                       {altButtons(twoAlt, setTwoAlt)}
@@ -380,15 +380,15 @@ export default function HypothesisTestCalculator() {
                             exit={{ opacity: 0, y: -10 }}
                           >
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                              <div className="bg-muted rounded-lg p-4 text-center">
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">t Statistic</p>
                                 <p className="text-2xl font-bold text-primary" data-testid="result-t-two">{formatStat(twoResult.t, decimals)}</p>
                               </div>
-                              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                              <div className="bg-muted rounded-lg p-4 text-center">
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">df</p>
                                 <p className="text-2xl font-bold text-primary" data-testid="result-df-two">{formatStat(twoResult.df, decimals)}</p>
                               </div>
-                              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                              <div className="bg-muted rounded-lg p-4 text-center">
                                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">p-value</p>
                                 <p className="text-2xl font-bold text-primary" data-testid="result-pvalue-two">{formatStat(twoResult.pValue, decimals)}</p>
                               </div>
@@ -398,7 +398,7 @@ export default function HypothesisTestCalculator() {
                               <Button variant="outline" size="sm" onClick={() => { setTwoDataA(""); setTwoDataB(""); }} className="gap-2 text-muted-foreground" data-testid="button-reset-two">
                                 <RefreshCcw className="w-4 h-4" /> Reset
                               </Button>
-                              <Button size="sm" onClick={() => handleCopy(`t = ${formatStat(twoResult.t, decimals)}, df = ${formatStat(twoResult.df, decimals)}, p = ${formatStat(twoResult.pValue, decimals)}`)} className="gap-2 bg-slate-900 text-white" data-testid="button-copy-two">
+                              <Button size="sm" onClick={() => handleCopy(`t = ${formatStat(twoResult.t, decimals)}, df = ${formatStat(twoResult.df, decimals)}, p = ${formatStat(twoResult.pValue, decimals)}`)} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy-two">
                                 <Copy className="w-4 h-4" /> Copy Result
                               </Button>
                             </div>
@@ -425,7 +425,7 @@ export default function HypothesisTestCalculator() {
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

@@ -108,18 +108,18 @@ export default function BodyFatEstimator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
         <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">Body Fat % Estimator</h1>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">Body Fat % Estimator</h1>
           <p className="text-lg text-muted-foreground">US Navy Method – Reliable estimation through simple measurements.</p>
         </header>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b flex flex-row items-center justify-between">
+              <CardHeader className="bg-muted border-b flex flex-row items-center justify-between">
                 <Tabs value={gender} onValueChange={setGender} className="w-48">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="male">Male</TabsTrigger>
@@ -162,20 +162,20 @@ export default function BodyFatEstimator() {
 
             {bodyFat !== null && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                <Card className="bg-slate-900 text-white border-none shadow-lg">
+                <Card className="bg-card dark:bg-background text-white border-none shadow-lg">
                   <CardContent className="p-8 text-center space-y-4">
-                    <div className="text-slate-400 uppercase tracking-widest text-sm">Estimated Body Fat</div>
+                    <div className="text-muted-foreground uppercase tracking-widest text-sm">Estimated Body Fat</div>
                     <div className="text-6xl font-bold text-primary">{bodyFat.toFixed(decimals)}%</div>
-                    <div className="text-2xl text-slate-300 font-medium">{getCategory(bodyFat).label}</div>
+                    <div className="text-2xl text-muted-foreground font-medium">{getCategory(bodyFat).label}</div>
                     
                     {weight && (
                       <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
                         <div className="text-sm">
-                          <div className="text-slate-400">Fat Mass</div>
+                          <div className="text-muted-foreground">Fat Mass</div>
                           <div className="font-bold">{(parseFloat(weight) * bodyFat / 100).toFixed(1)} {isMetric ? "kg" : "lb"}</div>
                         </div>
                         <div className="text-sm">
-                          <div className="text-slate-400">Lean Mass</div>
+                          <div className="text-muted-foreground">Lean Mass</div>
                           <div className="font-bold">{(parseFloat(weight) * (1 - bodyFat / 100)).toFixed(1)} {isMetric ? "kg" : "lb"}</div>
                         </div>
                       </div>
@@ -193,7 +193,7 @@ export default function BodyFatEstimator() {
 
           <div className="space-y-6">
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b"><CardTitle className="text-lg">How to Measure</CardTitle></CardHeader>
+              <CardHeader className="bg-muted border-b"><CardTitle className="text-lg">How to Measure</CardTitle></CardHeader>
               <CardContent className="p-6 text-sm space-y-3 text-muted-foreground">
                 <div className="flex gap-3"><Ruler className="h-5 w-5 text-primary shrink-0" /> <p><strong>Neck:</strong> Measure below the larynx with the tape slanting slightly downward to the front.</p></div>
                 <div className="flex gap-3"><Ruler className="h-5 w-5 text-primary shrink-0" /> <p><strong>Waist:</strong> Men: at navel level. Women: at the narrowest point of the torso.</p></div>

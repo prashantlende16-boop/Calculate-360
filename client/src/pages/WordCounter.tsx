@@ -99,7 +99,7 @@ export default function WordCounter() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Word & Character Counter with Readability Analysis | Calculate 360"
@@ -113,7 +113,7 @@ export default function WordCounter() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Word & Character Counter
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -121,7 +121,7 @@ export default function WordCounter() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <Textarea
                 placeholder="Paste or type your text here..."
                 value={text}
@@ -139,7 +139,7 @@ export default function WordCounter() {
                 <StatCard icon={<Clock className="w-4 h-4" />} label="Reading Time" value={stats.readingTime > 0 ? `${stats.readingTime} min` : "—"} testId="stat-reading-time" />
               </div>
 
-              <div className="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
+              <div className="mt-6 p-4 bg-muted rounded-xl border border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <BookOpen className="w-5 h-5 text-primary" />
                   <h3 className="font-display font-bold text-sm">Readability Analysis</h3>
@@ -183,7 +183,7 @@ export default function WordCounter() {
 
 function StatCard({ icon, label, value, testId }: { icon: React.ReactNode; label: string; value: string | number; testId: string }) {
   return (
-    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+    <div className="bg-muted rounded-xl p-4 border border-border">
       <div className="flex items-center gap-2 text-muted-foreground mb-1">
         {icon}
         <span className="text-xs font-medium">{label}</span>

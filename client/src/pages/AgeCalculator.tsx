@@ -49,20 +49,20 @@ export default function AgeCalculator() {
       const totalDays = differenceInDays(end, start);
       ageDetails = (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 w-full max-w-2xl mx-auto">
-          <div className="bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-            <div className="text-2xl font-bold text-slate-700">{years}</div>
+          <div className="bg-muted p-4 rounded-xl text-center border border-border">
+            <div className="text-2xl font-bold text-foreground">{years}</div>
             <div className="text-xs text-muted-foreground uppercase">Years</div>
           </div>
-          <div className="bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-            <div className="text-2xl font-bold text-slate-700">{differenceInMonths(end, start)}</div>
+          <div className="bg-muted p-4 rounded-xl text-center border border-border">
+            <div className="text-2xl font-bold text-foreground">{differenceInMonths(end, start)}</div>
             <div className="text-xs text-muted-foreground uppercase">Months</div>
           </div>
-          <div className="bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-             <div className="text-2xl font-bold text-slate-700">{differenceInWeeks(end, start)}</div>
+          <div className="bg-muted p-4 rounded-xl text-center border border-border">
+             <div className="text-2xl font-bold text-foreground">{differenceInWeeks(end, start)}</div>
              <div className="text-xs text-muted-foreground uppercase">Weeks</div>
           </div>
-          <div className="bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-            <div className="text-2xl font-bold text-slate-700">{totalDays.toLocaleString()}</div>
+          <div className="bg-muted p-4 rounded-xl text-center border border-border">
+            <div className="text-2xl font-bold text-foreground">{totalDays.toLocaleString()}</div>
             <div className="text-xs text-muted-foreground uppercase">Days</div>
           </div>
         </div>
@@ -135,7 +135,7 @@ export default function AgeCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
@@ -144,7 +144,7 @@ export default function AgeCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Age Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -152,9 +152,9 @@ export default function AgeCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <Tabs defaultValue="exact" className="w-full">
-                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="exact" className="rounded-lg py-3 data-[state=active]:bg-white data-[state=active]:shadow-sm flex items-center gap-2 justify-center">
                     <Cake className="w-4 h-4 hidden sm:block" /> Exact Age
                   </TabsTrigger>

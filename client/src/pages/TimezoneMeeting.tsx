@@ -158,7 +158,7 @@ function TimezoneSelect({ value, onChange, testId }: { value: string; onChange: 
         />
       </div>
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-border rounded-md shadow-lg max-h-48 overflow-y-auto">
+        <div className="absolute z-50 w-full mt-1 bg-card border border-border rounded-md shadow-lg max-h-48 overflow-y-auto">
           {filtered.length === 0 ? (
             <div className="px-3 py-2 text-sm text-muted-foreground">No timezones found</div>
           ) : (
@@ -288,7 +288,7 @@ export default function TimezoneMeeting() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Meeting Time Zone Planner - Calculate 360"
@@ -302,7 +302,7 @@ export default function TimezoneMeeting() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Meeting Time Zone Planner
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -310,7 +310,7 @@ export default function TimezoneMeeting() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="space-y-6">
                 <div>
                   <Label className="mb-2 block font-medium">Your Timezone</Label>
@@ -335,7 +335,7 @@ export default function TimezoneMeeting() {
                   </div>
                   <div className="space-y-3">
                     {participants.map((p, idx) => (
-                      <div key={p.id} className="flex flex-col sm:flex-row gap-2 items-start sm:items-end bg-slate-50 p-3 rounded-lg border border-slate-100">
+                      <div key={p.id} className="flex flex-col sm:flex-row gap-2 items-start sm:items-end bg-muted p-3 rounded-lg border border-border">
                         <div className="w-full sm:w-1/3">
                           <Label className="text-xs text-muted-foreground mb-1 block">Name (optional)</Label>
                           <Input
@@ -512,7 +512,7 @@ export default function TimezoneMeeting() {
                       className={`text-center py-2 rounded text-xs font-medium ${
                         allInRange
                           ? "bg-green-100 text-green-800 border border-green-200"
-                          : "bg-slate-100 text-slate-400 border border-slate-200"
+                          : "bg-muted text-muted-foreground border border-border"
                       }`}
                       title={`${formatHour(hour)} - ${allInRange ? "All available" : "Not all available"}`}
                       data-testid={`overlap-hour-${hour}`}
@@ -527,7 +527,7 @@ export default function TimezoneMeeting() {
                     All available
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-slate-100 border border-slate-200 rounded" />
+                    <div className="w-3 h-3 bg-muted border border-border rounded" />
                     Not all available
                   </div>
                 </div>
@@ -540,7 +540,7 @@ export default function TimezoneMeeting() {
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

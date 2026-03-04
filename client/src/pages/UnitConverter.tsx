@@ -266,20 +266,20 @@ export default function UnitConverter() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
 
         <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">Unit Converter</h1>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">Unit Converter</h1>
           <p className="text-lg text-muted-foreground">Convert length, mass, temperature, data, and more instantly.</p>
         </header>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b pb-0">
+              <CardHeader className="bg-muted border-b pb-0">
                 <Tabs value={category} onValueChange={setCategory} className="w-full overflow-x-auto">
                   <TabsList className="flex flex-wrap h-auto gap-1 bg-transparent p-0">
                     {Object.entries(categories).map(([key, cat]) => (
@@ -324,10 +324,10 @@ export default function UnitConverter() {
                   </div>
                 </div>
 
-                <div className="bg-slate-900 text-white rounded-xl p-6 text-center">
-                  <div className="text-slate-400 text-sm mb-2">{value || "—"} {fromUnit} =</div>
+                <div className="bg-card dark:bg-background text-white rounded-xl p-6 text-center">
+                  <div className="text-muted-foreground text-sm mb-2">{value || "—"} {fromUnit} =</div>
                   <div className="text-4xl font-bold text-primary">{result !== null ? result.toFixed(precision) : "—"}</div>
-                  <div className="text-xl text-slate-300 mt-1">{toUnit}</div>
+                  <div className="text-xl text-muted-foreground mt-1">{toUnit}</div>
                 </div>
 
                 <div className="flex flex-wrap gap-3">
@@ -342,13 +342,13 @@ export default function UnitConverter() {
             </Card>
 
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b"><CardTitle className="text-lg">Quick Conversions</CardTitle></CardHeader>
+              <CardHeader className="bg-muted border-b"><CardTitle className="text-lg">Quick Conversions</CardTitle></CardHeader>
               <CardContent className="p-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {quickConversions.map((q, i) => (
-                    <div key={i} className="bg-slate-100 rounded-lg p-3 text-center">
+                    <div key={i} className="bg-muted rounded-lg p-3 text-center">
                       <div className="text-xs text-muted-foreground truncate">{q.label}</div>
-                      <div className="font-bold text-slate-900">{q.value.toFixed(precision)}</div>
+                      <div className="font-bold text-foreground">{q.value.toFixed(precision)}</div>
                     </div>
                   ))}
                 </div>
@@ -358,13 +358,13 @@ export default function UnitConverter() {
 
           <div className="space-y-6">
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b"><CardTitle className="text-lg">Settings</CardTitle></CardHeader>
+              <CardHeader className="bg-muted border-b"><CardTitle className="text-lg">Settings</CardTitle></CardHeader>
               <CardContent className="p-6 space-y-4">
                 <div className="space-y-2">
                   <Label>Precision (decimals)</Label>
                   <div className="flex gap-2">
                     {[0, 2, 4, 6].map((p) => (
-                      <button key={p} onClick={() => setPrecision(p)} className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${precision === p ? "bg-primary text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`}>{p}</button>
+                      <button key={p} onClick={() => setPrecision(p)} className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${precision === p ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>{p}</button>
                     ))}
                   </div>
                 </div>
@@ -373,12 +373,12 @@ export default function UnitConverter() {
 
             {favorites.length > 0 && (
               <Card className="border-border shadow-sm">
-                <CardHeader className="bg-slate-50 border-b"><CardTitle className="text-lg">Favorites</CardTitle></CardHeader>
+                <CardHeader className="bg-muted border-b"><CardTitle className="text-lg">Favorites</CardTitle></CardHeader>
                 <CardContent className="p-4 space-y-2">
                   {favorites.map((fav) => {
                     const [cat, from, to] = fav.split(":");
                     return (
-                      <button key={fav} onClick={() => loadFavorite(fav)} className="w-full text-left p-3 bg-slate-50 hover:bg-slate-100 rounded-lg text-sm flex items-center gap-2 transition-colors">
+                      <button key={fav} onClick={() => loadFavorite(fav)} className="w-full text-left p-3 bg-muted hover:bg-muted rounded-lg text-sm flex items-center gap-2 transition-colors">
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                         <span className="truncate">{categories[cat]?.name}: {from} → {to}</span>
                       </button>

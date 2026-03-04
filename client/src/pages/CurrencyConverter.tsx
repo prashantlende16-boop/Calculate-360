@@ -160,13 +160,13 @@ export default function CurrencyConverter() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
         
         <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center justify-center gap-3">
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2 flex items-center justify-center gap-3">
             <ArrowLeftRight className="w-8 h-8 text-primary" /> Currency Converter
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -177,7 +177,7 @@ export default function CurrencyConverter() {
         <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-border shadow-sm overflow-hidden">
-              <CardHeader className="bg-slate-50 border-b flex flex-row items-center justify-between">
+              <CardHeader className="bg-muted border-b flex flex-row items-center justify-between">
                 <CardTitle className="text-xl">Convert</CardTitle>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Manual Rate</span>
@@ -262,24 +262,24 @@ export default function CurrencyConverter() {
               </CardContent>
             </Card>
 
-            <Card className="border-border shadow-sm overflow-hidden bg-slate-900 text-white">
+            <Card className="border-border shadow-sm overflow-hidden bg-card dark:bg-background text-white">
               <CardContent className="p-8">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="text-slate-400 uppercase tracking-widest text-sm font-medium">
+                  <div className="text-muted-foreground uppercase tracking-widest text-sm font-medium">
                     {amount} {fromCurrency} equals
                   </div>
                   <div className="text-5xl font-bold text-primary">
                     {amount ? convertedAmount.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) : "—"}
                   </div>
-                  <div className="text-2xl font-medium text-slate-300">
+                  <div className="text-2xl font-medium text-muted-foreground">
                     {toCurrency}
                   </div>
                   
                   <div className="pt-6 w-full border-t border-white/10 space-y-2">
-                    <div className="text-sm text-slate-400">
+                    <div className="text-sm text-muted-foreground">
                       1 {fromCurrency} = {exchangeRate.toFixed(4)} {toCurrency}
                     </div>
-                    <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
+                    <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                       <span>Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleString() : "Never"}</span>
                       <button onClick={() => fetchRates(true)} className="hover:text-primary transition-colors">
                         <RotateCw className={`h-3 w-3 ${isLoading ? "animate-spin" : ""}`} />
@@ -307,7 +307,7 @@ export default function CurrencyConverter() {
 
           <div className="space-y-6">
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b">
+              <CardHeader className="bg-muted border-b">
                 <CardTitle className="text-lg">Settings</CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
@@ -318,7 +318,7 @@ export default function CurrencyConverter() {
                       <button
                         key={d}
                         onClick={() => setDecimals(d)}
-                        className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${decimals === d ? "bg-primary text-white shadow-md" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`}
+                        className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${decimals === d ? "bg-primary text-white shadow-md" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}
                       >
                         {d}
                       </button>
@@ -338,19 +338,19 @@ export default function CurrencyConverter() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8 my-8 max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">How it works</h2>
+        <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8 my-8 max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-foreground mb-4">How it works</h2>
           <div className="grid md:grid-cols-3 gap-8 text-muted-foreground text-sm leading-relaxed">
             <div className="space-y-2">
-              <h3 className="font-bold text-slate-800">Live Rate Fetch</h3>
+              <h3 className="font-bold text-foreground">Live Rate Fetch</h3>
               <p>We connect to global exchange rate providers to fetch real-time mid-market rates every time you open the app or click refresh.</p>
             </div>
             <div className="space-y-2">
-              <h3 className="font-bold text-slate-800">Cached Fallback</h3>
+              <h3 className="font-bold text-foreground">Cached Fallback</h3>
               <p>Traveling without internet? No problem. The app uses the last known rates stored securely in your browser's local storage.</p>
             </div>
             <div className="space-y-2">
-              <h3 className="font-bold text-slate-800">Manual Overrides</h3>
+              <h3 className="font-bold text-foreground">Manual Overrides</h3>
               <p>If you have a specific rate from your bank or money changer, toggle 'Manual Rate' to bypass live data and use your own.</p>
             </div>
           </div>

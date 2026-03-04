@@ -98,7 +98,7 @@ export default function EventBudgetPlanner() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Wedding & Event Budget Planner - Calculate 360"
@@ -112,7 +112,7 @@ export default function EventBudgetPlanner() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Wedding / Event Budget Planner
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -120,7 +120,7 @@ export default function EventBudgetPlanner() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center justify-between mb-6">
                 <RememberInputs checked={remember} onChange={setRemember} />
               </div>
@@ -258,7 +258,7 @@ export default function EventBudgetPlanner() {
                             {formatINR(totalBudget)}
                           </p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-3 border border-slate-100">
+                        <div className="bg-muted rounded-lg p-3 border border-border">
                           <p className="text-xs text-muted-foreground">Total Spent</p>
                           <p className="text-lg font-display font-bold text-foreground" data-testid="text-total-spent">
                             {hasActuals ? formatINR(totalActual) : "\u2014"}
@@ -281,7 +281,7 @@ export default function EventBudgetPlanner() {
                             {hasActuals ? formatINR(remainingBudget) : "\u2014"}
                           </p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-3 border border-slate-100">
+                        <div className="bg-muted rounded-lg p-3 border border-border">
                           <p className="text-xs text-muted-foreground">Per Guest</p>
                           <p className="text-lg font-display font-bold text-foreground" data-testid="text-per-guest">
                             {guestCount > 0 ? formatINR(totalBudget / guestCount) : "\u2014"}

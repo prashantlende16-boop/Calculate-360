@@ -83,7 +83,7 @@ export default function ConstructionCostCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <PageHead
         title="House Construction Cost Calculator - Calculate 360"
         description="Estimate cement, steel, sand, aggregate, bricks, tiles and paint needed for your house based on built-up area in sqft."
@@ -108,7 +108,7 @@ export default function ConstructionCostCalculator() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border space-y-5">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <h2 className="font-display font-semibold text-lg text-foreground flex items-center gap-2">
                   <Package className="w-5 h-5 text-primary" />
@@ -175,7 +175,7 @@ export default function ConstructionCostCalculator() {
               )}
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h2 className="font-display font-semibold text-lg text-foreground mb-4">Material Estimate</h2>
 
               <div className="overflow-x-auto">
@@ -225,7 +225,7 @@ export default function ConstructionCostCalculator() {
               {results && (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
                   {results.slice(0, 4).map((r) => (
-                    <div key={r.key} className="bg-slate-50 rounded-xl p-3 text-center border border-border/50">
+                    <div key={r.key} className="bg-muted rounded-xl p-3 text-center border border-border/50">
                       <div className="text-lg font-bold text-foreground" data-testid={`text-card-${r.key}`}>
                         {formatNumber(r.qty)}
                       </div>
@@ -245,12 +245,12 @@ export default function ConstructionCostCalculator() {
               />
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h2 className="font-display font-semibold text-lg text-foreground mb-3">How It's Calculated</h2>
               <p className="text-sm text-muted-foreground mb-4">
                 Each material quantity is calculated using a simple formula:
               </p>
-              <div className="bg-slate-50 rounded-xl p-4 border border-border/50 mb-4">
+              <div className="bg-muted rounded-xl p-4 border border-border/50 mb-4">
                 <code className="text-sm font-mono text-foreground">Quantity = Built-up Area (sqft) x Multiplier</code>
               </div>
               <p className="text-sm text-muted-foreground mb-3 font-medium">Worked Example for 1,000 sqft:</p>

@@ -61,7 +61,7 @@ export default function WaterIntakeCalculator() {
   const maxDisplayGlasses = Math.min(filledGlasses, 20);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Water Intake Calculator - Calculate 360"
@@ -75,7 +75,7 @@ export default function WaterIntakeCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Water Intake Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -83,7 +83,7 @@ export default function WaterIntakeCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
                 <RememberInputs checked={remember} onChange={setRemember} />
               </div>
@@ -144,20 +144,20 @@ export default function WaterIntakeCalculator() {
                 </div>
               </div>
 
-              <div className="mt-8 bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="mt-8 bg-muted rounded-xl p-6 border border-border">
                 <h3 className="font-display font-bold text-lg mb-4" data-testid="text-results-heading">Results</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Daily Water Target</p>
-                    <p className="text-2xl font-bold text-slate-900" data-testid="text-water-liters">
+                    <p className="text-2xl font-bold text-foreground" data-testid="text-water-liters">
                       {hasWeight ? `${totalLiters.toFixed(1)} liters` : "\u2014"}
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {hasWeight ? `${Math.round(totalMl)} ml` : ""}
                     </p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Glasses (250ml each)</p>
                     <p className="text-2xl font-bold text-primary" data-testid="text-water-glasses">
                       {hasWeight ? `${glasses} glasses` : "\u2014"}

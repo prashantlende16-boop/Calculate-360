@@ -21,7 +21,8 @@ Preferred communication style: Simple, everyday language.
 - **Framework**: React with TypeScript, using Vite as the build tool
 - **Routing**: Wouter for lightweight client-side routing
 - **State Management**: React Query (@tanstack/react-query) for server state, local React state for UI
-- **Styling**: Tailwind CSS with CSS variables for theming, using a coral & teal color palette
+- **Styling**: Tailwind CSS with CSS variables for theming, teal primary (#3bb392) & hot pink secondary (#e1005d) palette with dark/light mode toggle
+- **Theme**: ThemeProvider (`client/src/components/ThemeProvider.tsx`) with localStorage persistence, toggle in Navigation
 - **UI Components**: shadcn/ui component library (Radix UI primitives) with custom styling
 - **Animations**: Framer Motion for smooth transitions and layout animations
 - **Forms**: React Hook Form with Zod validation via @hookform/resolvers

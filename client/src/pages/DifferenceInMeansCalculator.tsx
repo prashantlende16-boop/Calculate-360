@@ -107,7 +107,7 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="Difference in Means Calculator - Calculate 360"
         description="Compare two groups with a two-sample t-test. Calculate the difference in means, confidence interval, and Cohen's d effect size."
@@ -121,7 +121,7 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Difference in Means Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -129,21 +129,21 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                  <span className={`text-sm font-medium ${!equalVar ? 'text-primary' : 'text-slate-400'}`}>Welch (unequal)</span>
+                <div className="flex items-center gap-4 bg-muted p-2 rounded-lg border border-border">
+                  <span className={`text-sm font-medium ${!equalVar ? 'text-primary' : 'text-muted-foreground'}`}>Welch (unequal)</span>
                   <Switch checked={equalVar} onCheckedChange={setEqualVar} data-testid="toggle-equal-var" />
-                  <span className={`text-sm font-medium ${equalVar ? 'text-primary' : 'text-slate-400'}`}>Pooled (equal)</span>
+                  <span className={`text-sm font-medium ${equalVar ? 'text-primary' : 'text-muted-foreground'}`}>Pooled (equal)</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                   <span className="text-muted-foreground">Decimals:</span>
                   {[2, 4, 6].map((d) => (
                     <button
                       key={d}
                       onClick={() => setDecimals(d)}
                       data-testid={`button-decimals-${d}`}
-                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                     >
                       {d}
                     </button>
@@ -182,7 +182,7 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
                       key={c}
                       onClick={() => setConfidence(c)}
                       data-testid={`button-conf-${c}`}
-                      className={`px-3 py-1 rounded text-sm transition-colors ${confidence === c ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+                      className={`px-3 py-1 rounded text-sm transition-colors ${confidence === c ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
                     >
                       {c}%
                     </button>
@@ -207,42 +207,42 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
                     exit={{ opacity: 0, y: -10 }}
                   >
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mean A</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-mean-a">{formatStat(result.meanA, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mean B</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-mean-b">{formatStat(result.meanB, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Difference (A-B)</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-diff">{formatStat(result.diff, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Standard Error</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-se">{formatStat(result.se, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">t Statistic</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-t">{formatStat(result.t, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">df</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-df">{formatStat(result.df, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">p-value (two-tailed)</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-pvalue">{formatStat(result.pValue, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center col-span-2">
+                      <div className="bg-muted rounded-lg p-4 text-center col-span-2">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{confidence}% CI for Difference</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-ci">[{formatStat(result.ciLower, decimals)}, {formatStat(result.ciUpper, decimals)}]</p>
                       </div>
                     </div>
 
                     <div className="mt-4">
-                      <div className={`rounded-lg p-4 text-center ${Math.abs(result.cohenD) >= 0.8 ? 'bg-green-50 border border-green-200' : Math.abs(result.cohenD) >= 0.5 ? 'bg-blue-50 border border-blue-200' : 'bg-slate-50 border border-slate-200'}`}>
+                      <div className={`rounded-lg p-4 text-center ${Math.abs(result.cohenD) >= 0.8 ? 'bg-green-50 border border-green-200' : Math.abs(result.cohenD) >= 0.5 ? 'bg-blue-50 border border-blue-200' : 'bg-muted border border-border'}`}>
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Cohen's d (Effect Size)</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-cohen-d">{formatStat(result.cohenD, decimals)}</p>
                         <p className="text-sm text-muted-foreground mt-1" data-testid="result-effect-label">{cohenDInterpretation(result.cohenD)} effect</p>
@@ -253,7 +253,7 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
                       <Button variant="outline" size="sm" onClick={handleReset} className="gap-2 text-muted-foreground" data-testid="button-reset">
                         <RefreshCcw className="w-4 h-4" /> Reset
                       </Button>
-                      <Button size="sm" onClick={handleCopy} className="gap-2 bg-slate-900 text-white" data-testid="button-copy">
+                      <Button size="sm" onClick={handleCopy} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy">
                         <Copy className="w-4 h-4" /> Copy Result
                       </Button>
                     </div>
@@ -267,7 +267,7 @@ Cohen's d: ${formatStat(result.cohenD, decimals)} (${cohenDInterpretation(result
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

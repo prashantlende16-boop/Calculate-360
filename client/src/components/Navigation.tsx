@@ -1,7 +1,8 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight, Droplets, Moon, FileText, Code, Palette, Shuffle, Globe, ChevronDown, Building2, TrendingUp, Sigma, TestTube, ArrowDownUp } from "lucide-react";
+import { Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode, PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight, Droplets, Moon as MoonIcon, Sun, FileText, Code, Palette, Shuffle, Globe, ChevronDown, Building2, TrendingUp, Sigma, TestTube, ArrowDownUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/components/ThemeProvider";
 
 const categories = [
   {
@@ -25,7 +26,7 @@ const categories = [
       { href: "/bmr-tdee", label: "BMR / TDEE", icon: Flame },
       { href: "/ideal-weight", label: "Ideal Weight", icon: Weight },
       { href: "/water-intake", label: "Water Intake", icon: Droplets },
-      { href: "/sleep-cycle", label: "Sleep Cycle", icon: Moon },
+      { href: "/sleep-cycle", label: "Sleep Cycle", icon: MoonIcon },
     ],
   },
   {
@@ -74,6 +75,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -120,7 +122,7 @@ export function Navigation() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-[640px] bg-white rounded-xl shadow-xl border border-border p-4 grid grid-cols-2 gap-4 z-50">
+              <div className="absolute right-0 top-full mt-2 w-[640px] bg-background rounded-xl shadow-xl border border-border p-4 grid grid-cols-2 gap-4 z-50">
                 {categories.map((cat) => (
                   <div key={cat.label}>
                     <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 px-2">
@@ -158,15 +160,34 @@ export function Navigation() {
               {currentPage.label}
             </div>
           )}
+
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+            data-testid="button-theme-toggle"
+            title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+          >
+            {theme === "light" ? <MoonIcon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
         </div>
 
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setIsOpen(!isOpen)}
-          data-testid="button-mobile-menu"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-foreground"
+            data-testid="button-theme-toggle-mobile"
+            title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+          >
+            {theme === "light" ? <MoonIcon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
+          <button
+            className="p-2 text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+            data-testid="button-mobile-menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {isOpen && (

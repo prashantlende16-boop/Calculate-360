@@ -137,13 +137,13 @@ export default function QRCodeGenerator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
         
         <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center justify-center gap-3">
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2 flex items-center justify-center gap-3">
             <QrCode className="w-8 h-8 text-primary" /> QR Code Generator
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -233,7 +233,7 @@ export default function QRCodeGenerator() {
             </Card>
 
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b"><CardTitle className="text-lg">Appearance & Settings</CardTitle></CardHeader>
+              <CardHeader className="bg-muted border-b"><CardTitle className="text-lg">Appearance & Settings</CardTitle></CardHeader>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-2">
@@ -289,15 +289,15 @@ export default function QRCodeGenerator() {
 
           <div className="space-y-6">
             <Card className="border-border shadow-sm sticky top-24">
-              <CardHeader className="bg-slate-50 border-b flex flex-row items-center justify-between py-4">
+              <CardHeader className="bg-muted border-b flex flex-row items-center justify-between py-4">
                 <CardTitle className="text-lg">Preview</CardTitle>
-                <div className="flex bg-slate-200 rounded-lg p-1">
-                  <button onClick={() => setRenderType("canvas")} className={`px-3 py-1 text-xs rounded-md transition-all ${renderType === "canvas" ? "bg-white shadow-sm font-bold" : "text-slate-600 hover:bg-slate-300"}`}>PNG</button>
-                  <button onClick={() => setRenderType("svg")} className={`px-3 py-1 text-xs rounded-md transition-all ${renderType === "svg" ? "bg-white shadow-sm font-bold" : "text-slate-600 hover:bg-slate-300"}`}>SVG</button>
+                <div className="flex bg-muted rounded-lg p-1">
+                  <button onClick={() => setRenderType("canvas")} className={`px-3 py-1 text-xs rounded-md transition-all ${renderType === "canvas" ? "bg-white shadow-sm font-bold" : "text-muted-foreground hover:bg-muted"}`}>PNG</button>
+                  <button onClick={() => setRenderType("svg")} className={`px-3 py-1 text-xs rounded-md transition-all ${renderType === "svg" ? "bg-white shadow-sm font-bold" : "text-muted-foreground hover:bg-muted"}`}>SVG</button>
                 </div>
               </CardHeader>
               <CardContent className="p-6 flex flex-col items-center">
-                <div ref={qrRef} className="bg-white p-4 rounded-xl shadow-inner border mb-6 relative group overflow-hidden">
+                <div ref={qrRef} className="bg-card p-4 rounded-xl shadow-inner border mb-6 relative group overflow-hidden">
                   {renderType === "canvas" ? (
                     <QRCodeCanvas
                       value={encodedData}
@@ -318,7 +318,7 @@ export default function QRCodeGenerator() {
                     />
                   )}
                   <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="bg-white/90 text-xs font-bold px-3 py-1 rounded-full text-slate-900 border shadow-sm">Real-time Preview</span>
+                    <span className="bg-white/90 text-xs font-bold px-3 py-1 rounded-full text-foreground border shadow-sm">Real-time Preview</span>
                   </div>
                 </div>
 
@@ -332,10 +332,10 @@ export default function QRCodeGenerator() {
                   </div>
                 </div>
 
-                <div className="w-full mt-6 pt-6 border-t border-slate-100">
+                <div className="w-full mt-6 pt-6 border-t border-border">
                   <button 
                     onClick={() => setShowEncoded(!showEncoded)}
-                    className="flex items-center justify-between w-full text-sm text-muted-foreground hover:text-slate-900 transition-colors"
+                    className="flex items-center justify-between w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <span>Show Encoded Data</span>
                     {showEncoded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -348,7 +348,7 @@ export default function QRCodeGenerator() {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden mt-3"
                       >
-                        <div className="bg-slate-100 p-3 rounded-lg text-xs font-mono break-all text-slate-700 leading-relaxed border border-slate-200">
+                        <div className="bg-muted p-3 rounded-lg text-xs font-mono break-all text-foreground leading-relaxed border border-border">
                           {encodedData}
                         </div>
                       </motion.div>
@@ -361,22 +361,22 @@ export default function QRCodeGenerator() {
         </div>
 
         <div className="max-w-6xl mx-auto mt-12 space-y-8">
-          <div className="bg-white rounded-2xl shadow-sm border border-border p-8">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">How to use the QR Generator</h2>
+          <div className="bg-card rounded-2xl shadow-sm border border-border p-8">
+            <h2 className="text-2xl font-bold text-foreground mb-6">How to use the QR Generator</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="space-y-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary font-bold">1</div>
-                <h3 className="font-bold text-slate-800">Select Type</h3>
+                <h3 className="font-bold text-foreground">Select Type</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">Choose from Text, URL, WiFi, or Contact. Each type automatically formats your data correctly for scanning.</p>
               </div>
               <div className="space-y-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary font-bold">2</div>
-                <h3 className="font-bold text-slate-800">Customize Style</h3>
+                <h3 className="font-bold text-foreground">Customize Style</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">Change colors, size, and margin. Use the transparent background option for cleaner integration with your designs.</p>
               </div>
               <div className="space-y-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary font-bold">3</div>
-                <h3 className="font-bold text-slate-800">Download & Share</h3>
+                <h3 className="font-bold text-foreground">Download & Share</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">Download as PNG for web use or SVG for high-quality printing. All generation happens locally for your privacy.</p>
               </div>
             </div>

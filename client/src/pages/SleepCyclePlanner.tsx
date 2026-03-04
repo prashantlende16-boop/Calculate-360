@@ -114,7 +114,7 @@ export default function SleepCyclePlanner() {
     : "";
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Sleep Cycle Planner - Calculate 360"
@@ -128,7 +128,7 @@ export default function SleepCyclePlanner() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Sleep Cycle Planner
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -136,7 +136,7 @@ export default function SleepCyclePlanner() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
                 <RememberInputs checked={remember} onChange={setRemember} />
               </div>
@@ -185,7 +185,7 @@ export default function SleepCyclePlanner() {
                     <div>
                       <Label className="mb-2 block">Current Time</Label>
                       <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+                        <div className="flex items-center gap-2 bg-muted px-4 py-2 rounded-lg border border-border">
                           <Clock className="w-4 h-4 text-muted-foreground" />
                           <span className="text-lg font-medium" data-testid="text-current-time">{sleepNowTime}</span>
                         </div>
@@ -198,7 +198,7 @@ export default function SleepCyclePlanner() {
                 )}
               </div>
 
-              <div className="mt-8 bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="mt-8 bg-muted rounded-xl p-6 border border-border">
                 <h3 className="font-display font-bold text-lg mb-4" data-testid="text-results-heading">
                   {mode === "wake" ? "Recommended Bedtimes" : "Recommended Wake Times"}
                 </h3>
@@ -210,18 +210,18 @@ export default function SleepCyclePlanner() {
                       className={`flex items-center justify-between p-4 rounded-lg border ${
                         r.recommended
                           ? "bg-primary/5 border-primary/20"
-                          : "bg-white border-slate-100"
+                          : "bg-white border-border"
                       }`}
                       data-testid={`result-cycle-${r.cycles}`}
                     >
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                          r.recommended ? "bg-primary/10 text-primary" : "bg-slate-100 text-slate-500"
+                          r.recommended ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
                         }`}>
                           <span className="font-bold text-sm">{r.cycles}</span>
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">
+                          <p className="font-medium text-foreground">
                             {r.cycles} cycles ({r.hours} hours)
                           </p>
                           {r.recommended && (
@@ -229,7 +229,7 @@ export default function SleepCyclePlanner() {
                           )}
                         </div>
                       </div>
-                      <p className="text-xl font-bold text-slate-900" data-testid={`text-time-${r.cycles}`}>
+                      <p className="text-xl font-bold text-foreground" data-testid={`text-time-${r.cycles}`}>
                         {r.time}
                       </p>
                     </div>

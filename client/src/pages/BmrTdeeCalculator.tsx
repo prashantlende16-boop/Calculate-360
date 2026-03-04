@@ -91,7 +91,7 @@ export default function BmrTdeeCalculator() {
     : "";
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="BMR & TDEE Calculator - Calculate 360"
@@ -105,7 +105,7 @@ export default function BmrTdeeCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 BMR & TDEE Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -113,7 +113,7 @@ export default function BmrTdeeCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
                 <RememberInputs checked={remember} onChange={setRemember} />
               </div>
@@ -214,28 +214,28 @@ export default function BmrTdeeCalculator() {
                 </div>
               </div>
 
-              <div className="mt-8 bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="mt-8 bg-muted rounded-xl p-6 border border-border">
                 <h3 className="font-display font-bold text-lg mb-4" data-testid="text-results-heading">Results</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Basal Metabolic Rate (BMR)</p>
-                    <p className="text-2xl font-bold text-slate-900" data-testid="text-bmr">
+                    <p className="text-2xl font-bold text-foreground" data-testid="text-bmr">
                       {hasInputs ? `${Math.round(bmr)} kcal/day` : "\u2014"}
                     </p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Total Daily Energy Expenditure (TDEE)</p>
-                    <p className="text-2xl font-bold text-slate-900" data-testid="text-tdee">
+                    <p className="text-2xl font-bold text-foreground" data-testid="text-tdee">
                       {hasInputs ? `${Math.round(tdee)} kcal/day` : "\u2014"}
                     </p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Suggested Calorie Target</p>
                     <p className="text-2xl font-bold text-primary" data-testid="text-calorie-target">
                       {hasInputs ? calorieTarget : "\u2014"}
                     </p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-2">Macro Guidelines</p>
                     {hasInputs ? (
                       <div className="space-y-1 text-sm" data-testid="text-macros">
@@ -244,7 +244,7 @@ export default function BmrTdeeCalculator() {
                         <p><span className="font-medium">Fat:</span> {macros.fat}</p>
                       </div>
                     ) : (
-                      <p className="text-2xl font-bold text-slate-900">{"\u2014"}</p>
+                      <p className="text-2xl font-bold text-foreground">{"\u2014"}</p>
                     )}
                   </div>
                 </div>

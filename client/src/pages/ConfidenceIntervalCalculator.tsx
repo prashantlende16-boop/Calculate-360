@@ -127,14 +127,14 @@ export default function ConfidenceIntervalCalculator() {
             key={c}
             onClick={() => setCurrent(c)}
             data-testid={`button-conf-${c}`}
-            className={`px-3 py-1 rounded text-sm transition-colors ${current === c ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+            className={`px-3 py-1 rounded text-sm transition-colors ${current === c ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
           >
             {c}%
           </button>
         ))}
         <button
           onClick={() => setCurrent(0)}
-          className={`px-3 py-1 rounded text-sm transition-colors ${current === 0 ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+          className={`px-3 py-1 rounded text-sm transition-colors ${current === 0 ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
         >
           Custom
         </button>
@@ -167,36 +167,36 @@ export default function ConfidenceIntervalCalculator() {
           exit={{ opacity: 0, y: -10 }}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-            <div className="bg-slate-50 rounded-lg p-4 text-center">
+            <div className="bg-muted rounded-lg p-4 text-center">
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Lower Bound</p>
               <p className="text-2xl font-bold text-primary" data-testid="result-lower">{formatStat(result.lower, decimals)}</p>
             </div>
-            <div className="bg-slate-50 rounded-lg p-4 text-center">
+            <div className="bg-muted rounded-lg p-4 text-center">
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Upper Bound</p>
               <p className="text-2xl font-bold text-primary" data-testid="result-upper">{formatStat(result.upper, decimals)}</p>
             </div>
-            <div className="bg-slate-50 rounded-lg p-4 text-center">
+            <div className="bg-muted rounded-lg p-4 text-center">
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Margin of Error</p>
               <p className="text-2xl font-bold text-primary" data-testid="result-margin">{formatStat(result.margin, decimals)}</p>
             </div>
-            <div className="bg-slate-50 rounded-lg p-4 text-center">
+            <div className="bg-muted rounded-lg p-4 text-center">
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">n</p>
               <p className="text-2xl font-bold text-primary" data-testid="result-n">{result.n}</p>
             </div>
             {type !== "proportion" && result.mean !== undefined && (
-              <div className="bg-slate-50 rounded-lg p-4 text-center">
+              <div className="bg-muted rounded-lg p-4 text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mean</p>
                 <p className="text-2xl font-bold text-primary" data-testid="result-mean">{formatStat(result.mean, decimals)}</p>
               </div>
             )}
             {type !== "proportion" && result.sd !== undefined && (
-              <div className="bg-slate-50 rounded-lg p-4 text-center">
+              <div className="bg-muted rounded-lg p-4 text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{type === "z" ? "σ" : "SD"}</p>
                 <p className="text-2xl font-bold text-primary" data-testid="result-sd">{formatStat(result.sd, decimals)}</p>
               </div>
             )}
             {type === "proportion" && result.pHat !== undefined && (
-              <div className="bg-slate-50 rounded-lg p-4 text-center">
+              <div className="bg-muted rounded-lg p-4 text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">p&#x0302;</p>
                 <p className="text-2xl font-bold text-primary" data-testid="result-phat">{formatStat(result.pHat, decimals)}</p>
               </div>
@@ -210,7 +210,7 @@ export default function ConfidenceIntervalCalculator() {
             }} className="gap-2 text-muted-foreground" data-testid="button-reset">
               <RefreshCcw className="w-4 h-4" /> Reset
             </Button>
-            <Button size="sm" onClick={() => handleCopy(copyText)} className="gap-2 bg-slate-900 text-white" data-testid="button-copy">
+            <Button size="sm" onClick={() => handleCopy(copyText)} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy">
               <Copy className="w-4 h-4" /> Copy Result
             </Button>
           </div>
@@ -224,14 +224,14 @@ export default function ConfidenceIntervalCalculator() {
       <button
         onClick={() => setUseSummary(false)}
         data-testid="button-raw-data"
-        className={`px-3 py-1 rounded text-sm transition-colors ${!useSummary ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+        className={`px-3 py-1 rounded text-sm transition-colors ${!useSummary ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
       >
         Enter Raw Data
       </button>
       <button
         onClick={() => setUseSummary(true)}
         data-testid="button-summary"
-        className={`px-3 py-1 rounded text-sm transition-colors ${useSummary ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+        className={`px-3 py-1 rounded text-sm transition-colors ${useSummary ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
       >
         Enter Summary
       </button>
@@ -239,7 +239,7 @@ export default function ConfidenceIntervalCalculator() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="Confidence Interval Calculator - Calculate 360"
         description="Calculate confidence intervals for means and proportions using t-interval, z-interval, or proportion methods. Free online statistics calculator."
@@ -253,7 +253,7 @@ export default function ConfidenceIntervalCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Confidence Interval Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -261,9 +261,9 @@ export default function ConfidenceIntervalCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <Tabs defaultValue="t" className="w-full">
-                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="t" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-t">t Interval</TabsTrigger>
                   <TabsTrigger value="z" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-z">Z Interval</TabsTrigger>
                   <TabsTrigger value="proportion" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-proportion">Proportion</TabsTrigger>
@@ -271,14 +271,14 @@ export default function ConfidenceIntervalCalculator() {
 
                 <div className="p-6 md:p-8">
                   <div className="flex justify-end mb-6">
-                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                    <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                       <span className="text-muted-foreground">Decimals:</span>
                       {[2, 4, 6].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
                           data-testid={`button-decimals-${d}`}
-                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                         >
                           {d}
                         </button>
@@ -404,7 +404,7 @@ export default function ConfidenceIntervalCalculator() {
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

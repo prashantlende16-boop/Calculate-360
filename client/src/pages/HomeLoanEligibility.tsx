@@ -144,7 +144,7 @@ Note: This is an estimate. Banks may have different criteria.`;
   const allFaqs = [...homeFaqs, ...carFaqs];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
@@ -152,11 +152,11 @@ Note: This is an estimate. Banks may have different criteria.`;
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center gap-3">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2 flex items-center gap-3">
                 {mainTab === "home" ? <Home className="w-8 h-8 text-primary" /> : <Car className="w-8 h-8 text-primary" />}
                 Loan Eligibility Calculator
               </h1>
-              <div className="flex bg-slate-100 p-1 rounded-xl w-fit mb-4">
+              <div className="flex bg-muted p-1 rounded-xl w-fit mb-4">
                 <button 
                   onClick={() => setMainTab("home")}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${mainTab === "home" ? "bg-white shadow-sm text-primary" : "text-muted-foreground hover:text-foreground"}`}
@@ -179,7 +179,7 @@ Note: This is an estimate. Banks may have different criteria.`;
                 <div className="text-3xl font-bold text-secondary">{activeResults.maxLoanEligible > 0 ? formatCurrency(activeResults.maxLoanEligible) : "—"}</div>
               </div>
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
-                <div className="text-sm text-slate-600 mb-2">Affordable Budget</div>
+                <div className="text-sm text-muted-foreground mb-2">Affordable Budget</div>
                 <div className="text-3xl font-bold text-purple-700">{activeResults.budget > 0 ? formatCurrency(activeResults.budget) : "—"}</div>
               </div>
               {mainTab === "car" && carTargetPrice && (
@@ -191,7 +191,7 @@ Note: This is an estimate. Banks may have different criteria.`;
               )}
             </motion.div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -264,7 +264,7 @@ Note: This is an estimate. Banks may have different criteria.`;
               {/* FOIR Chart */}
               <div className="mt-8 pt-8 border-t">
                 <h3 className="font-semibold mb-4">FOIR Capacity Utilization</h3>
-                <div className="w-full bg-slate-100 rounded-full h-4 overflow-hidden flex">
+                <div className="w-full bg-muted rounded-full h-4 overflow-hidden flex">
                   <div className="bg-primary h-full transition-all duration-500" style={{ width: `${(activeResults.existingEmis / (activeResults.foirCapacity || 1)) * 100}%` }} title="Existing EMIs" />
                   <div className="bg-blue-400 h-full transition-all duration-500" style={{ width: `${(activeResults.maxEmiAllowed / (activeResults.foirCapacity || 1)) * 100}%` }} title="Eligible EMI" />
                 </div>

@@ -153,7 +153,7 @@ export default function RandomDataGenerator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Random Data Generator - Names, Emails, Passwords, UUIDs | Calculate 360"
@@ -167,7 +167,7 @@ export default function RandomDataGenerator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Random Data Generator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -175,14 +175,14 @@ export default function RandomDataGenerator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center gap-2 mb-4 text-sm text-amber-700 bg-amber-50 rounded-lg p-3 border border-amber-100">
                 <AlertTriangle className="w-4 h-4 shrink-0" />
                 <span>For testing purposes only. Do not use for real personal data.</span>
               </div>
 
               <Tabs defaultValue="names" className="w-full">
-                <TabsList className="w-full grid grid-cols-3 md:grid-cols-5 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-3 md:grid-cols-5 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="names" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-names">Names</TabsTrigger>
                   <TabsTrigger value="emails" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-emails">Emails</TabsTrigger>
                   <TabsTrigger value="passwords" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-passwords">Passwords</TabsTrigger>
@@ -253,12 +253,12 @@ export default function RandomDataGenerator() {
                     </Button>
                     {pwOutput && (
                       <div className="space-y-3">
-                        <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 font-mono text-sm break-all" data-testid="output-password">
+                        <div className="bg-muted rounded-xl p-4 border border-border font-mono text-sm break-all" data-testid="output-password">
                           {pwOutput}
                         </div>
                         <div className="flex items-center gap-3">
                           <span className="text-sm text-muted-foreground">Strength:</span>
-                          <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
+                          <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full transition-all ${pwStrength.color}`}
                               style={{ width: pwStrength.label === "Weak" ? "25%" : pwStrength.label === "Medium" ? "50%" : pwStrength.label === "Strong" ? "75%" : "100%" }}
@@ -335,7 +335,7 @@ function OutputArea({ value, onCopy, testId, copyTestId }: { value: string; onCo
   if (!value) return null;
   return (
     <div className="space-y-2">
-      <Textarea value={value} readOnly className="min-h-[120px] resize-y bg-slate-50 font-mono text-sm" data-testid={testId} />
+      <Textarea value={value} readOnly className="min-h-[120px] resize-y bg-muted font-mono text-sm" data-testid={testId} />
       <Button variant="outline" size="sm" className="gap-2" onClick={() => onCopy(value)} data-testid={copyTestId}>
         <Copy className="w-4 h-4" /> Copy All
       </Button>

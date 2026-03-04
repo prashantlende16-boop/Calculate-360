@@ -105,7 +105,7 @@ export default function FuelCostCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Fuel Cost & Mileage Calculator - Calculate 360"
@@ -119,7 +119,7 @@ export default function FuelCostCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Fuel Cost & Mileage Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -127,9 +127,9 @@ export default function FuelCostCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger
                     value="trip-cost"
                     className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
@@ -198,19 +198,19 @@ export default function FuelCostCalculator() {
 
                     <div className="mt-8 pt-8 border-t border-dashed border-border">
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Total Fuel</div>
                           <div className="text-xl font-bold text-primary" data-testid="text-trip-fuel">
                             {tripResults ? `${formatNumber(tripResults.totalFuel)} L` : "—"}
                           </div>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Total Cost</div>
                           <div className="text-xl font-bold text-primary" data-testid="text-trip-cost">
                             {tripResults ? formatINR(tripResults.totalCost) : "—"}
                           </div>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Cost per km</div>
                           <div className="text-xl font-bold text-primary" data-testid="text-trip-cost-per-km">
                             {tripResults ? formatINR(tripResults.costPerKm) : "—"}
@@ -329,7 +329,7 @@ export default function FuelCostCalculator() {
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
                 <Fuel className="w-5 h-5 text-primary" />
                 Quick Reference

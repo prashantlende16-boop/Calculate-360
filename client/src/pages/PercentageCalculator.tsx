@@ -62,7 +62,7 @@ export default function PercentageCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
@@ -72,7 +72,7 @@ export default function PercentageCalculator() {
           {/* Main Calculator Area */}
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Percentage Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -80,9 +80,9 @@ export default function PercentageCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <Tabs defaultValue="tab1" className="w-full">
-                <TabsList className="w-full grid grid-cols-2 md:grid-cols-5 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-2 md:grid-cols-5 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="tab1" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">X% of Y</TabsTrigger>
                   <TabsTrigger value="tab2" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">What %</TabsTrigger>
                   <TabsTrigger value="tab3" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">% Change</TabsTrigger>
@@ -93,13 +93,13 @@ export default function PercentageCalculator() {
                 <div className="p-6 md:p-8">
                   {/* Rounding Controls */}
                   <div className="flex justify-end mb-6">
-                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                    <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                       <span className="text-muted-foreground">Decimals:</span>
                       {[0, 2, 4].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
-                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                         >
                           {d}
                         </button>
@@ -199,10 +199,10 @@ export default function PercentageCalculator() {
                     {/* Tab 4: +/- % */}
                     <TabsContent value="tab4" className="mt-0 space-y-6">
                       <div className="flex flex-col gap-6">
-                        <div className="flex items-center justify-center gap-4 bg-slate-50 p-2 rounded-lg border border-slate-100 w-fit mx-auto">
-                          <span className={`text-sm font-medium ${!isAdd ? 'text-slate-400' : 'text-primary'}`}>Add (+)</span>
+                        <div className="flex items-center justify-center gap-4 bg-muted p-2 rounded-lg border border-border w-fit mx-auto">
+                          <span className={`text-sm font-medium ${!isAdd ? 'text-muted-foreground' : 'text-primary'}`}>Add (+)</span>
                           <Switch checked={!isAdd} onCheckedChange={(c) => setIsAdd(!c)} />
-                          <span className={`text-sm font-medium ${isAdd ? 'text-slate-400' : 'text-destructive'}`}>Subtract (-)</span>
+                          <span className={`text-sm font-medium ${isAdd ? 'text-muted-foreground' : 'text-destructive'}`}>Subtract (-)</span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -249,13 +249,13 @@ export default function PercentageCalculator() {
                         <div className="flex gap-2">
                            <button 
                             onClick={() => setIsIncrease(true)}
-                            className={`px-3 py-1 rounded text-sm transition-colors ${isIncrease ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+                            className={`px-3 py-1 rounded text-sm transition-colors ${isIncrease ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
                           >
                             Was Increased
                           </button>
                           <button 
                             onClick={() => setIsIncrease(false)}
-                            className={`px-3 py-1 rounded text-sm transition-colors ${!isIncrease ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+                            className={`px-3 py-1 rounded text-sm transition-colors ${!isIncrease ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
                           >
                             Was Decreased
                           </button>
@@ -279,7 +279,7 @@ export default function PercentageCalculator() {
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
             
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

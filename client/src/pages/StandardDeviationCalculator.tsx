@@ -56,7 +56,7 @@ export default function StandardDeviationCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="Standard Deviation Calculator - Calculate 360"
         description="Calculate sample or population standard deviation and variance for your dataset. Free online statistics calculator with formulas."
@@ -70,7 +70,7 @@ export default function StandardDeviationCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Standard Deviation Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -78,21 +78,21 @@ export default function StandardDeviationCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                  <span className={`text-sm font-medium ${!isPopulation ? 'text-primary' : 'text-slate-400'}`}>Sample (n-1)</span>
+                <div className="flex items-center gap-4 bg-muted p-2 rounded-lg border border-border">
+                  <span className={`text-sm font-medium ${!isPopulation ? 'text-primary' : 'text-muted-foreground'}`}>Sample (n-1)</span>
                   <Switch checked={isPopulation} onCheckedChange={setIsPopulation} data-testid="toggle-population" />
-                  <span className={`text-sm font-medium ${isPopulation ? 'text-primary' : 'text-slate-400'}`}>Population (n)</span>
+                  <span className={`text-sm font-medium ${isPopulation ? 'text-primary' : 'text-muted-foreground'}`}>Population (n)</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                   <span className="text-muted-foreground">Decimals:</span>
                   {[2, 4, 6].map((d) => (
                     <button
                       key={d}
                       onClick={() => setDecimals(d)}
                       data-testid={`button-decimals-${d}`}
-                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                     >
                       {d}
                     </button>
@@ -136,23 +136,23 @@ export default function StandardDeviationCalculator() {
                       exit={{ opacity: 0, y: -10 }}
                     >
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                             {isPopulation ? "Population" : "Sample"} Std Dev
                           </p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-stddev">{formatStat(results.stdDev, decimals)}</p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                             {isPopulation ? "Population" : "Sample"} Variance
                           </p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-variance">{formatStat(results.variance, decimals)}</p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mean</p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-mean">{formatStat(results.mean, decimals)}</p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Count (n)</p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-count">{results.n}</p>
                         </div>
@@ -162,7 +162,7 @@ export default function StandardDeviationCalculator() {
                         <Button variant="outline" size="sm" onClick={handleReset} className="gap-2 text-muted-foreground" data-testid="button-reset">
                           <RefreshCcw className="w-4 h-4" /> Reset
                         </Button>
-                        <Button size="sm" onClick={handleCopy} className="gap-2 bg-slate-900 text-white" data-testid="button-copy">
+                        <Button size="sm" onClick={handleCopy} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy">
                           <Copy className="w-4 h-4" /> Copy Result
                         </Button>
                       </div>
@@ -182,7 +182,7 @@ export default function StandardDeviationCalculator() {
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

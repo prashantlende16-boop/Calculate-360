@@ -64,7 +64,7 @@ export default function KurtosisCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="Kurtosis Calculator - Calculate 360"
         description="Calculate excess kurtosis of your dataset to understand tail weight and peakedness. Free online statistics calculator with interpretation."
@@ -78,7 +78,7 @@ export default function KurtosisCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Kurtosis Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -86,16 +86,16 @@ export default function KurtosisCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex flex-wrap items-center justify-end gap-4 mb-6">
-                <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                   <span className="text-muted-foreground">Decimals:</span>
                   {[2, 4, 6].map((d) => (
                     <button
                       key={d}
                       onClick={() => setDecimals(d)}
                       data-testid={`button-decimals-${d}`}
-                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                     >
                       {d}
                     </button>
@@ -135,19 +135,19 @@ export default function KurtosisCalculator() {
                       exit={{ opacity: 0, y: -10 }}
                     >
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Excess Kurtosis</p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-kurtosis">{formatStat(results.kurtosis, decimals)}</p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mean</p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-mean">{formatStat(results.mean, decimals)}</p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Std Dev</p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-stddev">{formatStat(results.stdDev, decimals)}</p>
                         </div>
-                        <div className="bg-slate-50 rounded-lg p-4 text-center">
+                        <div className="bg-muted rounded-lg p-4 text-center">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Count (n)</p>
                           <p className="text-2xl font-bold text-primary" data-testid="result-count">{results.n}</p>
                         </div>
@@ -164,7 +164,7 @@ export default function KurtosisCalculator() {
                         <Button variant="outline" size="sm" onClick={handleReset} className="gap-2 text-muted-foreground" data-testid="button-reset">
                           <RefreshCcw className="w-4 h-4" /> Reset
                         </Button>
-                        <Button size="sm" onClick={handleCopy} className="gap-2 bg-slate-900 text-white" data-testid="button-copy">
+                        <Button size="sm" onClick={handleCopy} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy">
                           <Copy className="w-4 h-4" /> Copy Result
                         </Button>
                       </div>
@@ -184,7 +184,7 @@ export default function KurtosisCalculator() {
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

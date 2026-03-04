@@ -183,7 +183,7 @@ export default function HomeLoanCalculator() {
   const interestPercent = totalForChart > 0 ? (totalInterest / totalForChart) * 100 : 0;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
@@ -193,7 +193,7 @@ export default function HomeLoanCalculator() {
           {/* Main Calculator */}
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2 flex items-center gap-3">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2 flex items-center gap-3">
                 <Home className="w-8 h-8 text-primary" /> Home Loan EMI Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -201,9 +201,9 @@ export default function HomeLoanCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <Tabs defaultValue="inputs" className="w-full">
-                <TabsList className="grid grid-cols-3 mb-6 bg-slate-100 rounded-lg p-1">
+                <TabsList className="grid grid-cols-3 mb-6 bg-muted rounded-lg p-1">
                   <TabsTrigger value="inputs" className="rounded-md">Inputs</TabsTrigger>
                   <TabsTrigger value="results" className="rounded-md">Results</TabsTrigger>
                   <TabsTrigger value="schedule" className="rounded-md">Schedule</TabsTrigger>
@@ -212,14 +212,14 @@ export default function HomeLoanCalculator() {
                 {/* Inputs Tab */}
                 <TabsContent value="inputs" className="space-y-6">
                   <div className="flex justify-end mb-4">
-                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                    <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                       <span className="text-muted-foreground">Decimals:</span>
                       {[0, 2].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
                           className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${
-                            decimals === d ? "bg-primary text-white font-bold" : "text-slate-500 hover:bg-slate-200"
+                            decimals === d ? "bg-primary text-white font-bold" : "text-muted-foreground hover:bg-muted/80"
                           }`}
                         >
                           {d}
@@ -290,7 +290,7 @@ export default function HomeLoanCalculator() {
                           className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                             processingFeeType === type
                               ? "bg-primary text-white"
-                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                              : "bg-muted text-foreground hover:bg-muted/80"
                           }`}
                         >
                           {type === "none" ? "None" : type === "amount" ? "₹ Amount" : "% Percent"}
@@ -321,7 +321,7 @@ export default function HomeLoanCalculator() {
                       <div className="text-3xl md:text-4xl font-bold text-primary">
                         {emi > 0 ? formatCurrency(emi) : "—"}
                       </div>
-                      <div className="text-xs text-slate-600 mt-2">
+                      <div className="text-xs text-muted-foreground mt-2">
                         EMI = P × r × (1+r)^n / ((1+r)^n − 1)
                       </div>
                     </div>
@@ -331,28 +331,28 @@ export default function HomeLoanCalculator() {
                       <div className="text-3xl md:text-4xl font-bold text-secondary">
                         {totalInterest > 0 ? formatCurrency(totalInterest) : "—"}
                       </div>
-                      <div className="text-xs text-slate-600 mt-2">
+                      <div className="text-xs text-muted-foreground mt-2">
                         Over {tenureMonthsNum} months
                       </div>
                     </div>
 
                     <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
-                      <div className="text-sm text-slate-600 mb-2">Total Payment</div>
+                      <div className="text-sm text-muted-foreground mb-2">Total Payment</div>
                       <div className="text-3xl md:text-4xl font-bold text-purple-700">
                         {totalPayment > 0 ? formatCurrency(totalPayment) : "—"}
                       </div>
-                      <div className="text-xs text-slate-600 mt-2">
+                      <div className="text-xs text-muted-foreground mt-2">
                         Principal + Interest
                       </div>
                     </div>
 
                     {processingFeeAmount > 0 && (
                       <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
-                        <div className="text-sm text-slate-600 mb-2">With Processing Fee</div>
+                        <div className="text-sm text-muted-foreground mb-2">With Processing Fee</div>
                         <div className="text-3xl md:text-4xl font-bold text-orange-700">
                           {formatCurrency(effectiveTotal)}
                         </div>
-                        <div className="text-xs text-slate-600 mt-2">
+                        <div className="text-xs text-muted-foreground mt-2">
                           Fee: {formatCurrency(processingFeeAmount)}
                         </div>
                       </div>
@@ -361,8 +361,8 @@ export default function HomeLoanCalculator() {
 
                   {/* Chart: Principal vs Interest */}
                   {totalForChart > 0 && (
-                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                      <h3 className="font-semibold text-slate-900 mb-4">Principal vs Interest Breakdown</h3>
+                    <div className="bg-muted p-6 rounded-xl border border-border">
+                      <h3 className="font-semibold text-foreground mb-4">Principal vs Interest Breakdown</h3>
                       <div className="flex items-center justify-center gap-8">
                         <svg width="150" height="150" viewBox="0 0 150 150" className="flex-shrink-0">
                           <circle cx="75" cy="75" r="60" fill="none" stroke="#e2e8f0" strokeWidth="20" />
@@ -371,7 +371,7 @@ export default function HomeLoanCalculator() {
                             cy="75"
                             r="60"
                             fill="none"
-                            stroke="hsl(335, 100%, 44%)"
+                            stroke="hsl(var(--primary))"
                             strokeWidth="20"
                             strokeDasharray={`${(principalPercent / 100) * 376.99} 376.99`}
                             strokeDashoffset="0"
@@ -382,7 +382,7 @@ export default function HomeLoanCalculator() {
                             cy="75"
                             r="60"
                             fill="none"
-                            stroke="hsl(164, 50%, 47%)"
+                            stroke="hsl(var(--secondary))"
                             strokeWidth="20"
                             strokeDasharray={`${(interestPercent / 100) * 376.99} 376.99`}
                             strokeDashoffset={`-${(principalPercent / 100) * 376.99}`}
@@ -416,7 +416,7 @@ export default function HomeLoanCalculator() {
                     <>
                       <div className="overflow-x-auto border rounded-lg">
                         <table className="w-full text-sm">
-                          <thead className="bg-slate-100 border-b">
+                          <thead className="bg-muted border-b">
                             <tr>
                               <th className="px-4 py-2 text-left">Month</th>
                               <th className="px-4 py-2 text-right">Opening Balance</th>
@@ -428,7 +428,7 @@ export default function HomeLoanCalculator() {
                           </thead>
                           <tbody>
                             {displayMonths.map((row, idx) => (
-                              <tr key={idx} className="border-b hover:bg-slate-50">
+                              <tr key={idx} className="border-b hover:bg-muted/50">
                                 <td className="px-4 py-2 font-medium">{row.month}</td>
                                 <td className="px-4 py-2 text-right text-xs">{formatCurrency(row.openingBalance)}</td>
                                 <td className="px-4 py-2 text-right text-xs font-semibold">{formatCurrency(row.emi)}</td>
@@ -468,8 +468,8 @@ export default function HomeLoanCalculator() {
         <AdSlot position="bottom" className="my-8" />
 
         {/* How it Works */}
-        <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8 my-8">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">How It Works</h2>
+        <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8 my-8">
+          <h2 className="text-2xl font-bold text-foreground mb-4">How It Works</h2>
           <div className="space-y-3 text-muted-foreground">
             <p>
               <strong>EMI Calculation:</strong> We use the standard formula: EMI = P × r × (1+r)^n / ((1+r)^n − 1), where P is the principal

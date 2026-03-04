@@ -190,7 +190,7 @@ export default function ColorTools() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Color Tools - Converter, Palette Generator & Contrast Checker | Calculate 360"
@@ -204,7 +204,7 @@ export default function ColorTools() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Color Tools
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -212,9 +212,9 @@ export default function ColorTools() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <Tabs defaultValue="converter" className="w-full">
-                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="converter" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-converter">Converter</TabsTrigger>
                   <TabsTrigger value="palette" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-palette">Palette</TabsTrigger>
                   <TabsTrigger value="contrast" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-contrast">Contrast</TabsTrigger>
@@ -229,7 +229,7 @@ export default function ColorTools() {
                           type="color"
                           value={pickerColor}
                           onChange={(e) => handlePickerChange(e.target.value)}
-                          className="w-16 h-10 rounded-md border border-slate-200 cursor-pointer"
+                          className="w-16 h-10 rounded-md border border-border cursor-pointer"
                           data-testid="input-color-picker"
                         />
                       </div>
@@ -260,9 +260,9 @@ export default function ColorTools() {
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 space-y-3">
+                    <div className="bg-muted rounded-xl p-4 border border-border space-y-3">
                       <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-lg border border-slate-200" style={{ backgroundColor: hexInput }} data-testid="color-preview" />
+                        <div className="w-16 h-16 rounded-lg border border-border" style={{ backgroundColor: hexInput }} data-testid="color-preview" />
                         <div className="space-y-1">
                           <p className="text-sm"><span className="text-muted-foreground">HEX:</span> <span className="font-mono font-bold" data-testid="text-hex-output">{hexRgb ? hexInput : "—"}</span></p>
                           <p className="text-sm"><span className="text-muted-foreground">RGB:</span> <span className="font-mono font-bold" data-testid="text-rgb-output">{hexRgb ? `rgb(${hexRgb[0]}, ${hexRgb[1]}, ${hexRgb[2]})` : "—"}</span></p>
@@ -280,7 +280,7 @@ export default function ColorTools() {
                           type="color"
                           value={paletteColor}
                           onChange={(e) => setPaletteColor(e.target.value)}
-                          className="w-16 h-10 rounded-md border border-slate-200 cursor-pointer"
+                          className="w-16 h-10 rounded-md border border-border cursor-pointer"
                           data-testid="input-palette-picker"
                         />
                       </div>
@@ -320,25 +320,25 @@ export default function ColorTools() {
                       <div>
                         <Label className="mb-2 block">Foreground</Label>
                         <div className="flex items-center gap-2">
-                          <input type="color" value={fgColor} onChange={(e) => setFgColor(e.target.value)} className="w-10 h-10 rounded-md border border-slate-200 cursor-pointer" data-testid="input-fg-picker" />
+                          <input type="color" value={fgColor} onChange={(e) => setFgColor(e.target.value)} className="w-10 h-10 rounded-md border border-border cursor-pointer" data-testid="input-fg-picker" />
                           <Input value={fgColor} onChange={(e) => setFgColor(e.target.value)} className="input-field flex-1" data-testid="input-fg-hex" />
                         </div>
                       </div>
                       <div>
                         <Label className="mb-2 block">Background</Label>
                         <div className="flex items-center gap-2">
-                          <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-md border border-slate-200 cursor-pointer" data-testid="input-bg-picker" />
+                          <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-md border border-border cursor-pointer" data-testid="input-bg-picker" />
                           <Input value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="input-field flex-1" data-testid="input-bg-hex" />
                         </div>
                       </div>
                     </div>
 
-                    <div className="rounded-xl p-6 border border-slate-200" style={{ backgroundColor: bgColor, color: fgColor }} data-testid="contrast-preview">
+                    <div className="rounded-xl p-6 border border-border" style={{ backgroundColor: bgColor, color: fgColor }} data-testid="contrast-preview">
                       <p className="text-lg font-bold">Sample Text Preview</p>
                       <p className="text-sm mt-1">The quick brown fox jumps over the lazy dog.</p>
                     </div>
 
-                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                    <div className="bg-muted rounded-xl p-4 border border-border">
                       <p className="text-lg font-bold mb-3" data-testid="text-contrast-ratio">
                         Contrast Ratio: {ratio !== null ? `${ratio.toFixed(2)}:1` : "—"}
                       </p>
@@ -385,7 +385,7 @@ export default function ColorTools() {
 function SwatchBox({ color, label, testId }: { color: string; label: string; testId: string }) {
   return (
     <div className="text-center" data-testid={testId}>
-      <div className="w-14 h-14 rounded-lg border border-slate-200" style={{ backgroundColor: color }} />
+      <div className="w-14 h-14 rounded-lg border border-border" style={{ backgroundColor: color }} />
       <p className="text-[10px] font-mono text-muted-foreground mt-1">{color}</p>
       <p className="text-[10px] text-muted-foreground">{label}</p>
     </div>

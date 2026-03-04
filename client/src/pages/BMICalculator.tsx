@@ -209,13 +209,13 @@ export default function BMICalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
         <AdSlot position="top" className="mb-8" />
         
         <header className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">BMI Calculator</h1>
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">BMI Calculator</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Calculate your Body Mass Index and get personalized daily calorie intake suggestions.
           </p>
@@ -224,7 +224,7 @@ export default function BMICalculator() {
         <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-border shadow-sm overflow-hidden">
-              <CardHeader className="bg-slate-50 border-b flex flex-row items-center justify-between">
+              <CardHeader className="bg-muted border-b flex flex-row items-center justify-between">
                 <CardTitle className="text-xl">Body Measurements</CardTitle>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">{isMetric ? "Metric" : "Imperial"}</span>
@@ -352,7 +352,7 @@ export default function BMICalculator() {
                           className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${
                             goal === g.value
                               ? "bg-primary text-white shadow-md"
-                              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                              : "bg-muted text-muted-foreground hover:bg-muted/80"
                           }`}
                         >
                           {g.label}
@@ -372,15 +372,15 @@ export default function BMICalculator() {
 
             {bmi !== null && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                <Card className="border-border shadow-sm overflow-hidden bg-slate-900 text-white">
+                <Card className="border-border shadow-sm overflow-hidden bg-card dark:bg-background text-white">
                   <CardContent className="p-8">
                     <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="text-slate-400 uppercase tracking-widest text-sm font-medium">Your BMI</div>
+                      <div className="text-muted-foreground uppercase tracking-widest text-sm font-medium">Your BMI</div>
                       <div className="text-5xl font-bold text-primary">{bmi.toFixed(decimals)}</div>
-                      <div className="text-2xl font-medium text-slate-300">{getBMICategory(bmi).label}</div>
+                      <div className="text-2xl font-medium text-muted-foreground">{getBMICategory(bmi).label}</div>
 
                       <div className="w-full pt-6 space-y-4">
-                        <div className="h-8 bg-slate-800 rounded-full overflow-hidden flex">
+                        <div className="h-8 bg-muted rounded-full overflow-hidden flex">
                           <div className="w-1/4 bg-blue-500"></div>
                           <div className="w-1/4 bg-green-500"></div>
                           <div className="w-1/4 bg-yellow-500"></div>
@@ -392,7 +392,7 @@ export default function BMICalculator() {
                             style={{ left: `${getBMIPosition()}%` }}
                           ></div>
                         </div>
-                        <div className="text-xs text-slate-400 flex justify-between">
+                        <div className="text-xs text-muted-foreground flex justify-between">
                           <span>Underweight</span>
                           <span>Normal</span>
                           <span>Overweight</span>
@@ -400,7 +400,7 @@ export default function BMICalculator() {
                         </div>
                       </div>
 
-                      <div className="text-sm text-slate-400 pt-4">
+                      <div className="text-sm text-muted-foreground pt-4">
                         {isMetric
                           ? `BMI = ${weightKg.toFixed(1)} / (${(heightCm / 100).toFixed(2)})`
                           : `BMI = 703 × ${weightLb} / ${(parseFloat(heightFeet) * 12 + parseFloat(heightInches) || 0)}`}
@@ -424,7 +424,7 @@ export default function BMICalculator() {
             {bmi !== null && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                 <Card className="border-border shadow-sm">
-                  <CardHeader className="bg-slate-50 border-b">
+                  <CardHeader className="bg-muted border-b">
                     <CardTitle className="text-lg">Suggested Daily Calorie Intake</CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 space-y-4">
@@ -432,22 +432,22 @@ export default function BMICalculator() {
                       <>
                         <div className="space-y-2">
                           <div className="text-sm text-muted-foreground">Maintenance Calories (TDEE)</div>
-                          <div className="text-3xl font-bold text-slate-900">{calculateCalories.tdee} kcal/day</div>
+                          <div className="text-3xl font-bold text-foreground">{calculateCalories.tdee} kcal/day</div>
                         </div>
                         {calculateCalories.targetRange ? (
                           <div className="space-y-2">
                             <div className="text-sm text-muted-foreground">Suggested Target</div>
-                            <div className="text-2xl font-bold text-slate-900">
+                            <div className="text-2xl font-bold text-foreground">
                               {calculateCalories.targetRange[0]} – {calculateCalories.targetRange[1]} kcal/day
                             </div>
                           </div>
                         ) : (
                           <div className="space-y-2">
                             <div className="text-sm text-muted-foreground">Suggested Target</div>
-                            <div className="text-2xl font-bold text-slate-900">{calculateCalories.target} kcal/day</div>
+                            <div className="text-2xl font-bold text-foreground">{calculateCalories.target} kcal/day</div>
                           </div>
                         )}
-                        <div className="text-xs text-slate-500 pt-2 border-t">
+                        <div className="text-xs text-muted-foreground pt-2 border-t">
                           Estimates based on: height, weight, age, gender, activity level
                         </div>
                       </>
@@ -456,16 +456,16 @@ export default function BMICalculator() {
                         <div className="bg-red-50 border border-red-100 p-4 rounded-lg text-sm text-red-800">
                           {calculateCalories?.error}
                         </div>
-                        <div className="text-xs text-slate-500 pt-2">
+                        <div className="text-xs text-muted-foreground pt-2">
                           Consult a healthcare provider for age-specific guidance.
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="text-sm text-slate-700 leading-relaxed">
+                        <div className="text-sm text-foreground leading-relaxed">
                           {fallbackCalories}
                         </div>
-                        <div className="text-xs text-slate-500 pt-2">
+                        <div className="text-xs text-muted-foreground pt-2">
                           Provide age and gender for a more accurate estimate.
                         </div>
                       </>
@@ -484,16 +484,16 @@ export default function BMICalculator() {
             {healthyWeightMin && healthyWeightMax && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                 <Card className="border-border shadow-sm">
-                  <CardHeader className="bg-slate-50 border-b">
+                  <CardHeader className="bg-muted border-b">
                     <CardTitle className="text-lg">Healthy Weight Range</CardTitle>
                   </CardHeader>
                   <CardContent className="p-6">
                     <div className="space-y-2">
                       <div className="text-sm text-muted-foreground">For your height ({isMetric ? `${heightCm} cm` : `${heightFeet}'${heightInches}"`}):</div>
-                      <div className="text-2xl font-bold text-slate-900">
+                      <div className="text-2xl font-bold text-foreground">
                         {healthyWeightMin} – {healthyWeightMax} {isMetric ? "kg" : "lb"}
                       </div>
-                      <div className="text-xs text-slate-500">Based on BMI 18.5–24.9 (normal weight range)</div>
+                      <div className="text-xs text-muted-foreground">Based on BMI 18.5–24.9 (normal weight range)</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -503,7 +503,7 @@ export default function BMICalculator() {
 
           <div className="space-y-6">
             <Card className="border-border shadow-sm">
-              <CardHeader className="bg-slate-50 border-b">
+              <CardHeader className="bg-muted border-b">
                 <CardTitle className="text-lg">Settings</CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
@@ -517,7 +517,7 @@ export default function BMICalculator() {
                         className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${
                           decimals === d
                             ? "bg-primary text-white shadow-md"
-                            : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                            : "bg-muted text-muted-foreground hover:bg-muted/80"
                         }`}
                       >
                         {d}

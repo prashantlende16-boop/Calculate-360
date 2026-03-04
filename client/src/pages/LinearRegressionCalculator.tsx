@@ -94,7 +94,7 @@ export default function LinearRegressionCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="Linear Regression Calculator - Calculate 360"
         description="Free online linear regression calculator. Compute slope, intercept, R-squared, correlation coefficient, and visualize your data with an interactive scatter plot."
@@ -108,7 +108,7 @@ export default function LinearRegressionCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Linear Regression Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -116,16 +116,16 @@ export default function LinearRegressionCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex justify-end mb-6">
-                <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                   <span className="text-muted-foreground">Decimals:</span>
                   {[2, 4, 6].map((d) => (
                     <button
                       key={d}
                       onClick={() => setDecimals(d)}
                       data-testid={`button-decimals-${d}`}
-                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                      className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                     >
                       {d}
                     </button>
@@ -190,27 +190,27 @@ export default function LinearRegressionCalculator() {
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Slope (b)</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-slope">{formatStat(results.slope, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Intercept (a)</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-intercept">{formatStat(results.intercept, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">R² Value</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-r-squared">{formatStat(results.rSquared, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Correlation (r)</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-r">{formatStat(results.r, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Std Error</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-std-error">{formatStat(results.standardError, decimals)}</p>
                       </div>
-                      <div className="bg-slate-50 rounded-lg p-4 text-center">
+                      <div className="bg-muted rounded-lg p-4 text-center">
                         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Data Points</p>
                         <p className="text-2xl font-bold text-primary" data-testid="result-n">{results.n}</p>
                       </div>
@@ -342,7 +342,7 @@ export default function LinearRegressionCalculator() {
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

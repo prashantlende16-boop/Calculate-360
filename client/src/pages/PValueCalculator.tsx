@@ -79,7 +79,7 @@ export default function PValueCalculator() {
             key={val}
             onClick={() => setCurrent(val)}
             data-testid={`button-tail-${val}`}
-            className={`px-3 py-1 rounded text-sm transition-colors ${current === val ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600'}`}
+            className={`px-3 py-1 rounded text-sm transition-colors ${current === val ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
           >
             {label}
           </button>
@@ -100,7 +100,7 @@ export default function PValueCalculator() {
           exit={{ opacity: 0, y: -10 }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div className="bg-slate-50 rounded-lg p-4 text-center col-span-1 md:col-span-2">
+            <div className="bg-muted rounded-lg p-4 text-center col-span-1 md:col-span-2">
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">P-Value</p>
               <p className="text-3xl font-bold text-primary" data-testid="result-pvalue">{formatStat(p, decimals)}</p>
               {p < 0.0001 && <p className="text-xs text-muted-foreground mt-1">{p.toExponential(4)}</p>}
@@ -127,7 +127,7 @@ export default function PValueCalculator() {
             <Button variant="outline" size="sm" onClick={onReset} className="gap-2 text-muted-foreground" data-testid="button-reset">
               <RefreshCcw className="w-4 h-4" /> Reset
             </Button>
-            <Button size="sm" onClick={() => handleCopy(`${copyLabel} p-value: ${formatStat(p, decimals)}`)} className="gap-2 bg-slate-900 text-white" data-testid="button-copy">
+            <Button size="sm" onClick={() => handleCopy(`${copyLabel} p-value: ${formatStat(p, decimals)}`)} className="gap-2 bg-card dark:bg-background text-white" data-testid="button-copy">
               <Copy className="w-4 h-4" /> Copy Result
             </Button>
           </div>
@@ -152,7 +152,7 @@ export default function PValueCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <PageHead
         title="P-Value Calculator - Calculate 360"
         description="Calculate p-values from z-scores, t-statistics, or chi-square statistics. Free online hypothesis testing tool."
@@ -166,7 +166,7 @@ export default function PValueCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 P-Value Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -174,9 +174,9 @@ export default function PValueCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <Tabs defaultValue="z" className="w-full">
-                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="z" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-z">Z-test</TabsTrigger>
                   <TabsTrigger value="t" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-t">t-test</TabsTrigger>
                   <TabsTrigger value="chi" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-chi">Chi-square</TabsTrigger>
@@ -184,14 +184,14 @@ export default function PValueCalculator() {
 
                 <div className="p-6 md:p-8">
                   <div className="flex justify-end mb-6">
-                    <div className="flex items-center gap-2 text-sm bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                    <div className="flex items-center gap-2 text-sm bg-muted px-3 py-1 rounded-lg border border-border">
                       <span className="text-muted-foreground">Decimals:</span>
                       {[2, 4, 6].map((d) => (
                         <button
                           key={d}
                           onClick={() => setDecimals(d)}
                           data-testid={`button-decimals-${d}`}
-                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-slate-500 hover:bg-slate-200'}`}
+                          className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${decimals === d ? 'bg-primary text-white font-bold' : 'text-muted-foreground hover:bg-muted/80'}`}
                         >
                           {d}
                         </button>
@@ -271,7 +271,7 @@ export default function PValueCalculator() {
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">

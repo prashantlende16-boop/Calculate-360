@@ -50,7 +50,7 @@ export default function Home() {
             <section className="max-w-3xl mx-auto pt-8">
               <h3 className="text-2xl font-bold font-display text-foreground mb-6">Frequently Asked Questions</h3>
               
-              <Card className="border-none shadow-lg bg-white/50 backdrop-blur">
+              <Card className="border-none shadow-lg bg-card/50 backdrop-blur">
                 <CardContent className="pt-6">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">

@@ -184,7 +184,7 @@ export default function TripSplitter() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Trip Expense Splitter - Calculate 360"
@@ -198,7 +198,7 @@ export default function TripSplitter() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Trip Expense Splitter
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -206,7 +206,7 @@ export default function TripSplitter() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center justify-between mb-6">
                 <RememberInputs checked={remember} onChange={setRemember} />
               </div>
@@ -278,7 +278,7 @@ export default function TripSplitter() {
                     {expenses.map((expense, idx) => (
                       <div
                         key={expense.id}
-                        className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 p-4 bg-slate-50 rounded-lg border border-slate-100"
+                        className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 p-4 bg-muted rounded-lg border border-border"
                         data-testid={`expense-row-${idx}`}
                       >
                         <div>

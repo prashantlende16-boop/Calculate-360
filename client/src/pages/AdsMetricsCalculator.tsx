@@ -462,7 +462,7 @@ export default function AdsMetricsCalculator() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Ad Metrics Calculator - CPM, CPC, CPA, ROAS & 35+ Metrics - Calculate 360"
@@ -476,7 +476,7 @@ export default function AdsMetricsCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2" data-testid="text-page-title">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2" data-testid="text-page-title">
                 Ad Metrics Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -484,7 +484,7 @@ export default function AdsMetricsCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-1">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-1">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-56 lg:w-64 border-b md:border-b-0 md:border-r border-border p-3 max-h-[420px] overflow-y-auto shrink-0">
                   <div className="relative mb-3">
@@ -494,7 +494,7 @@ export default function AdsMetricsCalculator() {
                       placeholder="Search metrics..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-8 pr-3 py-1.5 text-sm rounded-lg border border-border bg-slate-50 focus:outline-none focus:ring-1 focus:ring-primary"
+                      className="w-full pl-8 pr-3 py-1.5 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:ring-1 focus:ring-primary"
                       data-testid="input-search-metrics"
                     />
                   </div>
@@ -511,7 +511,7 @@ export default function AdsMetricsCalculator() {
                               "w-full text-left px-2 py-1.5 rounded-md text-sm transition-colors",
                               selectedId === m.id
                                 ? "bg-primary/10 text-primary font-medium"
-                                : "text-muted-foreground hover:text-foreground hover:bg-slate-50"
+                                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                             )}
                             data-testid={`button-metric-${m.id}`}
                           >
@@ -580,7 +580,7 @@ export default function AdsMetricsCalculator() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 mt-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 mt-8">
               <h2 className="font-display font-semibold text-lg text-foreground mb-4">
                 All Ad Metrics &amp; Formulas Reference
               </h2>
@@ -611,7 +611,7 @@ export default function AdsMetricsCalculator() {
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-primary" />
                 Quick Reference

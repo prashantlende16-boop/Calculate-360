@@ -112,7 +112,7 @@ export default function SavingsGoalPlanner() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Savings Goal Planner - Calculate 360"
@@ -126,7 +126,7 @@ export default function SavingsGoalPlanner() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Savings Goal Planner
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -134,7 +134,7 @@ export default function SavingsGoalPlanner() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label className="mb-2 block">Target Amount</Label>
@@ -230,13 +230,13 @@ export default function SavingsGoalPlanner() {
 
                 {hasResult && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-slate-50 rounded-lg p-4 text-center">
+                    <div className="bg-muted rounded-lg p-4 text-center">
                       <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Total Contributions</div>
                       <div className="text-lg font-bold text-foreground" data-testid="text-total-contributions">
                         {formatINR(results.totalContributions)}
                       </div>
                     </div>
-                    <div className="bg-slate-50 rounded-lg p-4 text-center">
+                    <div className="bg-muted rounded-lg p-4 text-center">
                       <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Interest Earned</div>
                       <div className="text-lg font-bold text-foreground" data-testid="text-interest-earned">
                         {formatINR(results.interestEarned)}
@@ -289,7 +289,7 @@ export default function SavingsGoalPlanner() {
 
           <aside className="space-y-8">
             <AdSlot position="sidebar" />
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-border">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
                 <Target className="w-5 h-5 text-primary" />
                 Savings Tips

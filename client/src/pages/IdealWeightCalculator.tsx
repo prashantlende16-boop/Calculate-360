@@ -70,7 +70,7 @@ export default function IdealWeightCalculator() {
     : "";
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Ideal Weight Range Calculator - Calculate 360"
@@ -84,7 +84,7 @@ export default function IdealWeightCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Ideal Weight Range Calculator
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -92,7 +92,7 @@ export default function IdealWeightCalculator() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
                 <RememberInputs checked={remember} onChange={setRemember} />
               </div>
@@ -190,26 +190,26 @@ export default function IdealWeightCalculator() {
                 </div>
               </div>
 
-              <div className="mt-8 bg-slate-50 rounded-xl p-6 border border-slate-100">
+              <div className="mt-8 bg-muted rounded-xl p-6 border border-border">
                 <h3 className="font-display font-bold text-lg mb-4" data-testid="text-results-heading">Results</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Healthy Weight Range (kg)</p>
-                    <p className="text-2xl font-bold text-slate-900" data-testid="text-weight-kg">
+                    <p className="text-2xl font-bold text-foreground" data-testid="text-weight-kg">
                       {hasHeight ? `${minWeight.toFixed(1)} \u2013 ${maxWeight.toFixed(1)} kg` : "\u2014"}
                     </p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="bg-card rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Healthy Weight Range (lb)</p>
-                    <p className="text-2xl font-bold text-slate-900" data-testid="text-weight-lb">
+                    <p className="text-2xl font-bold text-foreground" data-testid="text-weight-lb">
                       {hasHeight ? `${(minWeight * 2.205).toFixed(1)} \u2013 ${(maxWeight * 2.205).toFixed(1)} lb` : "\u2014"}
                     </p>
                   </div>
                 </div>
 
                 {devineWeight !== null && devineWeight > 0 && (
-                  <div className="mt-4 bg-white rounded-lg p-4 border border-slate-100">
+                  <div className="mt-4 bg-white rounded-lg p-4 border border-border">
                     <p className="text-sm text-muted-foreground mb-1">Devine Formula Estimate (reference only)</p>
                     <p className="text-xl font-bold text-primary" data-testid="text-devine">
                       {devineWeight.toFixed(1)} kg ({(devineWeight * 2.205).toFixed(1)} lb)

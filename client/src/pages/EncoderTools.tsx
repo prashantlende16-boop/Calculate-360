@@ -106,7 +106,7 @@ export default function EncoderTools() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <PageHead
         title="Base64 & URL Encoder/Decoder | Calculate 360"
@@ -120,7 +120,7 @@ export default function EncoderTools() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                 Base64 & URL Encoder/Decoder
               </h1>
               <p className="text-lg text-muted-foreground">
@@ -128,9 +128,9 @@ export default function EncoderTools() {
               </p>
             </header>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-border p-6 md:p-8">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
               <Tabs defaultValue="b64enc" className="w-full">
-                <TabsList className="w-full grid grid-cols-2 md:grid-cols-4 h-auto p-1 bg-slate-100/50 rounded-xl gap-1">
+                <TabsList className="w-full grid grid-cols-2 md:grid-cols-4 h-auto p-1 bg-muted/50 rounded-xl gap-1">
                   <TabsTrigger value="b64enc" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-b64-encode">Base64 Encode</TabsTrigger>
                   <TabsTrigger value="b64dec" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-b64-decode">Base64 Decode</TabsTrigger>
                   <TabsTrigger value="urlenc" className="rounded-lg py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm" data-testid="tab-url-encode">URL Encode</TabsTrigger>
@@ -252,7 +252,7 @@ function EncoderTab({
         <Textarea
           value={output.error ? "" : output.result}
           readOnly
-          className="min-h-[120px] resize-y bg-slate-50"
+          className="min-h-[120px] resize-y bg-muted"
           data-testid={outputTestId}
         />
         {output.error && (

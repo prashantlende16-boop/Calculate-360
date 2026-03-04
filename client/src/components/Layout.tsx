@@ -8,16 +8,16 @@ import { useToast } from "@/hooks/use-toast";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans">
       {/* Header */}
-      <header className="bg-white border-b border-border/60 sticky top-0 z-50 backdrop-blur-md bg-white/80">
+      <header className="bg-background border-b border-border/60 sticky top-0 z-50 backdrop-blur-md bg-background/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="bg-primary text-white p-1.5 rounded-lg shadow-lg shadow-primary/30">
               <CalcIcon className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-xl font-bold font-display tracking-tight text-slate-900 leading-none">
+              <h1 className="text-xl font-bold font-display tracking-tight text-foreground leading-none">
                 Calculate<span className="text-primary">360</span>
               </h1>
               <p className="text-[10px] font-medium text-muted-foreground tracking-wide uppercase">Percentage Calculator</p>
@@ -34,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-border mt-auto">
+      <footer className="bg-card border-t border-border mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
@@ -50,7 +50,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
             
             <div>
-              <h4 className="font-bold mb-4 text-slate-900">Calculators</h4>
+              <h4 className="font-bold mb-4 text-foreground">Calculators</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="/" className="hover:text-primary transition-colors">Percentage Calculator</a></li>
                 <li><a href="/age" className="hover:text-primary transition-colors">Age Calculator</a></li>
@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h4 className="font-bold mb-4 text-slate-900">More Tools</h4>
+              <h4 className="font-bold mb-4 text-foreground">More Tools</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="/currency" className="hover:text-primary transition-colors">Currency Converter</a></li>
                 <li><a href="/bmi" className="hover:text-primary transition-colors">BMI Calculator</a></li>
