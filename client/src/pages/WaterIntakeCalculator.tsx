@@ -172,10 +172,10 @@ export default function WaterIntakeCalculator() {
                       {Array.from({ length: maxDisplayGlasses }).map((_, i) => (
                         <div
                           key={i}
-                          className="w-8 h-10 bg-blue-400 rounded-md border border-blue-500 flex items-end justify-center"
+                          className="w-8 h-10 bg-accent/70 rounded-md border border-accent flex items-end justify-center"
                           title={`Glass ${i + 1}`}
                         >
-                          <div className="w-4 h-1 bg-blue-200 rounded-full mb-1" />
+                          <div className="w-4 h-1 bg-accent/30 rounded-full mb-1" />
                         </div>
                       ))}
                       {filledGlasses > 20 && (

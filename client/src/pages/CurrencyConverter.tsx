@@ -326,9 +326,9 @@ export default function CurrencyConverter() {
                   </div>
                 </div>
                 
-                <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex gap-3">
-                  <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-blue-800 leading-relaxed">
+                <div className="bg-accent/5 border border-accent/15 p-4 rounded-xl flex gap-3">
+                  <Info className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <p className="text-xs text-accent leading-relaxed">
                     <strong>Quick Tip:</strong> Use the <strong>Manual Rate</strong> switch to enter your bank's specific rate for precise conversion.
                   </p>
                 </div>

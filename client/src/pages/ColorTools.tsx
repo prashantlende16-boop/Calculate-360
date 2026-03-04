@@ -68,13 +68,13 @@ function contrastRatio(rgb1: [number, number, number], rgb2: [number, number, nu
 
 export default function ColorTools() {
   const { toast } = useToast();
-  const [hexInput, setHexInput] = useState("#3b82f6");
+  const [hexInput, setHexInput] = useState("#e1005d");
   const [rInput, setRInput] = useState("59");
   const [gInput, setGInput] = useState("130");
   const [bInput, setBInput] = useState("246");
-  const [pickerColor, setPickerColor] = useState("#3b82f6");
+  const [pickerColor, setPickerColor] = useState("#e1005d");
 
-  const [paletteColor, setPaletteColor] = useState("#3b82f6");
+  const [paletteColor, setPaletteColor] = useState("#e1005d");
 
   const [fgColor, setFgColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("#ffffff");
@@ -238,7 +238,7 @@ export default function ColorTools() {
                         <Input
                           value={hexInput}
                           onChange={(e) => handleHexChange(e.target.value)}
-                          placeholder="#3b82f6"
+                          placeholder="#e1005d"
                           className="input-field"
                           data-testid="input-hex"
                         />

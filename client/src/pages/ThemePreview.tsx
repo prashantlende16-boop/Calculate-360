@@ -20,10 +20,8 @@ export default function ThemePreview() {
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <Link href="/">
-          <a className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
-            <ArrowLeft className="w-4 h-4" /> Back to Home
-          </a>
+        <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
+          <ArrowLeft className="w-4 h-4" /> Back to Home
         </Link>
 
         <h1 className="text-3xl md:text-4xl font-bold font-display mb-2" data-testid="text-preview-title">

@@ -170,13 +170,13 @@ Note: This is an estimate. Banks may have different criteria.`;
 
             {/* Summary Cards */}
             <motion.div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
-                <div className="text-sm text-slate-600 mb-2">Max Eligible EMI</div>
-                <div className="text-3xl font-bold text-blue-700">{activeResults.maxEmiAllowed > 0 ? formatCurrency(activeResults.maxEmiAllowed) : "Not Eligible"}</div>
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-xl border border-primary/20">
+                <div className="text-sm text-muted-foreground mb-2">Max Eligible EMI</div>
+                <div className="text-3xl font-bold text-primary">{activeResults.maxEmiAllowed > 0 ? formatCurrency(activeResults.maxEmiAllowed) : "Not Eligible"}</div>
               </div>
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
-                <div className="text-sm text-slate-600 mb-2">Max Loan Amount</div>
-                <div className="text-3xl font-bold text-green-700">{activeResults.maxLoanEligible > 0 ? formatCurrency(activeResults.maxLoanEligible) : "—"}</div>
+              <div className="bg-gradient-to-br from-secondary/5 to-secondary/10 p-6 rounded-xl border border-secondary/20">
+                <div className="text-sm text-muted-foreground mb-2">Max Loan Amount</div>
+                <div className="text-3xl font-bold text-secondary">{activeResults.maxLoanEligible > 0 ? formatCurrency(activeResults.maxLoanEligible) : "—"}</div>
               </div>
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
                 <div className="text-sm text-slate-600 mb-2">Affordable Budget</div>

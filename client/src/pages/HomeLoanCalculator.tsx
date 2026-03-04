@@ -316,9 +316,9 @@ export default function HomeLoanCalculator() {
                 {/* Results Tab */}
                 <TabsContent value="results" className="space-y-6">
                   <motion.div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
-                      <div className="text-sm text-slate-600 mb-2">Monthly EMI</div>
-                      <div className="text-3xl md:text-4xl font-bold text-blue-700">
+                    <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-xl border border-primary/20">
+                      <div className="text-sm text-muted-foreground mb-2">Monthly EMI</div>
+                      <div className="text-3xl md:text-4xl font-bold text-primary">
                         {emi > 0 ? formatCurrency(emi) : "—"}
                       </div>
                       <div className="text-xs text-slate-600 mt-2">
@@ -326,9 +326,9 @@ export default function HomeLoanCalculator() {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
-                      <div className="text-sm text-slate-600 mb-2">Total Interest</div>
-                      <div className="text-3xl md:text-4xl font-bold text-green-700">
+                    <div className="bg-gradient-to-br from-secondary/5 to-secondary/10 p-6 rounded-xl border border-secondary/20">
+                      <div className="text-sm text-muted-foreground mb-2">Total Interest</div>
+                      <div className="text-3xl md:text-4xl font-bold text-secondary">
                         {totalInterest > 0 ? formatCurrency(totalInterest) : "—"}
                       </div>
                       <div className="text-xs text-slate-600 mt-2">
@@ -371,7 +371,7 @@ export default function HomeLoanCalculator() {
                             cy="75"
                             r="60"
                             fill="none"
-                            stroke="#3b82f6"
+                            stroke="hsl(335, 100%, 44%)"
                             strokeWidth="20"
                             strokeDasharray={`${(principalPercent / 100) * 376.99} 376.99`}
                             strokeDashoffset="0"
@@ -382,7 +382,7 @@ export default function HomeLoanCalculator() {
                             cy="75"
                             r="60"
                             fill="none"
-                            stroke="#10b981"
+                            stroke="hsl(164, 50%, 47%)"
                             strokeWidth="20"
                             strokeDasharray={`${(interestPercent / 100) * 376.99} 376.99`}
                             strokeDashoffset={`-${(principalPercent / 100) * 376.99}`}
@@ -391,11 +391,11 @@ export default function HomeLoanCalculator() {
                         </svg>
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                            <div className="w-4 h-4 bg-primary rounded"></div>
                             <span className="text-sm">Principal: {principalPercent.toFixed(1)}%</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 bg-green-500 rounded"></div>
+                            <div className="w-4 h-4 bg-secondary rounded"></div>
                             <span className="text-sm">Interest: {interestPercent.toFixed(1)}%</span>
                           </div>
                         </div>
@@ -432,8 +432,8 @@ export default function HomeLoanCalculator() {
                                 <td className="px-4 py-2 font-medium">{row.month}</td>
                                 <td className="px-4 py-2 text-right text-xs">{formatCurrency(row.openingBalance)}</td>
                                 <td className="px-4 py-2 text-right text-xs font-semibold">{formatCurrency(row.emi)}</td>
-                                <td className="px-4 py-2 text-right text-xs text-blue-600">{formatCurrency(row.principal)}</td>
-                                <td className="px-4 py-2 text-right text-xs text-green-600">{formatCurrency(row.interest)}</td>
+                                <td className="px-4 py-2 text-right text-xs text-primary">{formatCurrency(row.principal)}</td>
+                                <td className="px-4 py-2 text-right text-xs text-secondary">{formatCurrency(row.interest)}</td>
                                 <td className="px-4 py-2 text-right text-xs">{formatCurrency(row.closingBalance)}</td>
                               </tr>
                             ))}

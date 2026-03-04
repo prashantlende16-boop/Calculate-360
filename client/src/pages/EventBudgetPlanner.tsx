@@ -21,7 +21,7 @@ interface Category {
 const DEFAULT_CATEGORIES: Category[] = [
   { name: "Venue", defaultPct: 25, color: "#6366f1" },
   { name: "Food & Catering", defaultPct: 30, color: "#f59e0b" },
-  { name: "Decor", defaultPct: 10, color: "#10b981" },
+  { name: "Decor", defaultPct: 10, color: "#3bb392" },
   { name: "Photography", defaultPct: 10, color: "#ef4444" },
   { name: "Music & Entertainment", defaultPct: 5, color: "#8b5cf6" },
   { name: "Outfits", defaultPct: 8, color: "#ec4899" },

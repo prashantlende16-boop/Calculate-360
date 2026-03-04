@@ -77,7 +77,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               &copy; {new Date().getFullYear()} Calculate360. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
-              Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> by Designers
+              Made with <Heart className="w-3 h-3 text-primary fill-primary" /> by Designers
             </p>
           </div>
         </div>
