@@ -40,6 +40,7 @@ import HypothesisTestCalculator from "@/pages/HypothesisTestCalculator";
 import DifferenceInMeansCalculator from "@/pages/DifferenceInMeansCalculator";
 import LinearRegressionCalculator from "@/pages/LinearRegressionCalculator";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import ThemePreview from "@/pages/ThemePreview";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -82,6 +83,7 @@ function Router() {
       <Route path="/difference-in-means" component={DifferenceInMeansCalculator} />
       <Route path="/linear-regression" component={LinearRegressionCalculator} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/theme-preview" component={ThemePreview} />
       <Route component={NotFound} />
     </Switch>
   );
