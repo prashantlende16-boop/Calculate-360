@@ -3,7 +3,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -147,9 +146,8 @@ Note: This is an estimate. Banks may have different criteria.`;
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
               <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2 flex items-center gap-3">
@@ -277,11 +275,9 @@ Note: This is an estimate. Banks may have different criteria.`;
             </div>
           </div>
           <div className="space-y-6">
-            <AdSlot position="sidebar" />
           </div>
         </div>
 
-        <AdSlot position="bottom" className="my-8" />
         <FAQSection title="Eligibility FAQ" items={allFaqs} />
       </main>
       <Footer />

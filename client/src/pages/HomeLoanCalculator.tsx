@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { CalculatorResult } from "@/components/CalculatorResult";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -187,9 +186,8 @@ export default function HomeLoanCalculator() {
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           {/* Main Calculator */}
           <div className="lg:col-span-2">
             <header className="mb-8">
@@ -459,13 +457,8 @@ export default function HomeLoanCalculator() {
             </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <AdSlot position="sidebar" />
-          </div>
         </div>
 
-        <AdSlot position="bottom" className="my-8" />
 
         {/* How it Works */}
         <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8 my-8">

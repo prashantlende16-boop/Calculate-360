@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { CalculatorResult } from "@/components/CalculatorResult";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -66,9 +65,8 @@ export default function PercentageCalculator() {
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           {/* Main Calculator Area */}
           <div className="lg:col-span-2">
             <header className="mb-8">
@@ -275,31 +273,8 @@ export default function PercentageCalculator() {
             <FAQSection title="Frequently Asked Questions" items={faqs} />
           </div>
 
-          {/* Sidebar */}
-          <aside className="space-y-8">
-            <AdSlot position="sidebar" />
-            
-            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
-              <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex gap-2">
-                  <span className="text-primary font-bold">•</span>
-                  To turn a decimal into a percentage, multiply by 100.
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-primary font-bold">•</span>
-                  Percentage means "per 100". 50% is 50 per 100.
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-primary font-bold">•</span>
-                  To find 10% of any number, just move the decimal point one place to the left.
-                </li>
-              </ul>
-            </div>
-          </aside>
         </div>
         
-        <AdSlot position="bottom" className="mt-8" />
       </main>
 
       <Footer />

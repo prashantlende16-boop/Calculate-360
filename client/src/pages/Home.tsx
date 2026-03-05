@@ -1,6 +1,5 @@
 import { Layout } from "@/components/Layout";
 import { Calculator } from "@/components/Calculator";
-import { AdPlaceholder } from "@/components/AdPlaceholder";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -22,14 +21,7 @@ export default function Home() {
       </script>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        {/* Top Ad Slot */}
-        <div className="mb-8 md:mb-12 max-w-4xl mx-auto">
-          <AdPlaceholder size="banner" label="Ad Space (Top Banner)" />
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-8 md:gap-12">
-          {/* Main Content Area */}
-          <div className="space-y-12">
+        <div className="space-y-12">
             {/* Hero Section */}
             <section className="text-center mb-10">
               <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 tracking-tight text-foreground">
@@ -77,25 +69,6 @@ export default function Home() {
                 </CardContent>
               </Card>
             </section>
-          </div>
-
-          {/* Sidebar */}
-          <aside className="space-y-8 hidden lg:block">
-             <div className="sticky top-24 space-y-8">
-               <Card className="bg-primary text-primary-foreground border-none shadow-xl shadow-primary/20 overflow-hidden relative">
-                 <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
-                 <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-20 h-20 bg-black/10 rounded-full blur-lg"></div>
-                 <CardContent className="pt-8 relative z-10">
-                   <h3 className="text-xl font-bold font-display mb-2">Did you know?</h3>
-                   <p className="text-primary-foreground/80 text-sm leading-relaxed">
-                     The term "percent" comes from the Latin per centum, meaning "by the hundred".
-                   </p>
-                 </CardContent>
-               </Card>
-               
-               <AdPlaceholder size="sidebar" label="Ad Space (Sidebar)" />
-             </div>
-          </aside>
         </div>
       </div>
     </Layout>

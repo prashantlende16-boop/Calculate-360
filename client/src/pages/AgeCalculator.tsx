@@ -3,7 +3,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CalculatorResult } from "@/components/CalculatorResult";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -139,9 +138,8 @@ export default function AgeCalculator() {
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
               <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
@@ -262,11 +260,9 @@ export default function AgeCalculator() {
           </div>
 
           <aside className="space-y-8">
-            <AdSlot position="sidebar" />
           </aside>
         </div>
         
-        <AdSlot position="bottom" className="mt-8" />
       </main>
 
       <Footer />

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { PageHead } from "@/components/PageHead";
 import { RememberInputs } from "@/components/RememberInputs";
@@ -162,9 +161,8 @@ export default function RandomDataGenerator() {
       />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
               <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
@@ -319,11 +317,9 @@ export default function RandomDataGenerator() {
           </div>
 
           <aside className="space-y-8">
-            <AdSlot position="sidebar" />
           </aside>
         </div>
 
-        <AdSlot position="bottom" className="mt-8" />
       </main>
 
       <Footer />

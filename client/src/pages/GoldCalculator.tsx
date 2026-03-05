@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Coins, Calculator, Percent, Tag, Info } from "lucide-react";
@@ -128,7 +127,6 @@ export default function GoldCalculator() {
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
         
         {/* SEO Tags */}
         <head>
@@ -357,7 +355,6 @@ export default function GoldCalculator() {
           </Card>
         </div>
 
-        <AdSlot position="bottom" className="my-8" />
         <FAQSection title="Gold Rate FAQ" items={faqs} />
       </main>
 

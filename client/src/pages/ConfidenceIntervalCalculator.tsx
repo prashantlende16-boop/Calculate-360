@@ -3,7 +3,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -248,9 +247,8 @@ export default function ConfidenceIntervalCalculator() {
       <Navigation />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
               <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
@@ -403,7 +401,6 @@ export default function ConfidenceIntervalCalculator() {
           </div>
 
           <aside className="space-y-8">
-            <AdSlot position="sidebar" />
             <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4">Quick Tips</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
@@ -428,7 +425,6 @@ export default function ConfidenceIntervalCalculator() {
           </aside>
         </div>
 
-        <AdSlot position="bottom" className="mt-8" />
       </main>
 
       <Footer />

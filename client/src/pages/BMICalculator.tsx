@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Copy, LinkIcon, RotateCw } from "lucide-react";
@@ -212,7 +211,6 @@ export default function BMICalculator() {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navigation />
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
         
         <header className="mb-10 text-center">
           <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">BMI Calculator</h1>
@@ -221,7 +219,7 @@ export default function BMICalculator() {
           </p>
         </header>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="space-y-8 max-w-5xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-border shadow-sm overflow-hidden">
               <CardHeader className="bg-muted border-b flex flex-row items-center justify-between">
@@ -527,7 +525,6 @@ export default function BMICalculator() {
                 </div>
               </CardContent>
             </Card>
-            <AdSlot position="sidebar" />
           </div>
         </div>
       </main>

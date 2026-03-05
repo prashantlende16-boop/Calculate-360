@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { PageHead } from "@/components/PageHead";
 import { CalculatorResult } from "@/components/CalculatorResult";
@@ -471,9 +470,8 @@ export default function AdsMetricsCalculator() {
       />
 
       <main className="container mx-auto px-4 py-8 flex-grow">
-        <AdSlot position="top" className="mb-8" />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           <div className="lg:col-span-2">
             <header className="mb-8">
               <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2" data-testid="text-page-title">
@@ -610,7 +608,6 @@ export default function AdsMetricsCalculator() {
           </div>
 
           <aside className="space-y-8">
-            <AdSlot position="sidebar" />
             <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
               <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-primary" />
@@ -650,7 +647,6 @@ export default function AdsMetricsCalculator() {
           </aside>
         </div>
 
-        <AdSlot position="bottom" className="mt-8" />
       </main>
 
       <Footer />

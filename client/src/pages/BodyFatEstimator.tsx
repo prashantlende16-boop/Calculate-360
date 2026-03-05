@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -116,7 +115,7 @@ export default function BodyFatEstimator() {
           <p className="text-lg text-muted-foreground">US Navy Method – Reliable estimation through simple measurements.</p>
         </header>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="space-y-8 max-w-5xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-border shadow-sm">
               <CardHeader className="bg-muted border-b flex flex-row items-center justify-between">
@@ -200,7 +199,6 @@ export default function BodyFatEstimator() {
                 {gender === "female" && <div className="flex gap-3"><Ruler className="h-5 w-5 text-primary shrink-0" /> <p><strong>Hips:</strong> Measure at the widest point of the buttocks.</p></div>}
               </CardContent>
             </Card>
-            <AdSlot position="sidebar" />
           </div>
         </div>
 

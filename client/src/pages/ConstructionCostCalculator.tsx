@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { AdSlot } from "@/components/AdSlot";
 import { FAQSection } from "@/components/FAQSection";
 import { PageHead } from "@/components/PageHead";
 import { ShareCopyButtons } from "@/components/ShareCopyButtons";
@@ -92,7 +91,6 @@ export default function ConstructionCostCalculator() {
       <Navigation />
 
       <main className="flex-1 container mx-auto px-4 py-8 max-w-5xl">
-        <AdSlot position="top" className="mb-6" />
 
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="flex-1 space-y-6">
@@ -306,12 +304,10 @@ export default function ConstructionCostCalculator() {
 
             <FAQSection title="Frequently Asked Questions" items={faqItems} />
 
-            <AdSlot position="bottom" className="mt-6" />
           </div>
 
           <aside className="hidden lg:block w-[200px] shrink-0">
             <div className="sticky top-20">
-              <AdSlot position="sidebar" />
             </div>
           </aside>
         </div>
