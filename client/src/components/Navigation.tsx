@@ -122,7 +122,7 @@ export function Navigation() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-[640px] bg-background rounded-xl shadow-xl border border-border p-4 grid grid-cols-2 gap-4 z-50">
+              <div className="absolute right-0 top-full mt-2 w-[640px] bg-background rounded-xl shadow-xl border border-border p-4 z-50 max-h-[80vh] overflow-y-auto grid grid-cols-2 gap-4">
                 {categories.map((cat) => (
                   <div key={cat.label}>
                     <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 px-2">
