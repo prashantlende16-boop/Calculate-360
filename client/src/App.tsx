@@ -40,6 +40,8 @@ import PValueCalculator from "@/pages/PValueCalculator";
 import HypothesisTestCalculator from "@/pages/HypothesisTestCalculator";
 import DifferenceInMeansCalculator from "@/pages/DifferenceInMeansCalculator";
 import LinearRegressionCalculator from "@/pages/LinearRegressionCalculator";
+import RentalYieldCalculator from "@/pages/RentalYieldCalculator";
+import PropertyValueCalculator from "@/pages/PropertyValueCalculator";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import ThemePreview from "@/pages/ThemePreview";
 import NotFound from "@/pages/not-found";
@@ -83,6 +85,8 @@ function Router() {
       <Route path="/hypothesis-test" component={HypothesisTestCalculator} />
       <Route path="/difference-in-means" component={DifferenceInMeansCalculator} />
       <Route path="/linear-regression" component={LinearRegressionCalculator} />
+      <Route path="/rental-yield" component={RentalYieldCalculator} />
+      <Route path="/property-value" component={PropertyValueCalculator} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/theme-preview" component={ThemePreview} />
       <Route component={NotFound} />

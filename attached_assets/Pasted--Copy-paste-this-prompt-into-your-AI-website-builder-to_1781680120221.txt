@@ -1,0 +1,1142 @@
+
+
+Copy/paste this prompt into your AI website builder to add a House Construction Cost Calculator page to Calculate 360 using exactly your material-multiplier logic:
+
+PROMPT (for AI website builder):
+
+Add a new page to my existing static website Calculate 360 called House Construction Cost Calculator. This page must estimate the quantity of construction materials required to build a house based on built-up area in square feet using fixed multipliers. Keep the same site UI design (minimal white theme, cards, rounded corners, subtle shadows, mobile-first). Everything must work fully in the browser (no backend, no external libraries).
+
+1) Files to create / update
+Create:
+
+house-construction-cost.html
+
+house-construction.js (preferred) OR integrate into existing shared JS pattern
+
+Update:
+
+Global navigation across all pages: add House Construction Cost Calculator
+
+calculators.html hub page: add a card for this calculator
+
+2) Core input (must)
+Input:
+
+Built-up Area (sqft) — number input (decimals allowed)
+
+Optional (nice-to-have):
+
+Add “Cost Estimation” toggle with price inputs per unit (see section 6)
+
+3) Material quantity calculation rules (must)
+Use these exact multipliers per sqft (hardcode as defaults):
+
+Cement (bags) = sqft × 0.4
+
+Steel (ton) = sqft × 0.004 ✅ IMPORTANT: Your example says “sqft*4 = 4 ton”, but that only works if steel factor is 0.004 ton per sqft. Use 0.004 so 1000 sqft → 4 ton.
+
+Sand (ton) = sqft × 0.0816
+
+Aggregate (ton) = sqft × 0.0608
+
+Bricks (count) = sqft × 8
+
+Tiles (count) = sqft × 1.3
+
+Paint (litres) = sqft × 0.018
+
+Output formatting
+Cement bags: round up to nearest whole bag
+
+Bricks, Tiles: round up to nearest whole number
+
+Steel/Sand/Aggregate/Paint: show up to 2 decimals (with precision selector 0/2)
+
+Show results in a clear table and summary cards.
+
+4) UI layout (must)
+Page sections:
+
+Header: “House Construction Cost Calculator” + short description
+
+Input card: area input + precision selector + Reset button
+
+Results card/table:
+
+Material | Multiplier | Quantity | Unit
+
+“How it’s calculated” section:
+
+Show formula: Quantity = Area × Multiplier
+
+Show a worked example for 1000 sqft using the same numbers.
+
+Buttons:
+
+Reset
+
+Copy Results (copies multi-line breakdown)
+
+Copy Share Link (query params: ?sqft=1000)
+
+5) Validation (must)
+Area must be > 0
+
+Inline error messages only (no alerts)
+
+If empty, show “—” placeholders
+
+6) Optional Cost Estimation (recommended)
+Add a toggle “Estimate Material Cost”
+If enabled, show editable price inputs:
+
+Cement price per bag (₹)
+
+Steel price per ton (₹)
+
+Sand price per ton (₹)
+
+Aggregate price per ton (₹)
+
+Brick price per brick (₹)
+
+Tile price per tile (₹)
+
+Paint price per litre (₹)
+
+Outputs:
+
+Cost per material (Qty × Price)
+
+Total estimated material cost (₹)
+Use Indian number formatting.
+
+7) Monetization placeholders
+Add placeholder ad containers (no real AdSense code):
+
+“Ad slot (Top)”
+
+“Ad slot (Sidebar on desktop)”
+
+“Ad slot (Bottom)”
+Layout must not break if empty.
+
+8) SEO + schema
+In house-construction-cost.html:
+
+Title: “Calculate 360 – House Construction Material Calculator”
+
+Meta description: “Estimate cement, steel, sand, aggregate, bricks, tiles and paint needed for your house based on built-up area in sqft.”
+
+Open Graph tags
+
+Add FAQs + FAQ schema (JSON-LD), e.g.:
+
+Are these quantities exact?
+
+Do rates vary by design/foundation?
+
+Can I change multipliers? (optional: allow advanced edit)
+
+What is built-up area?
+
+9) Final output required
+Provide complete working code for:
+
+house-construction-cost.html
+
+house-construction.js
+
+Any required updates to styles.css
+
+Updates to calculators.html (hub card)
+
+Updates to navigation across all pages
+
+Everything must work as a deployable static website with no external libraries.
+
+
+i wanted to add new pages, write a prompt for following :
+1.	Confidence Interval Calculator
+2.	Mean, Median, Mode Calculator
+3.	Skewness Calculator
+4.	Kurtosis Calculator
+5.	Variance Calculator
+6.	Standard Deviation Calculator
+7.	Coefficient of Variation Calculator
+8.	Linear Regression Calculator
+9.	P-Value Calculator
+10.	Hypothesis Test Calculator
+11.	Difference in Means Calculator
+
+Copy/paste this single master prompt into your AI website builder to add all 11 Statistics pages to Calculate 360 with consistent UI, input parsing, formulas, and share links.
+
+MASTER PROMPT: Add 11 Statistics Calculator Pages (Calculate 360)
+Add 11 new statistics calculator pages to my existing static website Calculate 360. Keep the same design system (minimal white theme, cards, rounded corners, subtle shadows, mobile-first, accessible). Everything must work fully in the browser (no backend, no external libraries/CDNs). Use vanilla HTML + CSS + JavaScript.
+
+A) Global requirements (apply to every stats page)
+Files
+
+One HTML + one JS per tool:
+
+confidence-interval.html + confidence-interval.js
+
+mean-median-mode.html + mean-median-mode.js
+
+skewness.html + skewness.js
+
+kurtosis.html + kurtosis.js
+
+variance.html + variance.js
+
+standard-deviation.html + standard-deviation.js
+
+coefficient-of-variation.html + coefficient-of-variation.js
+
+linear-regression.html + linear-regression.js
+
+p-value.html + p-value.js
+
+hypothesis-test.html + hypothesis-test.js
+
+difference-in-means.html + difference-in-means.js
+
+Navigation + Hub
+
+Update global navigation to include a “Statistics” section or dropdown.
+
+Update calculators.html hub to include a Statistics category with cards for all 11 calculators + a search filter.
+
+Common input format
+
+Primary input method: a textarea where users can paste numbers:
+
+Accept separators: commas, spaces, new lines, tabs
+
+Accept scientific notation (e.g., 1.2e-3)
+
+Ignore empty tokens
+
+Inline error for invalid tokens (show which token index failed)
+
+Optional: file upload CSV is NOT required.
+
+Outputs & UX
+
+Live calculation on input change (debounced).
+
+Reset button, Copy Result button, Copy Share Link button (query params).
+
+Show “—” for missing inputs, inline errors only.
+
+Provide “How it’s calculated” section with formulas + small example.
+
+Precision
+
+Precision selector for numeric outputs: 2 / 4 / 6 decimals (default 4).
+
+Don’t over-round intermediate results.
+
+No external libraries
+
+Implement needed math functions in JS:
+
+erf, normal CDF & inverse CDF (approx)
+
+Student’s t CDF/inverse (approx) OR use numeric methods (bisection) + beta function approximation
+
+Chi-square CDF (approx) if needed
+Keep it reliable and well-commented.
+
+SEO + monetization placeholders
+
+Per-page meta title/description + Open Graph tags.
+
+Add FAQ + FAQ schema (JSON-LD) per page.
+
+Add placeholder ad containers (no real AdSense code):
+
+“Ad slot (Top)”, “Ad slot (Sidebar on desktop)”, “Ad slot (Bottom)”
+
+B) Calculator requirements (per page)
+1) Confidence Interval Calculator
+File: confidence-interval.html
+Modes (tabbed):
+
+Mean (Z interval, sigma known) [advanced optional]
+
+Mean (t interval, sigma unknown) default
+
+Proportion (p̂) confidence interval
+Inputs:
+
+For mean: data list OR summary inputs (n, mean, sd) toggle
+
+Confidence level (90/95/99 custom)
+Outputs:
+
+CI lower/upper, margin of error
+
+n, mean, sd shown
+Formulas:
+
+t: mean ± t* (s/√n)
+
+proportion: p̂ ± z* √(p̂(1−p̂)/n)
+
+2) Mean, Median, Mode Calculator
+Inputs: data list
+Outputs:
+
+Count n, sum
+
+Mean, median
+
+Mode(s) (support multiple modes)
+
+Min, max, range
+
+Sorted preview (first/last 10)
+Optional: percentile calculator (25/50/75)
+
+3) Skewness Calculator
+Inputs: data list
+Outputs:
+
+Sample skewness (use a standard formula; state which)
+Preferred: Fisher-Pearson adjusted sample skewness:
+
+g1 = (n/((n−1)(n−2))) * Σ((xi−x̄)/s)^3
+Show interpretation guidance (left/right skew)
+
+4) Kurtosis Calculator
+Inputs: data list
+Outputs:
+
+Excess kurtosis (kurtosis − 3)
+Preferred: unbiased/adjusted sample excess kurtosis (state formula)
+Include interpretation (leptokurtic/platykurtic)
+
+5) Variance Calculator
+Inputs: data list
+Toggle:
+
+Sample variance (default, n−1)
+
+Population variance (n)
+Outputs: variance, mean, n
+
+6) Standard Deviation Calculator
+Same as variance but output SD (sqrt variance) and variance too.
+Toggle sample/population.
+
+7) Coefficient of Variation Calculator
+Inputs: data list
+Outputs:
+
+Mean, SD (sample)
+
+CV = SD / Mean × 100%
+Validation: if mean ≈ 0, show warning “CV not meaningful”
+
+8) Linear Regression Calculator
+Inputs:
+
+Two-column data (X and Y) in textarea:
+
+Accept formats: “x,y” per line OR “x y” per line
+
+Optional: choose to include intercept (default yes)
+Outputs:
+
+Regression equation: y = a + b x
+
+Slope b, intercept a
+
+R², correlation r
+
+Standard error of estimate (optional)
+
+Simple SVG scatter plot + regression line (no libs)
+Validation: require at least 2 pairs.
+
+9) P-Value Calculator
+Tabs:
+
+Z-test p-value (one/two-tailed)
+
+t-test p-value (df input)
+
+Chi-square p-value (df input) (optional)
+Inputs:
+
+Test statistic (z or t)
+
+Tail type: left/right/two
+
+df for t (and chi-square)
+Outputs:
+
+p-value
+
+interpretation text “If p < α then …” (no medical claims)
+Precision controls.
+
+10) Hypothesis Test Calculator
+Provide a guided interface (step-by-step) with common tests:
+Tabs:
+
+One-sample t-test (mean)
+
+Two-sample t-test (independent)
+
+Proportion test (optional)
+Inputs:
+
+Data list OR summary mode (n, mean, sd)
+
+Null hypothesis value (μ0)
+
+Alternative (≠, >, <)
+
+Alpha (0.10/0.05/0.01 custom)
+Outputs:
+
+Test statistic, df, p-value
+
+Decision: reject/fail to reject H0
+
+Confidence interval (optional nice-to-have)
+Include clear assumptions (normality, independence).
+
+11) Difference in Means Calculator
+This is a focused “two groups comparison” calculator.
+Inputs:
+
+Group A data list (textarea)
+
+Group B data list (textarea)
+Toggle:
+
+Assume equal variances? (default no, use Welch)
+
+Confidence level (for CI)
+Outputs:
+
+MeanA, MeanB, difference (A−B)
+
+Standard error
+
+t statistic, df (Welch), p-value (two-tailed default)
+
+CI for difference in means
+Include effect size (Cohen’s d) optional.
+
+C) Final deliverables
+Provide complete working code for:
+
+All 11 HTML files + JS files
+
+Any shared app.js utilities (parsing, formatting, share links)
+
+Updates to styles.css if needed
+
+Updates to calculators.html hub + navigation across all pages
+
+Everything must run as a deployable static website with no external libraries.
+
+If you want, I can also generate a single “Statistics Suite” page with tabs for all 11 tools (instead of separate pages).
+
+
+i wanted to add new page, write a prompt considering following : calculating the Gross Rental Yield, which is used to evaluate whether a property's price is justified based on the rent it generates.The Formula BreakdownCalculate Annual Rent: Multiply the monthly rent by 12.Calculate Yield Percentage: \(\frac{\text{Annual Rent}}{\text{Property Price}} \times 100\)Investment Guidelines (Residential)According to the image's criteria for buying a home:> 3.5%: The property is considered cheap (good value).2.5% to 3.5%: The property is priced fairly ("nice").< 2.5%: The property is considered expensive (overpriced).Investment Guidelines (Commercial)For commercial real estate, the yield should ideally be above 5.5%.Note: This is a simplified "rule of thumb." In reality, you should also consider property taxes, maintenance costs, vacancy rates, and potential for capital appreciation.
+
+Copy/paste this prompt into your AI website builder to add a Rental Yield Calculator page to Calculate 360:
+
+PROMPT: Add Rental Yield Calculator Page
+Add a new page to my existing static website Calculate 360 called Rental Yield Calculator. The calculator should help users determine whether a property is fairly priced based on the rent it generates by calculating the Gross Rental Yield (%).
+
+The page must match the existing Calculate 360 design system:
+
+Minimal white theme
+
+Responsive/mobile-first layout
+
+Cards with rounded corners
+
+Subtle shadows
+
+No backend required
+
+No external libraries
+
+1) Files to Create
+Create:
+
+rental-yield-calculator.html
+
+rental-yield.js
+
+Update:
+
+Global navigation across all pages
+
+calculators.html hub page (add Rental Yield Calculator card)
+
+2) Calculator Overview
+The calculator should estimate:
+
+Gross Rental Yield (%)
+Formula:
+
+Annual Rent = Monthly Rent × 12
+
+Gross Rental Yield (%) =
+
+(Annual Rent ÷ Property Price) × 100
+
+Display the formula on the page.
+
+3) Inputs
+Property Type
+Radio buttons:
+
+Residential (default)
+
+Commercial
+
+Property Purchase Price
+Currency: ₹
+
+Numeric input
+
+Example:
+₹ 50,00,000
+
+Monthly Rent
+Currency: ₹
+
+Numeric input
+
+Example:
+₹ 15,000
+
+4) Outputs
+Display results instantly as the user types.
+
+Annual Rental Income
+Example:
+
+₹ 1,80,000
+
+Gross Rental Yield
+Example:
+
+3.60%
+
+Property Valuation Rating
+Show color-coded rating cards.
+
+Residential Property Rules
+If Yield > 3.5%
+
+Show:
+
+✅ Cheap Property
+Good value based on rental income.
+
+If Yield >= 2.5% and <= 3.5%
+
+Show:
+
+🟢 Fairly Priced
+Property appears reasonably valued.
+
+If Yield < 2.5%
+
+Show:
+
+🔴 Expensive Property
+Property may be overpriced relative to rental income.
+
+Commercial Property Rules
+If Yield >= 5.5%
+
+Show:
+
+✅ Attractive Investment
+Commercial property meets the recommended rental yield threshold.
+
+If Yield < 5.5%
+
+Show:
+
+⚠️ Low Rental Yield
+Commercial property may not generate sufficient rental returns.
+
+5) Investment Analysis Section
+Add a separate results card titled:
+
+Rental Yield Analysis
+Display:
+
+Annual Rent
+
+Property Price
+
+Yield %
+
+Rating
+
+Investment Summary
+
+Example:
+
+"Based on the current rental income, this property generates a gross rental yield of 3.6%, which falls into the 'Cheap Property' category and may represent good value."
+
+6) Advanced Cost Analysis (Optional Toggle)
+Add:
+
+Include Ownership Costs
+Toggle:
+ON / OFF
+
+When enabled show:
+
+Annual Property Tax (₹)
+
+Annual Maintenance Cost (₹)
+
+Annual Insurance Cost (₹)
+
+Vacancy Rate (%) default 5%
+
+Calculate:
+
+Net Annual Income
+
+Net Annual Income =
+Annual Rent
+− Taxes
+− Maintenance
+− Insurance
+− Vacancy Loss
+
+Net Yield (%) =
+(Net Annual Income ÷ Property Price) × 100
+
+Show:
+
+Gross Yield
+
+Net Yield
+
+7) Property Comparison Tool
+Add optional comparison section.
+
+Allow users to compare:
+
+Property A
+Property B
+
+Display:
+
+Metric	Property A	Property B
+Price		
+Annual Rent		
+Gross Yield		
+Net Yield		
+Highlight the better yield.
+
+8) Share & Export Features
+Buttons:
+
+Reset
+
+Copy Result
+
+Copy Investment Summary
+
+Copy Share Link
+
+Example URL:
+
+?price=5000000&rent=15000&type=residential
+
+9) Visual Elements
+Add:
+
+Yield Meter
+A horizontal gauge showing:
+
+Residential:
+
+Poor (<2.5%)
+
+Fair (2.5%-3.5%)
+
+Excellent (>3.5%)
+
+Commercial:
+
+Poor (<5.5%)
+
+Attractive (>5.5%)
+
+Display marker showing actual yield.
+
+Use pure HTML/CSS/SVG.
+
+No chart libraries.
+
+10) Educational Section
+Add:
+
+Understanding Rental Yield
+Explain:
+
+Gross Rental Yield measures the annual rental income generated by a property as a percentage of its purchase price.
+
+Higher rental yields generally indicate better income-generating potential.
+
+Include note:
+
+"Rental yield is only one metric. Investors should also consider property taxes, maintenance costs, vacancy rates, financing costs, location, and future capital appreciation."
+
+11) FAQs + Schema
+Add FAQ section and FAQ JSON-LD schema.
+
+Questions:
+
+What is Gross Rental Yield?
+
+What is a good rental yield for residential property?
+
+What is a good rental yield for commercial property?
+
+What is the difference between Gross Yield and Net Yield?
+
+Should I buy a property based only on rental yield?
+
+12) SEO
+Page Title:
+
+Calculate 360 – Rental Yield Calculator
+
+Meta Description:
+
+Calculate Gross and Net Rental Yield instantly. Evaluate residential and commercial property investments based on rental income and purchase price.
+
+Open Graph Tags:
+
+Title
+
+Description
+
+URL
+
+13) Final Output Required
+Provide complete code for:
+
+rental-yield-calculator.html
+
+rental-yield.js
+
+Any updates required to styles.css
+
+Updates to calculators.html
+
+Navigation updates across all pages
+
+Everything must work as a fully deployable static website with no external libraries.
+
+
+i wanted to add new page to find out if the property price is value for money or not, write a prompt considering following : a formula to determine if a residential property is priced well based on its rental yield.The Rental Yield Calculation To find the yield, you calculate the annual rent as a percentage of the total property price:\(\text{Rental\ Yield}=\left(\frac{\text{Monthly\ Rent}\times 12}{\text{Property\ Price}}\right)\times 100\)Using the example in the image:Monthly Rent: ₹1,00,000 (Annual: ₹12,00,000)Property Price: ₹3 Crores (₹3,00,00,000)Yield: \(4\%\)How to Interpret the Results The guide suggests different benchmarks depending on the asset class:Yield Range Verdict (Residential)Below 2.5%Overpriced2.5% – 3.5%Fair / "Nice" price Above 3.5%Undervalued / "Cheap"Note for Commercial Property: The guide specifies that for commercial investments, the yield should not go below 5.5%.Important Consideration: While rental yield is a great indicator of immediate cash flow, it doesn't account for maintenance costs, taxes, or future capital appreciation.
+
+Copy/paste this prompt into your AI website builder to add a dedicated Property Value-for-Money Calculator page to Calculate 360.
+
+PROMPT: Add Property Value-for-Money Calculator Page
+Add a new page to my existing static website Calculate 360 called Property Value-for-Money Calculator.
+
+The purpose of this tool is to help users determine whether a property is Overpriced, Fairly Priced, or Undervalued based on its Rental Yield.
+
+The page must match the existing Calculate 360 design system:
+
+Minimal white theme
+
+Responsive/mobile-first
+
+Card-based layout
+
+Rounded corners
+
+Subtle shadows
+
+Fully client-side
+
+No backend
+
+No external libraries
+
+1) Files to Create
+Create:
+
+property-value-calculator.html
+
+property-value.js
+
+Update:
+
+Global navigation
+
+calculators.html hub page
+
+2) Purpose of Calculator
+This tool helps users answer:
+
+"Is this property worth the asking price?"
+
+using rental yield as a valuation metric.
+
+The calculator should estimate:
+
+Annual Rental Income
+
+Gross Rental Yield %
+
+Property Valuation Rating
+
+Value-for-Money Score
+
+Investment Recommendation
+
+3) Inputs
+Property Type
+Radio buttons:
+
+Residential (default)
+
+Commercial
+
+Property Purchase Price
+Currency: ₹
+
+Example:
+
+₹ 3,00,00,000
+
+Monthly Rental Income
+Currency: ₹
+
+Example:
+
+₹ 1,00,000
+
+4) Calculation Formula
+Display the formula prominently:
+
+Annual Rent = Monthly Rent × 12
+
+Gross Rental Yield (%) =
+
+(Annual Rent ÷ Property Price) × 100
+
+Example:
+
+Monthly Rent = ₹1,00,000
+
+Annual Rent = ₹12,00,000
+
+Property Price = ₹3,00,00,000
+
+Rental Yield = 4%
+
+5) Property Valuation Rules
+Residential Property
+Yield < 2.5%
+Verdict:
+
+🔴 Overpriced
+
+Message:
+
+"The property appears expensive relative to the rental income it generates."
+
+Yield between 2.5% and 3.5%
+Verdict:
+
+🟡 Fairly Priced
+
+Message:
+
+"The property appears reasonably valued based on current rental income."
+
+Yield > 3.5%
+Verdict:
+
+🟢 Undervalued / Value for Money
+
+Message:
+
+"The property appears attractively priced relative to the rental income generated."
+
+Commercial Property
+Yield < 5.5%
+Verdict:
+
+🔴 Below Recommended Yield
+
+Message:
+
+"This commercial property may not provide sufficient rental returns."
+
+Yield ≥ 5.5%
+Verdict:
+
+🟢 Attractive Investment
+
+Message:
+
+"This commercial property meets the recommended rental yield benchmark."
+
+6) Value-for-Money Score
+Create a score out of 100.
+
+Example logic:
+
+Residential
+Yield ≤ 1% = Score 20
+
+Yield = 2.5% = Score 50
+
+Yield = 3.5% = Score 75
+
+Yield ≥ 5% = Score 100
+
+Commercial
+Yield = 3% = Score 30
+
+Yield = 5.5% = Score 75
+
+Yield ≥ 8% = Score 100
+
+Display:
+
+Value-for-Money Score
+85 / 100
+
+Excellent Value
+
+Use a colored gauge:
+
+Red
+
+Yellow
+
+Green
+
+Built using CSS/SVG only.
+
+7) Investment Recommendation Section
+Generate a dynamic recommendation.
+
+Examples:
+
+Overpriced
+"Based on a rental yield of 2.1%, the property appears overpriced. Investors may want to negotiate a lower purchase price or consider alternative properties."
+
+Fairly Priced
+"Based on a rental yield of 3.0%, the property appears fairly valued and provides reasonable rental returns."
+
+Undervalued
+"Based on a rental yield of 4.2%, the property appears attractively priced relative to its rental income."
+
+8) Reverse Property Valuation Calculator
+Add a second calculator section:
+
+What Should This Property Be Worth?
+Inputs:
+
+Monthly Rent
+
+Property Type
+
+Output:
+
+Recommended Property Value Range
+
+Using benchmark yields:
+
+Residential
+Overpriced Threshold:
+
+2.5%
+
+Fair Value:
+
+3.0%
+
+Excellent Value:
+
+3.5%
+
+Formula:
+
+Property Value =
+Annual Rent ÷ Yield
+
+Example:
+
+Rent = ₹1,00,000/month
+
+Annual Rent = ₹12,00,000
+
+At 3.5% yield:
+
+₹12,00,000 ÷ 0.035
+
+= ₹3.43 Crore
+
+Display:
+
+Category	Recommended Value
+Cheap / Excellent Buy	₹3.43 Cr
+Fair Price	₹4.00 Cr
+Overpriced Above	₹4.80 Cr
+9) Property Comparison Tool
+Allow comparing two properties.
+
+Inputs:
+
+Property A:
+
+Price
+
+Rent
+
+Property B:
+
+Price
+
+Rent
+
+Outputs:
+
+Metric	Property A	Property B
+Yield		
+Score		
+Verdict		
+Highlight better investment.
+
+10) Advanced Analysis Toggle
+Optional toggle:
+
+Include Expenses
+Inputs:
+
+Annual Property Tax
+
+Annual Maintenance
+
+Insurance
+
+Vacancy Rate %
+
+Calculate:
+
+Net Annual Income
+
+Net Rental Yield
+
+Display:
+
+Gross Yield
+
+Net Yield
+
+Difference
+
+11) Educational Section
+Add section:
+
+How Rental Yield Helps Determine Property Value
+Explain:
+
+Rental yield measures how much annual rent a property generates relative to its purchase price.
+
+Generally:
+
+Residential
+Below 2.5% → Expensive
+
+2.5%–3.5% → Fair
+
+Above 3.5% → Good Value
+
+Commercial
+Below 5.5% → Weak Yield
+
+Above 5.5% → Attractive Yield
+
+Include disclaimer:
+
+"Rental yield is only one valuation metric. Investors should also consider location, future appreciation potential, maintenance costs, taxes, vacancy risk, and financing costs."
+
+12) Share & Export Features
+Buttons:
+
+Reset
+
+Copy Results
+
+Copy Investment Summary
+
+Copy Share Link
+
+Example URL:
+
+?price=30000000&rent=100000&type=residential
+
+13) SEO
+Page Title:
+
+Calculate 360 – Property Value-for-Money Calculator
+
+Meta Description:
+
+Find out whether a property is overpriced, fairly priced, or undervalued using rental yield analysis. Compare properties, estimate fair value, and evaluate investment potential.
+
+Open Graph Tags:
+
+Title
+
+Description
+
+URL
+
+14) FAQ Section + FAQ Schema
+Questions:
+
+What is rental yield?
+
+What is a good rental yield for residential property?
+
+What is a good rental yield for commercial property?
+
+Can rental yield determine fair property value?
+
+Should I buy a property based only on rental yield?
+
+15) Final Output Required
+Provide complete working code for:
+
+property-value-calculator.html
+
+property-value.js
+
+Updates to styles.css
+
+Updates to calculators.html
+
+Navigation updates across all pages
+
+Everything must work as a fully deployable static website with no external libraries.

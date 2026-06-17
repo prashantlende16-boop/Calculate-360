@@ -16,6 +16,8 @@ const categories = [
       { href: "/savings-goal", label: "Savings Goal", icon: Target },
       { href: "/ads-metrics", label: "Ads Metrics", icon: BarChart3 },
       { href: "/construction-cost", label: "Construction Cost", icon: Building2 },
+      { href: "/rental-yield", label: "Rental Yield", icon: TrendingUp },
+      { href: "/property-value", label: "Property Value", icon: Building2 },
     ],
   },
   {

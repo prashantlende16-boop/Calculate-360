@@ -50,6 +50,8 @@ export function Footer() {
               <li><a href="/savings-goal" className="hover:text-primary transition-colors">Savings Goal</a></li>
               <li><a href="/ads-metrics" className="hover:text-primary transition-colors">Ads Metrics</a></li>
               <li><a href="/construction-cost" className="hover:text-primary transition-colors">Construction Cost</a></li>
+              <li><a href="/rental-yield" className="hover:text-primary transition-colors">Rental Yield</a></li>
+              <li><a href="/property-value" className="hover:text-primary transition-colors">Property Value</a></li>
             </ul>
           </div>
 
