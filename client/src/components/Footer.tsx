@@ -29,9 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-                <Heart className="w-4 h-4 fill-current" />
-              </div>
+              <img src="/logo-square.png" alt="Calculate 360" className="w-8 h-8 rounded-lg object-contain" />
               <h3 className="font-display font-bold text-lg">Calculate 360</h3>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

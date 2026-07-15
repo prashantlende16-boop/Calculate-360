@@ -213,9 +213,11 @@ export function Navigation() {
       <div className="container mx-auto px-4 min-h-16 flex items-center gap-3 py-2">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform duration-200">
-            <Calculator className="w-5 h-5" />
-          </div>
+          <img
+            src="/logo-square.png"
+            alt="Calculate 360"
+            className="w-9 h-9 rounded-xl object-contain group-hover:scale-105 transition-transform duration-200"
+          />
           <div className="hidden sm:block">
             <span className="font-display font-bold text-lg tracking-tight text-foreground block leading-none">
               Calculate 360
