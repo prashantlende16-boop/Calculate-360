@@ -1,0 +1,287 @@
+Add a new page to my existing static website Calculate 360 called Business Startup Cost Calculator.
+The purpose of this calculator is to help entrepreneurs estimate how much money they actually need before starting a business, including startup investment, safety budget, marketing budget, emergency fund, GST/tax buffer, and break-even sales.
+The page should follow the existing Calculate 360 design system:
+•	Responsive 
+•	Mobile-first 
+•	Minimal white theme 
+•	Rounded cards 
+•	Soft shadows 
+•	No backend 
+•	Vanilla HTML/CSS/JavaScript 
+•	No external libraries 
+________________________________________
+1. Files
+Create:
+•	business-startup-cost-calculator.html 
+•	business-startup.js 
+Update
+•	calculators.html 
+•	Global Navigation 
+________________________________________
+2. Calculator Overview
+Display an introduction:
+Starting a business requires more than just buying products. This calculator estimates your total startup capital, operating runway, marketing budget, emergency fund, and the number of sales required to break even.
+________________________________________
+3. Section 1 — Fixed Monthly Cost
+User enters monthly operating costs.
+Fields:
+•	Office Rent 
+•	Salaries 
+•	Electricity 
+•	Internet 
+•	Software Subscriptions 
+•	Warehouse Rent 
+•	Insurance 
+•	Transportation 
+•	EMI / Loan Payments 
+•	Miscellaneous Monthly Cost 
+OR
+Allow adding custom expense rows.
+Automatically calculate:
+Total Monthly Fixed Cost
+________________________________________
+Safety Budget
+Formula
+Safety Budget
+=
+Monthly Fixed Cost × 6
+Display:
+"This is the minimum amount needed to survive for six months without any revenue."
+________________________________________
+4. Section 2 — Product / Service Cost
+Fields
+Cost per Product / Service
+Quantity
+Formula
+Initial Inventory Cost
+=
+Cost × Quantity
+Display explanation:
+Product cost should include:
+•	Raw Material 
+•	Packaging 
+•	Delivery 
+•	Labour 
+•	Platform Fees 
+•	Payment Gateway Charges 
+•	Wastage 
+•	Manufacturing Cost 
+Example
+₹500 × 200 Units
+=
+₹1,00,000
+________________________________________
+5. Section 3 — Marketing Budget
+Inputs
+Expected Monthly Revenue
+Marketing %
+Slider
+5%
+10%
+15%
+20%
+25%
+(Default 15%)
+Formula
+Marketing Budget
+=
+Expected Revenue × Marketing %
+Display
+Recommended Range
+10–20%
+Show
+Low
+Recommended
+Aggressive
+marketing levels.
+________________________________________
+6. Section 4 — GST / Tax Buffer
+Inputs
+GST %
+Default
+18%
+Formula
+GST Buffer
+=
+(Startup Cost + Inventory Cost) × GST %
+Display
+Suggested Tax Reserve
+________________________________________
+7. Section 5 — Break-even Calculator
+Inputs
+Monthly Expenses
+(default from Fixed Cost)
+Profit Per Sale
+Formula
+Sales Needed
+=
+Monthly Expenses
+÷
+Profit Per Sale
+Display
+Monthly Sales Required
+Daily Sales Required
+Formula
+Daily Sales
+=
+Monthly Sales ÷ 30
+Example
+Monthly Expense
+₹80,000
+Profit per Sale
+₹400
+Result
+200 Sales / Month
+7 Sales / Day
+________________________________________
+8. Section 6 — Emergency Fund
+Formula
+Emergency Fund
+=
+Monthly Expenses × 6
+Display message
+Every business experiences:
+•	Slow months 
+•	Delayed payments 
+•	Refunds 
+•	Equipment failures 
+•	Weak demand 
+•	Damaged inventory 
+An emergency fund allows your business to continue operating without financial stress.
+________________________________________
+9. Section 7 — Total Startup Capital Required
+Automatically calculate
+Total Startup Capital
+=
+Safety Budget
+•	
+Inventory Cost
+•	
+Marketing Budget
+•	
+GST Buffer
+•	
+Emergency Fund
+•	
+Unexpected Expenses
+________________________________________
+Unexpected Expense %
+Slider
+0%
+5%
+10%
+15%
+20%
+(Default 10%)
+Formula
+Unexpected Expense
+=
+Subtotal × %
+________________________________________
+Display
+Estimated Startup Capital
+₹ XX,XX,XXX
+________________________________________
+10. Business Readiness Score
+Generate score out of 100.
+Example
+Excellent
+80-100
+Good
+60-79
+Average
+40-59
+Risky
+Below 40
+Based on
+Emergency fund available
+Marketing budget
+Safety reserve
+Break-even
+Unexpected expense buffer
+Display gauge
+Green
+Yellow
+Red
+________________________________________
+11. Financial Summary Dashboard
+Display cards
+Monthly Fixed Cost
+Safety Budget
+Inventory Cost
+Marketing Budget
+GST Buffer
+Emergency Fund
+Unexpected Expense
+Total Startup Capital
+Break-even Sales
+Daily Sales Needed
+________________________________________
+12. Business Tips Section
+Generate dynamic tips.
+Examples
+If emergency fund is low
+"Increase your emergency reserve to reduce financial risk."
+If marketing budget <10%
+"You may struggle to acquire customers."
+If break-even sales are very high
+"Consider increasing product margins or reducing monthly expenses."
+________________________________________
+13. Visual Charts
+Create SVG/CSS charts (no libraries)
+Pie Chart
+Allocation of startup budget
+•	Inventory 
+•	Marketing 
+•	Emergency Fund 
+•	GST 
+•	Fixed Cost 
+Bar Chart
+Monthly expenses vs Revenue target
+________________________________________
+14. Share Features
+Buttons
+Reset
+Copy Summary
+Copy Investment Plan
+Download PDF (print-friendly)
+Copy Share Link
+________________________________________
+15. Educational Section
+Explain
+Before Starting Any Business
+Every business should estimate:
+✔ Monthly Operating Cost
+✔ Startup Inventory
+✔ Marketing Budget
+✔ GST Liability
+✔ Break-even Sales
+✔ Emergency Fund
+✔ Unexpected Expenses
+before investing money.
+________________________________________
+16. SEO
+Title
+Business Startup Cost Calculator | Calculate Startup Investment, Break-even & Emergency Fund | Calculate 360
+Meta Description
+Estimate your business startup cost, emergency fund, break-even sales, GST reserve, marketing budget, and total investment required before launching your business.
+________________________________________
+17. FAQ
+Include FAQ Schema.
+Questions
+•	How much money do I need to start a business? 
+•	What is a good emergency fund for a business? 
+•	How do I calculate break-even sales? 
+•	How much should I spend on marketing? 
+•	Why should I keep a GST buffer? 
+•	Why do businesses fail due to cash flow? 
+•	What percentage should I keep for unexpected expenses? 
+________________________________________
+18. Final Output Required
+Provide complete code for:
+•	business-startup-cost-calculator.html 
+•	business-startup.js 
+•	Required updates to styles.css 
+•	Navigation updates 
+•	calculators.html card 
+Everything should work as a fully deployable static website without any external libraries.

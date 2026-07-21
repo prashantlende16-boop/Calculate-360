@@ -3,7 +3,7 @@ import {
   Calculator, CalendarClock, Home, Coins, ArrowLeftRight, Menu, X, Activity, QrCode,
   PersonStanding, Scale, Target, BarChart3, Fuel, Split, PartyPopper, Flame, Weight,
   Droplets, Moon as MoonIcon, Sun, FileText, Code, Palette, Shuffle, Globe, ChevronDown,
-  Building2, TrendingUp, Sigma, TestTube, ArrowDownUp, MoreHorizontal,
+  Building2, TrendingUp, Sigma, TestTube, ArrowDownUp, MoreHorizontal, Briefcase,
 } from "lucide-react";
 import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -24,6 +24,7 @@ const categories = [
       { href: "/construction-cost", label: "Construction Cost", icon: Building2 },
       { href: "/rental-yield", label: "Rental Yield", icon: TrendingUp },
       { href: "/property-value", label: "Property Value", icon: Building2 },
+      { href: "/business-startup", label: "Startup Cost", icon: Briefcase },
     ],
   },
   {
